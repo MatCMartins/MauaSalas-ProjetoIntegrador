@@ -28,7 +28,7 @@ var app = express();
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false, // set this to true on production
+        secure: true, // set this to true on production
     }
 }));
 
@@ -36,7 +36,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+app.use(logger('common'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

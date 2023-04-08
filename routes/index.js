@@ -10,7 +10,8 @@ router.get('/', function (req, res, next) {
     res.render('index', {
         title: 'Mauá Salas',
         isAuthenticated: req.session.isAuthenticated,
-        username: req.session.account?.name,
+        // isAdministrator: req.session.isAdministrator,
+        username: req.session.account && req.session.account.name,
     });
 });
 

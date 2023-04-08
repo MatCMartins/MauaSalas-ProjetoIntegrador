@@ -1,6 +1,9 @@
 <h1>{{title}}</h1>
 {{#if isAuthenticated }}
 <p>Olá, {{username}}!</p>
+{{!-- {{#if isAdministrator }}
+<p>Administrator</p>
+{{/if}} --}}
 <a href="/users/id">Ver atributos do ID token</a>
 <br>
 <a href="/auth/signout">Sair</a>

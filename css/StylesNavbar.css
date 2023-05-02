@@ -1,0 +1,15 @@
+.navbar{
+    background-color: #AAD0F0; 
+}
+.botaoLogin{
+    background-color: #004785;
+    color: #f6f6f6;
+}
+.navbar div{
+    justify-content: end;
+}
+@media (min-width: 992px){
+    #logo{
+        margin-left: 50px;
+    }
+}

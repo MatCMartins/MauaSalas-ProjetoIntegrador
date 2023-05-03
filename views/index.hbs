@@ -1,13 +1,84 @@
-<h1>{{title}}</h1>
-{{#if isAuthenticated }}
-<p>Olá, {{username}}!</p>
-{{!-- {{#if isAdministrator }}
-<p>Administrator</p>
-{{/if}} --}}
-<a href="/users/id">Ver atributos do ID token</a>
-<br>
-<a href="/auth/signout">Sair</a>
-{{else}}
-<p>Bem-vindo ao {{title}}</p>
-<a href="/auth/signin">Realizar Login</a>
-{{/if}}
+<main>
+    <section id="carrosel">
+        <div class="container-fluid p-0">
+            <div class="row" style="margin: 0;">
+                <div class="col-12" style="padding: 0;">
+                    <div class="carousel carousel-dark slide" id="carouselTelaInicial" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselTelaInicial" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselTelaInicial" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselTelaInicial" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/images/imagem1.jpg" class="w-100 img-fluid img-tela-fundo"
+                                    alt="Imagem de uma sala da Mauá em aula">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/images/imagem2.jpg" class="w-100 img-fluid img-tela-fundo"
+                                    alt="Imagem de uma sala da Mauá em aula">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/images/imagem3.jpg" class="w-100 img-fluid img-tela-fundo"
+                                    alt="Imagem de uma sala da Mauá em aula">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTelaInicial"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTelaInicial"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="informacoes">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="texto mt-4" id="texto1">
+                        <h2 class="px-lg-5 ms-lg-5 pb-5 pt-2">Quem somos nós?</h2>
+                        <p class="px-lg-5 ms-lg-5 pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+                            iusto non commodi reprehenderit, a quibusdam, temporibus dignissimos error officia
+                            consequatur animi voluptatibus soluta ducimus fugit assumenda enim aspernatur praesentium
+                            laudantium itaque quo qui voluptates repellat. In tempore quia architecto iusto magnam,
+                            dolores ad iure blanditiis necessitatibus accusamus nulla similique praesentium?</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="imagem p-lg-5 ms-lg-5 pb-5" id="imagem1">
+                        <img src="/images/imagem4.jpg" alt="Imagem Biblioteca" width="75%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12 order-lg-2">
+                    <div class="texto mt-4" id="texto2">
+                        <h2 class="px-lg-5 ms-lg-5 pb-5 pt-2">Quem somos nós?</h2>
+                        <p class="px-lg-4 ms-lg-5 pb-5 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Fuga iusto non commodi reprehenderit, a quibusdam, temporibus dignissimos error officia
+                            consequatur animi voluptatibus soluta ducimus fugit assumenda enim aspernatur praesentium
+                            laudantium itaque quo qui voluptates repellat. In tempore quia architecto iusto magnam,
+                            dolores ad iure blanditiis necessitatibus accusamus nulla similique praesentium?</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12 order-lg-1">
+                    <div class="imagem p-lg-5 ms-lg-5 pb-3" id="imagem2">
+                        <img src="/images/imagem4.jpg" alt="Imagem Biblioteca" width="75%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

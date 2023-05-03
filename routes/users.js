@@ -22,7 +22,11 @@ function isAuthenticated(req, res, next) {
 router.get('/id',
     isAuthenticated, // check if user is authenticated
     async function (req, res, next) {
-        res.render('id', { idTokenClaims: req.session.account.idTokenClaims });
+        res.render('id', { title: 'Mauá Salas',
+        isAuthenticated: req.session.isAuthenticated,
+        // isAdministrator: req.session.isAdministrator,
+        username: req.session.account && req.session.account.name,
+        idTokenClaims: req.session.account.idTokenClaims });
     }
 );
 

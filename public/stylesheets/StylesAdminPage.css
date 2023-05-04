@@ -1,0 +1,40 @@
+@media (min-width: 992px) {
+    .container-adms {
+        width: 700px;
+    }
+    .botoes-modal {
+        width: 700px;
+    }
+}
+main{
+    color: #001E38;
+}
+.conteudo {
+    height: 350px;
+    border: 1px solid;
+    border-color: #001E38;
+}
+
+.data {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.informacoes{
+    transform: scale(0.95);
+}
+
+.titulo {
+    font-size: x-large;
+}
+
+.icon {
+    fill: #001E38;
+}
+.botao-cadastro, .botao-remover{
+    background-color: #004785;
+    color: #F6F6F6;
+}
+.botao-cadastro:hover , .botao-remover:hover{
+    border: 1px solid #001E38;
+}

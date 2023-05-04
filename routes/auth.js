@@ -143,7 +143,8 @@ router.post('/redirect', async function (req, res, next) {
                 next(error);
             }
         } else {
-            next(new Error('csrf token does not match'));
+            //next(new Error('csrf token does not match'));
+            res.redirect('/auth/signin');
         }
     } else {
         next(new Error('state is missing'));

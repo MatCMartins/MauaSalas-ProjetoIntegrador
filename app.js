@@ -14,6 +14,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var manterSalasRouter = require('./routes/manterSalas')
 var authRouter = require('./routes/auth');
 var wellKnownRouter = require('./routes/wellKnown');
 
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/manterSalas', manterSalasRouter)
 app.use('/auth', authRouter);
 app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
 

@@ -8,7 +8,8 @@
 }
 main{
     color: #001E38;
-}
+    background-color: #F6F6F6;
+}   
 .conteudo {
     height: 350px;
     border: 1px solid;
@@ -21,8 +22,9 @@ main{
     margin: 0;
 }
 .informacoes{
-    transform: scale(0.95);
+    transform: scale(0.93);
 }
+
 
 .titulo {
     font-size: x-large;
@@ -37,4 +39,30 @@ main{
 }
 .botao-cadastro:hover , .botao-remover:hover{
     border: 1px solid #001E38;
+}
+.input-email{
+    border: 0;
+    outline: 0;
+    background-color: #F6F6F6;
+    color: #001E38; 
+}
+.input-email:hover{
+    cursor: text;
+}
+.input-email:focus{
+    border-bottom: 2px solid #001E38 ;
+}
+.input-select{
+    border: 0 none;
+    padding-top: 0 1px 0 0;
+    cursor: pointer;
+    outline: 0;
+    background-color: #F6F6F6;
+    color: #001E38;
+    
+}
+.botao-excluir, .botao-editar {
+    border: none;
+    background-color: #F6F6F6;
+    padding: 0;
 }

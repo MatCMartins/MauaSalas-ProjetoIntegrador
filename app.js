@@ -14,7 +14,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var manterSalasRouter = require('./routes/manterSalas')
+var adminRouter = require('./routes/admin');
 var authRouter = require('./routes/auth');
 var wellKnownRouter = require('./routes/wellKnown');
 
@@ -46,7 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/manterSalas', manterSalasRouter)
+app.use('/admin', adminRouter);
+app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
 
@@ -64,6 +65,10 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+});
+
+app.listen( () => {
+    console.log(`Servidor rodando na porta 3000`);
 });
 
 module.exports = app;

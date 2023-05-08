@@ -1,0 +1,9 @@
+.list-group-item{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+@media (max-width: 395px){
+    div .btn-outline-primary{
+        font-size: 10px; 
+    }
+}

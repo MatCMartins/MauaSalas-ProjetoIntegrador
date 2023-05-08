@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="/stylesheets/stylesNavbar.css">
+    <link rel="stylesheet" href="/stylesheets/stylesFooter.css">
+    <link rel="stylesheet" href={{style}}>
+    <link rel="icon" href="/images/logo.svg">
+  </head>
+  <body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand m-lg-auto">
+                    <img src="/images/logo.svg" alt="Logo Maua Salas" id="logo" width="80px">
+                </a>
+                {{#if isAuthenticated }}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Olá, {{username}}!
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item btn botaoLogin px-4 me-4" href="/auth/signout">Sair</a></li>
+                    </ul>
+                </div>
+                {{else}}
+                <a type="button" href="/auth/signin" class="btn botaoLogin px-4 me-4">Login</a>
+                {{/if}}
+            </div>
+        </nav>
+    </header>
+    {{{body}}}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center mt-3">Mauá Salas - 2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>

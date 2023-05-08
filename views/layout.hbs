@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/stylesNavbar.css">
     <link rel="stylesheet" href="/stylesheets/stylesFooter.css">
     <link rel="stylesheet" href={{style}}>
-    <link rel="icon" href="/images/logo.svg"
+    <link rel="icon" href="/images/logo.svg">
   </head>
   <body>
     <header>
@@ -18,7 +18,14 @@
                     <img src="/images/logo.svg" alt="Logo Maua Salas" id="logo" width="80px">
                 </a>
                 {{#if isAuthenticated }}
-                <a type="button" href="/auth/signout" class="btn botaoLogin px-4 me-4">Olá, {{username}}! Sair</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Olá, {{username}}!
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item btn botaoLogin px-4 me-4" href="/auth/signout">Sair</a></li>
+                    </ul>
+                </div>
                 {{else}}
                 <a type="button" href="/auth/signin" class="btn botaoLogin px-4 me-4">Login</a>
                 {{/if}}

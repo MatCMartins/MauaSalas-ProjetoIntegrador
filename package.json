@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "back": "node ./backend/adminBack.js",
+    "www": "node ./bin/www",
+    "start": "concurrently \"npm run back\" \"npm run www\""
   },
   "dependencies": {
     "@azure/msal-node": "^1.17.0",

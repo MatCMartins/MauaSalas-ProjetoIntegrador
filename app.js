@@ -63,7 +63,12 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('error', {
+        title: 'Mauá Salas - Erro',
+        isAuthenticated: req.session.isAuthenticated,
+        username: req.session.account && req.session.account.name,
+        erro: (err.status || 500),
+    });
 });
 
 module.exports = app;

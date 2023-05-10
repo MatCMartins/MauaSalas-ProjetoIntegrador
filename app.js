@@ -47,7 +47,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
-app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
 

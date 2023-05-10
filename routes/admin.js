@@ -8,6 +8,7 @@ router.get('/manterAdmin', function (req, res, next) {
         isAuthenticated: req.session.isAuthenticated,
         // isAdministrator: req.session.isAdministrator,
         username: req.session.account && req.session.account.name,
+        funcao: "carregarAdministradores()"
     });
 });
 
@@ -18,6 +19,7 @@ router.get('/manterSalas', function (req, res, next) {
         isAuthenticated: req.session.isAuthenticated,
         // isAdministrator: req.session.isAdministrator,
         username: req.session.account && req.session.account.name,
+        funcao: "carregarSalas()"
     });
 });
 

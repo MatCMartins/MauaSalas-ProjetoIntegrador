@@ -10,7 +10,7 @@
     <link rel="stylesheet" href={{style}}>
     <link rel="icon" href="/images/logo.svg">
   </head>
-  <body>
+  <body onload={{funcao}} class="d-flex flex-column vh-100 min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -33,7 +33,7 @@
         </nav>
     </header>
     {{{body}}}
-    <footer>
+    <footer class="mt-auto">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -42,6 +42,7 @@
             </div>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
   </body>
 </html>

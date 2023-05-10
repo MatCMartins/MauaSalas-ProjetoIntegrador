@@ -80,6 +80,6 @@ app.delete("/admin", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log("Servidor rodando na porta 3002");
-}
-);
+    console.log(`Servidor (Admin) rodando na porta ${port}`);
+});
+

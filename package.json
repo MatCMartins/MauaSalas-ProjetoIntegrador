@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "back": "node ./backend/adminBack.js",
+    "backAdm": "node ./backend/adminBack.js",
     "www": "node ./bin/www",
-    "start": "concurrently \"npm run back\" \"npm run www\""
+    "backSalas": "node ./backend/salasBack.js",
+    "start": "concurrently \"npm run backAdm\" \"npm run www\" \"npm run backSalas\""
   },
   "dependencies": {
     "@azure/msal-node": "^1.17.0",

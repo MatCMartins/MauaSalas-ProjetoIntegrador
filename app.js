@@ -71,8 +71,4 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.listen( () => {
-    console.log(`Servidor rodando na porta 3000`);
-});
-
 module.exports = app;

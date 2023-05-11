@@ -5,14 +5,6 @@
 
 var express = require('express');
 var msal = require('@azure/msal-node');
-var mysql = require('mysql');
-
-var con = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DB
-});
 
 var {
     msalConfig,
@@ -129,15 +121,6 @@ router.post('/redirect', async function (req, res, next) {
                 req.session.idToken = tokenResponse.idToken;
                 req.session.account = tokenResponse.account;
                 req.session.isAuthenticated = true;
-                // con.connect(function(err) {
-                //     if (err) throw err;
-                //     con.query("SELECT * FROM teste", function (err, result, fields) {
-                //       if (err) throw err;
-                //       console.log(req.session.isAdministrator = result[0].admin);
-                //     });
-                // });
-                // console.log(req.session.isAdministrator);
-
                 res.redirect(state.redirectTo);
             } catch (error) {
                 next(error);

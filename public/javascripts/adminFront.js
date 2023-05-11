@@ -1,14 +1,6 @@
-async function pegarAdministradores(){
-    const protocolo = "http";
-    const host = "localhost";
-    const porta = "3002";
-    const endpoint = "admin";
-    const url = `${protocolo}://${host}:${porta}/${endpoint}`;
-    let resposta = (await axios.get(url)).data;
-    return resposta;
-}
-async function carregarAdministradores(){
-    const administradores = await pegarAdministradores();
+async function carregarAdministradores(rows){
+    const administradores = rows;
+    console.log(administradores);
     const lista = document.querySelector(".informacoes");
     for (let i = 0; i <administradores.length; i++){
 

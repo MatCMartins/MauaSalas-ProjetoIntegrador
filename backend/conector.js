@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: '<ip-aqui>',
-    user: 'MauaSalas',
-    password: '<senha-aqui>',
-    database: 'MAUASALAS'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DB
 });
 
 connection.connect((err) => {
@@ -12,22 +12,23 @@ connection.connect((err) => {
         console.error('Error connecting to MySQL: ' + err.stack);
         return;
     }
-    console.log('Connected to MySQL as ID ' + connection.threadId);
 
-    connection.query('SELECT * FROM salas', (err, rows) => {
+});
+function banco(query, callback, req, res) {
+    connection.query(query, (err, rows) => {
         if (err) {
             console.error('Error executing query: ' + err.stack);
             return;
         }
-        console.log('Data received from MySQL:\n');
-        console.log(rows);
+        callback(rows, req, res)
     });
 
-    connection.end((err) => {
-        if (err) {
-            console.error('Error closing MySQL connection: ' + err.stack);
-            return;
-        }
-        console.log('MySQL connection closed');
-    });
-});
+//     connection.end((err) => {
+//         if (err) {
+//             console.error('Error closing MySQL connection: ' + err.stack);
+//             return;
+//         }
+//     });
+}
+
+module.exports = banco;

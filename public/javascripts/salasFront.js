@@ -1,19 +1,27 @@
-async function pegarSalas(){
-    const protocolo = "http";
-    const host = "localhost";
-    const porta = "3001";
-    const endpoint = "salas";
-    const url = `${protocolo}://${host}:${porta}/${endpoint}`;
-    let resposta = (await axios.get(url)).data;
-    return resposta;
-}
+var salas;
+const lista_blocos = [];
+async function carregarSalas(rows){
+    salas = rows;
+    for (let i = 0; i <rows.length; i++){
+        lista_blocos.push(rows[i].bloco);
+    }
+    const uniq = [...new Set(lista_blocos)].sort();
 
-
-async function carregarSalas(){
-    salas = await pegarSalas();
+    const pagination = document.querySelector(".pagination");
+    const itemFinal = document.querySelector("#itemPagination");
+    for (let i = 0; i < 5; i++){
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        li.classList.add("page-item");
+        a.classList.add("page-link", "pagina");
+        a.id = `pag${i}`;
+        a.innerHTML = uniq[i];
+        li.appendChild(a);
+        pagination.insertBefore(li, itemFinal);
+    }
     const lista = document.querySelector(".list-group");
-    for (let i = 0; i <salas.length; i++){
-        if(salas[i].bloco == "A"){
+    for (let i = 0; i <rows.length; i++){
+        if(rows[i].bloco == uniq[0]){
             let item = document.createElement("li");
             let a_item = document.createElement("a");
             let botao_item = document.createElement("button");
@@ -27,7 +35,7 @@ async function carregarSalas(){
             item.appendChild(a_item);
             lista.appendChild(item);
             a_item.id = `Sala${i}`;
-            document.querySelector(`#Sala${i}`).innerHTML = salas[i].bloco + salas[i].numero;
+            document.querySelector(`#Sala${i}`).innerHTML = rows[i].bloco + rows[i].numero_sala;
         }
     }
 }
@@ -36,7 +44,6 @@ async function mostrarSalas(letra_pagina){
     while (list_group.firstChild){
         list_group.removeChild(list_group.firstChild);
     }
-    salas = await pegarSalas();
     for (let i = 0; i <salas.length; i++){
         if(salas[i].bloco == letra_pagina){
             let item = document.createElement("li");
@@ -52,44 +59,65 @@ async function mostrarSalas(letra_pagina){
             item.appendChild(a_item);
             list_group.appendChild(item);
             a_item.id = `Sala${i}`;
-            document.querySelector(`#Sala${i}`).innerHTML = salas[i].bloco + salas[i].numero;
+            document.querySelector(`#Sala${i}`).innerHTML = salas[i].bloco + salas[i].numero_sala;
         }
     }
 }
 
-let i = 0;
+let indicePagination = 0;
 
 async function trocaPagination(id){
-    const lista = ["A","B","C","D","E","F","G","H","I","J","L","M","N","P","Q","R","S","V","W"];
     const pagination = document.querySelector(".pagination");
     const itemFinal = document.querySelector("#itemPagination");
     if (id == "PaginaProx"){
-        for (let cont=0; cont < 5; cont++, i++){
-            let pag = document.querySelector(`#pag${cont}`);
-            pag.innerHTML = lista[i+5];
+        if (lista_blocos.length - indicePagination > 10){
+            for (let i = 0; i < 5; i++, indicePagination++){
+                const pag = document.querySelector("#pag" + i);
+                pag.innerHTML = lista_blocos[indicePagination];
+            }
         }
+        else{
+            while (pagination.children.length > 2){
+                pagination.removeChild(pagination.children[1]);
+            }	
+            for (let i = 0; i < lista_blocos.length - indicePagination*2 - 2; i++, indicePagination++){
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                li.classList.add("page-item");
+                a.classList.add("page-link", "pagina");
+                a.id = `pag${i}`;
+                a.innerHTML = lista_blocos[indicePagination];
+                li.appendChild(a);
+                pagination.insertBefore(li, itemFinal);
+            }
+            const prox = document.querySelector("#" + id);
+            prox.classList.add("disabled");
+        }
+        const ant = document.querySelector("#PaginaAnt");
+        ant.classList.remove("disabled");
     }
     else{   
-        for (let cont=4; cont > -1; cont--, i--){
-            let pag = document.querySelector(`#pag${cont}`);
-            console.log(i)
-            console.log(lista[i-1])
-            pag.innerHTML = lista[i-1];
+        if (indicePagination < 5){
+            while (pagination.children.length > 2){
+                pagination.removeChild(pagination.children[1]);
+            }
+            for (let i = 0; i < 5; i++, indicePagination++){
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                li.classList.add("page-item");
+                a.classList.add("page-link", "pagina");
+                a.id = `pag${i}`;
+                a.innerHTML = lista_blocos[indicePagination];
+                li.appendChild(a);
+                pagination.insertBefore(li, itemFinal);
+            }	
+
         }
-    }
-    if (i >= 5){
-        document.querySelector("#PaginaAnt").classList.remove("disabled");
-    }
-    else{
-        document.querySelector("#PaginaAnt").classList.add("disabled");
-    }
-    if (i >= 15){
-        document.querySelector("#PaginaProx").classList.add("disabled");
-        itemFinal.classList.add("d-none");
-    }
-    else{
-        document.querySelector("#PaginaProx").classList.remove("disabled");
-        itemFinal.classList.add("d-block");
-        itemFinal.classList.remove("d-none");
-    }   
+        else{
+            for (let i = 0; i < 5; i++, indicePagination++){
+                const pag = document.querySelector("#pag" + i);
+                pag.innerHTML = lista_blocos[indicePagination];
+            }
+        }
+    }  
 }

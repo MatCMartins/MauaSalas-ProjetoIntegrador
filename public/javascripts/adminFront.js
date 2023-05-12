@@ -1,15 +1,14 @@
 async function carregarAdministradores(rows){
-    const administradores = rows;
-    console.log(administradores);
+    console.log(rows);
     const lista = document.querySelector(".informacoes");
-    for (let i = 0; i <administradores.length; i++){
+    for (let i = 0; i <rows.length; i++){
 
         const email_div = document.createElement("div");
         email_div.classList.add("col-md-7", "col-5" , "text-start","border-end", "p-0", "pt-1");
         const input_email = document.createElement("input");
         input_email.classList.add("input-email", "w-100");
         input_email.type = "email";
-        input_email.value = administradores[i].email;
+        input_email.value = rows[i].email;
         input_email.placeholder = "Email";
         input_email.readOnly = true;
 
@@ -30,6 +29,17 @@ async function carregarAdministradores(rows){
         const option_forms3 = document.createElement("option");
         option_forms3.innerHTML = "Laboratorista";
         option_forms1.value = "3";
+        if (rows[i].tipo_de_user == 1){
+            option_forms1.selected = true;
+        }
+        else if (rows[i].tipo_de_user == 2){
+            option_forms2.selected = true;
+        }
+        else if (rows[i].tipo_de_user == 3){
+            option_forms3.selected = true;
+        }
+        
+        
 
         forms_tipo.appendChild(option_forms1);
         forms_tipo.appendChild(option_forms2);
@@ -44,15 +54,14 @@ async function carregarAdministradores(rows){
         botao_editar.classList.add("botao-editar");
         botao_editar.type = "button";
         const icone_editar = document.createElement("svg");
-        icone_editar.classList.add("bi","bi-pencil-square");
+        icone_editar.classList.add("bi","bi-pencil","icon");
         icone_editar.width = "16px";
         icone_editar.height = "16px";
         icone_editar.viewBox = "0 0 16 16";
         icone_editar.fill = "currentColor";
         icone_editar.xmlns = "http://www.w3.org/2000/svg";
-        const path_editar = document.createElement("path");
-        path_editar.d = "M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z";
-        
+        const path_editar = document.createElement("path"); 
+               
         icone_editar.appendChild(path_editar);
         botao_editar.appendChild(icone_editar);
         editar_div.appendChild(botao_editar);

@@ -1,3 +1,50 @@
+{{#if isAuthenticated }}
+<main>
+    <div class="">
+        <div class="container-flex mb-3 text-center py-5">
+            <div class="row">
+                <div class="col-lg-6 col-12 my-auto">
+                    <div>
+                        <a href="">
+                            <button type="button" class="botao">Consultar Salas</button>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="">
+                            <button type="button" class="botao">Minhas Reservas</button>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="">
+                            <button type="button" class="botao">Gerenciar Salas</button>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="">
+                            <button type="button" class="botao">Gerenciar<br>Administradores</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="container horarios">
+                        <h5 class="titulo">Reservas de hoje</h5>
+                        <div class="tabela mx-auto overflow-auto">
+                            <div class="linha row mx-auto">
+                                <div class="col-6 text-start" id="sala">
+                                    H204
+                                </div>
+                                <div id="horaReserva"class="col-6 text-end">
+                                    7:40-9:10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{{else}}
 <main>
     <section id="carrosel">
         <div class="container-fluid p-0">
@@ -82,3 +129,4 @@
         </div>
     </section>
 </main>
+{{/if}}

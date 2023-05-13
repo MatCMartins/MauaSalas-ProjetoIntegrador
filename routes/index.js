@@ -13,8 +13,6 @@ router.get('/', function (req, res, next) {
         isAuthenticated: req.session.isAuthenticated,
         // isAdministrator: req.session.isAdministrator,
         username: req.session.account && req.session.account.name,
-        funcao: "void(0)",
-        script: "/"
     });
 });
 

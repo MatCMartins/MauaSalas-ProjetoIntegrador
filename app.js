@@ -31,6 +31,7 @@ var app = express();
     saveUninitialized: false,
     cookie: {
         secure: true, // set this to true on production
+        sameSite: "none",
     }
 }));
 

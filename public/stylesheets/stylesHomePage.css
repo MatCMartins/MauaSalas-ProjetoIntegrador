@@ -31,6 +31,15 @@ main {
         border-radius: 12px;
         margin-bottom: 10px;
     }
+
+    /* css da tela de logado*/
+    .botao {
+        width: 160px;
+        height: 70px;
+    }
+    .tabela{
+        height: 310px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -38,17 +47,44 @@ main {
         border-bottom: 15px solid #AAD0F0;
         border-radius: 12px;
     }
+
+    /* css da tela de logado*/
+
+    .botao {
+        width: 250px;
+        height: 80px;
+    }
+    .horarios{
+        width: 60%;
+    }
+    .tabela{
+        height: 310px;
+    }
 }
 
 .imagem {
     text-align: center;
 }
-
-/* css da tela de logado*/
-.botao-conteudo {
-    width: 280px;
-    height: 100px;
-    text-decoration: none;
+/* css tela de logado */
+.titulo {
+    color: #001E38;
+}
+.botao {
     background-color: #AAD0F0;
     color: #001E38;
+    border: 1px solid #001E38;
+    border-radius: 7px;
+    margin-bottom: 6px;
+    
+}
+
+.tabela{
+    border: 1px solid #001E38;
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+.linha{
+    border-bottom: 2px solid #001E38;
+    width: 99%;
+    padding-bottom: 2px;
 }

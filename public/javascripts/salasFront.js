@@ -1,27 +1,29 @@
 var salas;
-const lista_blocos = [];
+const  l= [];
+var lista_blocos;
 async function carregarSalas(rows){
     salas = rows;
     for (let i = 0; i <rows.length; i++){
-        lista_blocos.push(rows[i].bloco);
+        l.push(rows[i].bloco);
     }
-    const uniq = [...new Set(lista_blocos)].sort();
-
+    lista_blocos = [...new Set(l)].sort();
     const pagination = document.querySelector(".pagination");
-    const itemFinal = document.querySelector("#itemPagination");
+    const itemFinal = document.querySelector("#itemFinal");
     for (let i = 0; i < 5; i++){
         const li = document.createElement("li");
         const a = document.createElement("a");
         li.classList.add("page-item");
         a.classList.add("page-link", "pagina");
         a.id = `pag${i}`;
-        a.innerHTML = uniq[i];
+        a.innerHTML = lista_blocos[i];
+        a.addEventListener("click", function(){
+        mostrarSalas(a.innerHTML)});
         li.appendChild(a);
         pagination.insertBefore(li, itemFinal);
     }
     const lista = document.querySelector(".list-group");
     for (let i = 0; i <rows.length; i++){
-        if(rows[i].bloco == uniq[0]){
+        if(rows[i].bloco == lista_blocos[0]){
             let item = document.createElement("li");
             let a_item = document.createElement("a");
             let botao_item = document.createElement("button");
@@ -64,60 +66,75 @@ async function mostrarSalas(letra_pagina){
     }
 }
 
-let indicePagination = 0;
-
-async function trocaPagination(id){
+let indiceBlocos = 5;
+async function trocaPagination(id) {
     const pagination = document.querySelector(".pagination");
-    const itemFinal = document.querySelector("#itemPagination");
-    if (id == "PaginaProx"){
-        if (lista_blocos.length - indicePagination > 10){
-            for (let i = 0; i < 5; i++, indicePagination++){
-                const pag = document.querySelector("#pag" + i);
-                pag.innerHTML = lista_blocos[indicePagination];
-            }
+    const itemInicial = document.querySelector("#itemInicial");
+    const itemFinal = document.querySelector("#itemFinal");
+    const ant = document.querySelector("#PaginaAnt");
+    const prox = document.querySelector("#PaginaProx");
+    const BLOCOS_POR_PAGINA = 5
+    let qntd = 0;
+    if (id === "PaginaProx") {
+      if (indiceBlocos + BLOCOS_POR_PAGINA <= lista_blocos.length) {
+        for (let i = 0; i < BLOCOS_POR_PAGINA; i++, indiceBlocos++) {
+            const pag = document.querySelector("#pag" + i);
+            pag.innerHTML = lista_blocos[indiceBlocos];
         }
-        else{
-            while (pagination.children.length > 2){
-                pagination.removeChild(pagination.children[1]);
-            }	
-            for (let i = 0; i < lista_blocos.length - indicePagination*2 - 2; i++, indicePagination++){
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                li.classList.add("page-item");
-                a.classList.add("page-link", "pagina");
-                a.id = `pag${i}`;
-                a.innerHTML = lista_blocos[indicePagination];
-                li.appendChild(a);
-                pagination.insertBefore(li, itemFinal);
-            }
-            const prox = document.querySelector("#" + id);
-            prox.classList.add("disabled");
+      } else {
+        while (pagination.children.length > 2) {
+          pagination.removeChild(pagination.children[1]);
         }
-        const ant = document.querySelector("#PaginaAnt");
-        ant.classList.remove("disabled");
+        let novoIndice = indiceBlocos;
+        for (let i = 0;i < lista_blocos.length - novoIndice;i++, indiceBlocos++) {
+          const li = criarItemPagina();
+          const a = criarLinkPagina(i,lista_blocos[indiceBlocos]);
+          a.addEventListener("click", function(){
+            mostrarSalas(a.innerHTML)});
+          li.appendChild(a);
+          pagination.insertBefore(li, itemFinal);
+        }
+        const prox = document.querySelector("#" + id);
+        prox.classList.add("disabled");
+      }
+      
+      ant.classList.remove("disabled");
+    } else if (id === "PaginaAnt") {
+        
+        while (pagination.children.length > 2) {
+          pagination.removeChild(pagination.children[1]);
+          qntd++;
+        }
+        let novoIndice = indiceBlocos - qntd;
+        indiceBlocos = novoIndice;
+        for (let i = 0;i < BLOCOS_POR_PAGINA;i++, novoIndice--) {
+            const li = criarItemPagina();
+            const a = criarLinkPagina(novoIndice - 1,lista_blocos[novoIndice - 1]);
+            a.addEventListener("click", function(){
+                mostrarSalas(a.innerHTML)});    
+            li.appendChild(a);
+            pagination.insertBefore(li, itemInicial.nextSibling);
+            }
+        if (indiceBlocos === 5) {
+            const ant = document.querySelector("#" + id);
+            ant.classList.add("disabled");
+        }
+        prox.classList.remove("disabled");
+        
     }
-    else{   
-        if (indicePagination < 5){
-            while (pagination.children.length > 2){
-                pagination.removeChild(pagination.children[1]);
-            }
-            for (let i = 0; i < 5; i++, indicePagination++){
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                li.classList.add("page-item");
-                a.classList.add("page-link", "pagina");
-                a.id = `pag${i}`;
-                a.innerHTML = lista_blocos[indicePagination];
-                li.appendChild(a);
-                pagination.insertBefore(li, itemFinal);
-            }	
 
-        }
-        else{
-            for (let i = 0; i < 5; i++, indicePagination++){
-                const pag = document.querySelector("#pag" + i);
-                pag.innerHTML = lista_blocos[indicePagination];
-            }
-        }
-    }  
+  }
+  
+function criarItemPagina() {
+    const li = document.createElement("li");
+    li.classList.add("page-item");
+    return li;
+}
+
+function criarLinkPagina(index,text) {
+    const a = document.createElement("a");
+    a.classList.add("page-link", "pagina");
+    a.innerHTML = text;
+    a.id = `pag${index}`;
+    return a;
 }

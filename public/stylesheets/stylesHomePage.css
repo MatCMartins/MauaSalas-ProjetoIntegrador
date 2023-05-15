@@ -75,6 +75,9 @@ main {
     border: 1px solid #001E38;
     border-radius: 7px;
     margin-bottom: 6px;
+}
+.botao:hover {
+    background-color: #f6f6f6;
     
 }
 

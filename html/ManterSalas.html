@@ -21,6 +21,71 @@
         </nav>
     </header>
     <main>
+        <div class="modal fade" id="editarSala" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarSalaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editarSala">Editar Sala</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 pb-4">
+                                <label for="validarNumeroSala" class="form-label">Número da sala</label>
+                                <input type="number" class="form-control" id="alterarNumeroSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarBloco" class="form-label">Bloco</label>
+                                <input type="text" class="form-control" id="alterarBlocoSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarAndar" class="form-label">Andar</label>
+                                <input type="number" class="form-control" id="alterarAndarSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarMetodoSala" class="form-label">Método</label>
+                                <input type="text" class="form-control" id="alterarMetodoSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarMesasSala" class="form-label">Número de mesas</label>
+                                <input type="number" class="form-control" id="alterarMesasSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarComputadoresSala" class="form-label">Número de Computadores</label>
+                                <input type="number" class="form-control" id="alterar" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarTomadaSala" class="form-label">Número de tomadas</label>
+                                <input type="number" class="form-control" id="alterarTomadaSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarTipoQuadroSala" class="form-label">Tipo de Quadro</label>
+                                <input type="text" class="form-control" id="alterarTipoQuadroSala" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarQuantidadeQuadro" class="form-label">Quantidade de quadros</label>
+                                <input type="number" class="form-control" id="alterarQuantidadeQuadro" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarProjetor" class="form-label">Projetores</label>
+                                <input type="text" class="form-control" id="alterarProjetor" value="" required>
+                            </div>
+                            <div class="col-md-12 pb-4">
+                                <label for="validarDescricao" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="alterar" value="">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="salvarMudancaSala">Salvar</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -36,7 +101,7 @@
                             <ul class="list-group m-auto mb-5 w-50 justify-content-center">
                                 <li class="list-group-item">
                                     <p class="d-inline-block mt-3">Sala1</p>
-                                    <button type="button" class="btn btn-outline-primary d-inline-block float-end mt-2">Editar</button>
+                                    <button type="button" class="btn btn-outline-primary d-inline-block float-end mt-2" data-bs-toggle="modal" data-bs-target="#editarSala">Editar</button>
                                 </li>
                                 <li class="list-group-item">
                                     <p class="d-inline-block mt-3">Sala2</p>
@@ -74,7 +139,7 @@
     </main>
     <footer>
         <div class="container">
-            <div class="row">
+            <div class="row h-auto">
                 <div class="col-12">
                     <p class="text-center mt-3">Mauá Salas - 2023</p>
                 </div>

@@ -19,6 +19,18 @@ router.get('/manterAdmin/lista', function (req, res, next) {
     banco('select email,tipo_de_user from admin;', callback, req, res);
 });
 
+router.post('/manterAdmin/lista', function (req, res, next) {
+    banco('insert into admin (email,tipo_de_user) values ("'+req.body.email+'","'+req.body.tipo+'");', callback, req, res);
+});
+
+router.put('/manterAdmin/lista', function (req, res, next) {
+    banco('update admin set email="'+req.body.email+'",tipo_de_user="'+req.body.tipo+'" WHERE email="'+req.body.titulo+'";', callback, req, res);
+});
+
+router.delete('/manterAdmin/lista', function (req, res, next) {
+    banco('delete from admin WHERE email="'+req.body.email+'";', callback, req, res);
+});
+
 router.get('/manterAdmin', function (req, res, next) {
     axios.get('https://mauasalas.lcstuber.net/admin/manterAdmin/lista').then((data) =>
     res.render('manterAdministradores', {

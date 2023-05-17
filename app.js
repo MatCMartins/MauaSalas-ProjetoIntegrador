@@ -31,6 +31,7 @@ var app = express();
     saveUninitialized: false,
     cookie: {
         secure: true, // set this to true on production
+        sameSite: "none",
     }
 }));
 
@@ -46,7 +47,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
@@ -64,11 +64,12 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
-});
-
-app.listen( () => {
-    console.log(`Servidor rodando na porta 3000`);
+    res.render('error', {
+        title: 'Mauá Salas - Erro',
+        isAuthenticated: req.session.isAuthenticated,
+        username: req.session.account && req.session.account.name,
+        erro: (err.status || 500),
+    });
 });
 
 module.exports = app;

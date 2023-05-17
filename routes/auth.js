@@ -123,7 +123,8 @@ router.post('/redirect', async function (req, res, next) {
                 req.session.isAuthenticated = true;
                 res.redirect(state.redirectTo);
             } catch (error) {
-                next(error);
+                // next(error);
+                res.redirect('/');
             }
         } else {
             //next(new Error('csrf token does not match'));

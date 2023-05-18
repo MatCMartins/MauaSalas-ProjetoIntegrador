@@ -1,5 +1,4 @@
 async function carregarAdministradores(rows){
-    console.log(rows);
     const lista = document.querySelector(".informacoes");
     for (let i = 0; i <rows.length; i++){
 
@@ -17,34 +16,19 @@ async function carregarAdministradores(rows){
 
         tipo_div = document.createElement("div");
         tipo_div.classList.add("col-md-3", "col-5", "text-center", "border-end");
-        const forms_tipo = document.createElement("select");
-        forms_tipo.classList.add("form-select", "input-select");
-        forms_tipo.ariaLabel = "Formulario de seleção de tipo de usuário";
-        const option_forms1 = document.createElement("option");
-        option_forms1.innerHTML = "Administrador";
-        option_forms1.value = "1";
-        const option_forms2 = document.createElement("option");
-        option_forms2.innerHTML = "Coordenador";
-        option_forms1.value = "2";
-        const option_forms3 = document.createElement("option");
-        option_forms3.innerHTML = "Laboratorista";
-        option_forms1.value = "3";
+        const tipo_de_usuario = document.createElement("p");
         if (rows[i].tipo_de_user == 1){
-            option_forms1.selected = true;
+            tipo_de_usuario.innerHTML = "Administrador";
         }
         else if (rows[i].tipo_de_user == 2){
-            option_forms2.selected = true;
+            tipo_de_usuario.innerHTML = "Coordenador";
         }
         else if (rows[i].tipo_de_user == 3){
-            option_forms3.selected = true;
+            tipo_de_usuario.innerHTML = "Laboratorista";
         }
         
-        
-
-        forms_tipo.appendChild(option_forms1);
-        forms_tipo.appendChild(option_forms2);
-        forms_tipo.appendChild(option_forms3);
-        tipo_div.appendChild(forms_tipo);
+    
+        tipo_div.appendChild(tipo_de_usuario);
         lista.appendChild(tipo_div);
 
 
@@ -53,16 +37,16 @@ async function carregarAdministradores(rows){
         const botao_editar = document.createElement("button");
         botao_editar.classList.add("botao-editar");
         botao_editar.type = "button";
-        const icone_editar = document.createElement("svg");
-        icone_editar.classList.add("bi","bi-pencil","icon");
-        icone_editar.width = "16px";
-        icone_editar.height = "16px";
-        icone_editar.viewBox = "0 0 16 16";
-        icone_editar.fill = "currentColor";
-        icone_editar.xmlns = "http://www.w3.org/2000/svg";
-        const path_editar = document.createElement("path"); 
-               
-        icone_editar.appendChild(path_editar);
+        const icone_editar = document.createElement("i");
+        icone_editar.classList.add("fa", "fa-pencil"); 
+        botao_editar.addEventListener("click", function() {
+            var modal = new bootstrap.Modal(document.getElementById("modalEditarAdmin"));
+            var titulo = document.querySelector("#tituloEditarAdmin");
+            titulo.innerHTML = rows[i].email;
+            modal.show();
+        })       
+
+
         botao_editar.appendChild(icone_editar);
         editar_div.appendChild(botao_editar);
         lista.appendChild(editar_div);
@@ -73,22 +57,76 @@ async function carregarAdministradores(rows){
         const botao_excluir = document.createElement("button");
         botao_excluir.classList.add("botao-excluir");
         botao_excluir.type = "button";
-        const icone_excluir = document.createElement("svg");
-        icone_excluir.classList.add("bi","bi-trash", "icon");
-        icone_excluir.width = "16px";
-        icone_excluir.height = "16px";
-        icone_excluir.viewBox = "0 0 16 16";
-        icone_excluir.fill = "currentColor";
-        icone_excluir.xmlns = "http://www.w3.org/2000/svg";
-        const path_excluir = document.createElement("path");
-        path_excluir.d = "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z";
-        const path_excluir2 = document.createElement("path");
-        path_excluir2.d = "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z";
+        const icone_excluir = document.createElement("i");
+        icone_excluir.classList.add("fa", "fa-trash");
+        botao_excluir.addEventListener("click", function() {
+            var modal = new bootstrap.Modal(document.getElementById("modalDeletarAdmin"));
+            var titulo = document.querySelector("#tituloDeletarAdmin");
+            var emailUsuario = document.querySelector("#emailUsuario");
+            emailUsuario.innerHTML = rows[i].email;
+            var tipoUsuario = document.querySelector("#tipoUsuario");
+
+            if (rows[i].tipo_de_user == 1){
+                tipoUsuario.innerHTML = "Administrador";
+            }
+            else if (rows[i].tipo_de_user == 2){
+                tipoUsuario.innerHTML = "Coordenador";
+            }
+            else if (rows[i].tipo_de_user == 3){
+                tipoUsuario.innerHTML = "Laboratorista";
+            }
+
+
+            titulo.innerHTML = rows[i].email;
+            modal.show();
+        })
     
-        icone_excluir.appendChild(path_excluir, path_excluir2);
+
+
         botao_excluir.appendChild(icone_excluir);
         excluir_div.appendChild(botao_excluir);
         lista.appendChild(excluir_div);
 
     }
+}
+
+function cadastrarAdministrador(){
+    let email_usuario = document.querySelector("#email_usuario").value;
+    let tipo_usuario = document.querySelector("#tipo_usuario").value;
+    console.log(email_usuario, tipo_usuario)
+
+    if (email_usuario == "" || tipo_usuario == ""){
+        alert("Preencha todos os campos!");
+    }
+    else{
+        axios.post("http://localhost:3000/admin/manterAdmin/lista", {
+            email: email_usuario,
+            tipo: tipo_usuario
+        })  
+    }
+}
+
+function editarAdministrador(){
+    let email_usuario = document.querySelector("#email_usuario_edit").value;
+    let tipo_usuario = document.querySelector("#tipo_usuario_edit").value;
+    let titulo = document.querySelector("#tituloEditarAdmin").innerHTML;
+    console.log(email_usuario, tipo_usuario, titulo)
+    axios.put("http://localhost:3000/admin/manterAdmin/lista", {
+        email: email_usuario,
+        tipo: tipo_usuario,
+        titulo: titulo
+    })
+}
+
+
+function deletarAdministrador(){
+    let email_usuario = document.querySelector("#emailUsuario").innerHTML;
+    let tipo_usuario = document.querySelector("#tipoUsuario").innerHTML;
+
+    axios.delete("http://localhost:3000/admin/manterAdmin/lista", {
+        data: {
+            email: email_usuario,
+            tipo: tipo_usuario
+        }
+    })
 }

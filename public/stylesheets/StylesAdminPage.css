@@ -6,6 +6,9 @@
         width: 700px;
     }
 }
+body{
+    background: #f6f6f6;
+}
 main{
     color: #001E38;
     background-color: #F6F6F6;

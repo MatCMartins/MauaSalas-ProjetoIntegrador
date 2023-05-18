@@ -1,5 +1,5 @@
 <main>
-    <div class="">
+    <div class="mb-3">
         <div class="container-flex mb-3">
             <h1 class="titulo text-center pt-4">Administradores</h1>
         </div>
@@ -15,41 +15,12 @@
             <div class="container rounded py-1 conteudo">
                 <div class="data overflow-auto h-100 w-100">
                     <div class="informacoes row border-bottom pt-2 mb-1">
-                        <div class="col-md-7 col-5 text-start border-end p-0 pt-1">
-                            <input type="email" class="input-email w-100" value="a@a.br" placeholder="a@a.br">
-                        </div>
-                        <div class="col-md-3 col-5 text-center border-end p-0">
-                            <select class="form-select input-select" aria-label="Default select example">
-                                <option value="1">Administrador</option>
-                                <option value="2">Laboratorista</option>
-                                <option value="3">Coordenador</option>
-                            </select>
-                        </div>
-                        <div class="col-md-1 col-1 text-center border-end p-0">
-                            <button type="button" class="botao-editar">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-pencil icon" viewBox="0 0 16 16">
-                                    <path
-                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="col-md-1 col-1 text-center p-0">
-                            <button type="button" class="botao-excluir" class="col-6 " data-bs-toggle="modal"
-                                data-bs-target="#modal-excluir">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-trash icon" viewBox="0 0 16 16">
-                                    <path
-                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                                    <path
-                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                                </svg>
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
         <div class="container p-0 mt-2 botoes-modal">
             <div class="row">
                 <div class="col-12 d-flex justify-content-end">
@@ -57,6 +28,9 @@
                         data-bs-target="#adicionarModal">
                         Cadastrar
                     </button>
+                </div>
+            </div>
+        </div>
                     <!-- Modal adicionar inicio -->
                     <div class="modal fade" id="adicionarModal" tabindex="-1" aria-labelledby="#adicionarModal"
                         aria-hidden="true">
@@ -72,55 +46,85 @@
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                         <input type="email" class="form-control" placeholder="nome@maua.br"
-                                            aria-label="Username" aria-describedby="basic-addon1">
+                                            aria-label="Username" aria-describedby="basic-addon1" id="email_usuario">
                                     </div>
                                     <label for="basic-url" class="form-label">Tipo de usuário</label>
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" id="tipo_usuario">
                                         <option selected>Selecione o tipo de usuário</option>
-                                        <option value="1">Laboratorista</option>
-                                        <option value="2">Administrador</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Coordenador</option>
+                                        <option value="3">Laboratorista</option>
                                     </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn botao-cadastro"
-                                        data-bs-dismiss="modal">Cadastrar</button>
+                                        data-bs-dismiss="modal" onclick="cadastrarAdministrador();">Cadastrar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Fim modal -->
+                    <div class="modal fade" id="modalEditarAdmin" tabindex="-1" aria-labelledby="#modal-excluir">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="modal-title" id="tituloEditarAdmin">Editar Administrador</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="basic-url" class="form-label">Email</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                        <input type="email" class="form-control" placeholder="email"
+                                            aria-label="Username" aria-describedby="basic-addon1" id="email_usuario_edit">
+                                    </div>
+                                    <label for="basic-url" class="form-label">Tipo de usuário</label>
+                                    <select class="form-select" aria-label="Default select example" id="tipo_usuario_edit">
+                                        <option selected>Selecione o tipo de usuário</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Coordenador</option>
+                                        <option value="3">Laboratorista</option>   
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn botao-cadastro"
+                                        data-bs-dismiss="modal" onclick="editarAdministrador()">Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Modal excluir inicio-->
-                    <div class="modal fade" id="modal-excluir" tabindex="-1" aria-labelledby="#modal-excluir"
+                    <div class="modal fade" id="modalDeletarAdmin" tabindex="-1" aria-labelledby="#modal-excluir"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-excluir">Adicionar Administrador</h5>
+                                    <h5 class="modal-title" id="tituloDeletarAdmin">Deletar Administrador</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <p class="fs-5">Email</p>
-                                    <p>a@a.br</p>
+                                    <p id="emailUsuario"></p>
                                     <p class="fs-5">Tipo de usuário
                                     <p>
-                                    <p>Laboratorista</p>
+                                    <p id="tipoUsuario"></p>
+                                    <p class="border-top">Essa ação não poderá ser desfeita!</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn botao-remover"
-                                        data-bs-dismiss="modal">Remover</button>
+                                    <button type="submit" class="btn botao-cadastro"
+                                        data-bs-dismiss="modal" onclick="deletarAdministrador()">Remover</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Modal fim-->
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 </main>

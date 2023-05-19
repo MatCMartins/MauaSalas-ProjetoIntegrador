@@ -99,7 +99,7 @@ function cadastrarAdministrador(){
         alert("Preencha todos os campos!");
     }
     else{
-        axios.post("http://localhost:3000/admin/manterAdmin/lista", {
+        axios.post("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
             email: email_usuario,
             tipo: tipo_usuario
         })  
@@ -111,7 +111,7 @@ function editarAdministrador(){
     let tipo_usuario = document.querySelector("#tipo_usuario_edit").value;
     let titulo = document.querySelector("#tituloEditarAdmin").innerHTML;
     console.log(email_usuario, tipo_usuario, titulo)
-    axios.put("http://localhost:3000/admin/manterAdmin/lista", {
+    axios.put("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
         email: email_usuario,
         tipo: tipo_usuario,
         titulo: titulo
@@ -123,7 +123,7 @@ function deletarAdministrador(){
     let email_usuario = document.querySelector("#emailUsuario").innerHTML;
     let tipo_usuario = document.querySelector("#tipoUsuario").innerHTML;
 
-    axios.delete("http://localhost:3000/admin/manterAdmin/lista", {
+    axios.delete("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
         data: {
             email: email_usuario,
             tipo: tipo_usuario

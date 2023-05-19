@@ -187,7 +187,7 @@ function cadastrarSala(){
 
     
 
-    axios.post("http://localhost:3000/admin/manterSalas/lista",{
+    axios.post("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
         bloco: bloco,
         numero_sala: numero,
         andar: andar,
@@ -225,7 +225,7 @@ function editarSala(){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
     try{
-        axios.put("http://localhost:3000/admin/manterSalas/lista",{
+        axios.put("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
             bloco: bloco,
             numero_sala: numero,
             andar: andar,
@@ -256,7 +256,7 @@ function deletarSala(){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
     console.log(bloco_editar,numero_editar,andar_editar)
-    axios.delete("http://localhost:3000/admin/manterSalas/lista",{
+    axios.delete("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
         data: {
             bloco: bloco_editar,
             numero_sala: numero_editar,

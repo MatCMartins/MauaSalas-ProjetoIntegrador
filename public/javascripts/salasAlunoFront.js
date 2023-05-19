@@ -34,7 +34,7 @@ async function getBlocos(rows){
 };
 
 async function getSalas(bloco){
-    axios.post(("http://localhost:3000/salas/blocos/bloco"),{
+    axios.post(("https://mauasalas.lcstuber.net/salas/blocos/bloco"),{
         bloco: bloco
     })
     .then((data) => {

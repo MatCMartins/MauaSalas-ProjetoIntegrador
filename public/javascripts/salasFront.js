@@ -33,8 +33,9 @@ async function carregarSalas(rows){
             a_item.classList.add("d-inline-block","mt-3");
 
 
-            botao_editar_item.classList.add("btn","btn-outline-primary","d-inline-block","float-end","mt-2");
+            botao_editar_item.classList.add("btn","btn-outline-primary","float-end","mt-2","ms-2");
             botao_editar_item.type = "button";
+            botao_editar_item.width = "20%";
             botao_editar_item.id = `botao${i}`;
             botao_editar_item.innerHTML = "Editar";
             botao_editar_item.addEventListener("click", function() {
@@ -45,7 +46,7 @@ async function carregarSalas(rows){
                 
             })
 
-            botao_excluir_item.classList.add("btn","btn-outline-danger","d-inline-block","float-end","mt-2","ms-2");
+            botao_excluir_item.classList.add("btn","btn-outline-danger","float-end","mt-2");
             botao_excluir_item.type = "button";
             botao_excluir_item.id = `botao${i}`;
             botao_excluir_item.innerHTML = "Excluir";
@@ -56,9 +57,9 @@ async function carregarSalas(rows){
                 modal.show();
             })
 
-            item.appendChild(botao_excluir_item);
-            item.appendChild(botao_editar_item);
             item.appendChild(a_item);
+            item.appendChild(botao_editar_item);
+            item.appendChild(botao_excluir_item);
             lista.appendChild(item);
             a_item.id = `Sala${i}`;
             document.querySelector(`#Sala${i}`).innerHTML = salas[i].bloco + salas[i].andar + salas[i].numero_sala;
@@ -184,28 +185,43 @@ function cadastrarSala(){
     let numero_tomadas = document.querySelector("#numero_tomadas").value;
     let tipo_metodo = document.querySelector("#tipo_metodologia").value;
     let descricao = document.querySelector("#descricao_sala").value;
-
-    
-
-    axios.post("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
-        bloco: bloco,
-        numero_sala: numero,
-        andar: andar,
-        tipo_metodo: tipo_metodo,
-        mesas: mesas,
-        cadeiras: cadeiras,
-        computadores: numero_computadores,
-        tomadas: numero_tomadas,
-        quadros: numero_quadros,
-        tipo_quadro: tipo_quadro,
-        projetores: numero_projetores,
-        descricao: descricao})
+    if (bloco === "" || numero === "" || andar === "" || cadeiras === "" || mesas === "" || numero_computadores === "" || numero_projetores === "" || numero_quadros === "" || tipo_quadro === "" || numero_tomadas === "" || tipo_metodo === "" || descricao === ""){
+       showToast("Preencha todos os campos!");
+    }
+    else if(numero_computadores < 0 || numero_projetores < 0 || numero_quadros < 0 || numero_tomadas < 0 || cadeiras < 0 || mesas < 0){
+        showToast("Não é possível inserir valores negativos!");
+    }
+    else{
+        try{
+            (axios.post("http://localhost:3000/admin/manterSalas/lista",{
+                bloco: bloco,
+                numero_sala: numero,
+                andar: andar,
+                tipo_metodo: tipo_metodo,
+                mesas: mesas,
+                cadeiras: cadeiras,
+                computadores: numero_computadores,
+                tomadas: numero_tomadas,
+                quadros: numero_quadros,
+                tipo_quadro: tipo_quadro,
+                projetores: numero_projetores,
+                descricao: descricao})
+            .then(function(response){
+                if (response.data == ""){
+                    showToast("Sala já cadastrada!");
+                }
+                else{
+                    showToast("Sala cadastrada com sucesso!");
+                }
+            }));
+        }
+        catch(err){
+            showToast("Erro ao cadastrar sala!");
+        }
+    }
 }
 
 function editarSala(){
-    let bloco = document.querySelector("#bloco_editar").value;
-    let numero = document.querySelector("#numero_editar").value;
-    let andar = document.querySelector("#andar_editar").value;
     let cadeiras = document.querySelector("#cadeiras_editar").value;
     let mesas = document.querySelector("#mesas_editar").value;
     let numero_computadores = document.querySelector("#numero_computadores_editar").value;
@@ -224,26 +240,28 @@ function editarSala(){
     if (tituloEditarSala.length == 4){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
-    try{
-        axios.put("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
-            bloco: bloco,
-            numero_sala: numero,
-            andar: andar,
-            tipo_metodo: tipo_metodo,
-            mesas: mesas,
-            cadeiras: cadeiras,
-            computadores: numero_computadores,
-            tomadas: numero_tomadas,
-            quadros: numero_quadros,
-            tipo_quadro: tipo_quadro,
-            projetores: numero_projetores,
-            descricao: descricao,
-            bloco_editar: bloco_editar,
-            andar_editar: andar_editar,
-            numero_editar: numero_editar})
-    }
-    catch(err){
-       console.log("Batata")
+
+    if (bloco == "" | numero == "" | andar == "" | cadeiras == "" | mesas == "" | numero_computadores == "" | numero_projetores == "" | numero_quadros == "" | tipo_quadro == "" | numero_tomadas == "" | tipo_metodo == "" | descricao == ""){
+        showToast("Preencha todos os campos");
+    }else if (numero_computadores < 0 | numero_projetores < 0 | numero_quadros < 0 | numero_tomadas < 0 | cadeiras < 0 | mesas < 0){
+        showToast("Não é possível inserir valores negativos");
+    }else{
+        (axios.put("http://localhost:3000/admin/manterSalas/lista",{
+        tipo_metodo: tipo_metodo,
+        mesas: mesas,
+        cadeiras: cadeiras,
+        computadores: numero_computadores,
+        tomadas: numero_tomadas,
+        quadros: numero_quadros,
+        tipo_quadro: tipo_quadro,
+        projetores: numero_projetores,
+        descricao: descricao,
+        bloco_editar: bloco_editar,
+        andar_editar: andar_editar,
+        numero_editar: numero_editar})
+        .then(function(response){
+            showToast("Sala editada com sucesso!");
+        }));
     }
 }	
 
@@ -255,14 +273,14 @@ function deletarSala(){
     if (tituloEditarSala.length == 4){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
-    console.log(bloco_editar,numero_editar,andar_editar)
-    axios.delete("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
-        data: {
-            bloco: bloco_editar,
-            numero_sala: numero_editar,
-            andar: andar_editar
-        }
-    })
+    (axios.delete("http://localhost:3000/admin/manterSalas/lista",{ data: {
+        bloco: bloco_editar,
+        numero_sala: numero_editar,
+        andar: andar_editar
+        }}
+    ).then(function(response){
+        showToast("Sala deletada com sucesso!");
+    }));
 }
 
 function criarItemPagina() {
@@ -279,5 +297,10 @@ function criarLinkPagina(index,text) {
     return a;
 }
 
-
-
+function showToast(texto){
+    const toastMensagem = document.getElementById('mensagemToast')
+    const textoToast = document.querySelector('.toast-body')
+    textoToast.innerHTML = texto;
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
+    toastBootstrap.show()
+}

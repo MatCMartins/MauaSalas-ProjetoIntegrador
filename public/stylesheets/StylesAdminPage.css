@@ -69,3 +69,19 @@ main{
     background-color: #F6F6F6;
     padding: 0;
 }
+@media (max-width: 450px){
+    .input-email{
+        font-size:75%;
+    }
+    .tipo-user{
+        font-size:85%;
+    }
+}
+@media (max-width: 280px){
+    .input-email{
+        font-size:60%;
+    }
+    .tipo-user{
+        font-size:70%;
+    }
+}

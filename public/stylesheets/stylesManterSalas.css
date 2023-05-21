@@ -2,8 +2,8 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
-@media (max-width: 395px){
-    div .btn-outline-primary{
+@media (max-width: 450px){
+    .btn {
         font-size: 10px; 
     }
 }

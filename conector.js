@@ -16,13 +16,16 @@ connection.getConnection((err) => {
 });
 
 function banco(query, callback, req, res) {
-    connection.query(query, (err, rows) => {
-        if (err) {
-            console.error('Error executing query: ' + err.stack);
-            return;
-        }
-        callback(rows, req, res)
-    });
+    try{
+        connection.query(query, (err, rows) => {
+            callback(rows, req, res)
+        });
+    }
+    catch(err){
+        res.json(false);
+    }
+
+
 
 //     connection.end((err) => {
 //         if (err) {

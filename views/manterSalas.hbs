@@ -1,5 +1,3 @@
-<main>
-    <!-- Modal Cadastrar -->
 <div class="modal fade" id="adicionarModal" tabindex="-1" aria-labelledby="#adicionarModal"
                             aria-hidden="true">
                             <div class="modal-dialog">
@@ -107,24 +105,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
                   </div>
                         <div class="modal-body">
-                            <label for="basic-url" class="form-label">Bloco da Sala</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Bloco:</span>
-                                <input type="bloco" class="form-control" placeholder="A, B, C..."
-                                    aria-label="bloco da sala" id="bloco_editar" aria-describedby="basic-addon1">
-                            </div>
-                            <label for="basic-url" class="form-label">Número da Sala</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Sala:</span>
-                                <input type="numero" class="form-control" placeholder="01, 02, 03..."
-                                    aria-label="numero da sala" id="numero_editar" aria-describedby="basic-addon1">
-                            </div>
-                            <label for="basic-url" class="form-label">Andar da Sala</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Andar:</span>
-                                <input type="andar" class="form-control" placeholder="1, 2, 3..."
-                                    aria-label="andar da sala" id="andar_editar" aria-describedby="basic-addon1">
-                            </div>
                             <label for="basic-url" class="form-label">Número de Cadeiras</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Cadeiras:</span>
@@ -229,6 +209,20 @@
                 </div>
             </div>
         </div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+      <strong class="me-auto">MauáSalas</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Essa sala já existe!
+    </div>
+  </div>
+</div>
+<main>
         <div class="container">
             <div class="row">
                 <div class="col-12">

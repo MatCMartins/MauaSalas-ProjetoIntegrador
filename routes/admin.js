@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 let banco = require('../conector');
 var axios = require('axios');
+var cors = require('cors');
+
 
 
 callback = async (rows, req, res) => {
@@ -53,12 +55,7 @@ router.post('/manterSalas/lista', function (req, res, next) {
 });
 
 router.put('/manterSalas/lista', function (req, res, next) {
-    try{
-        banco('update salas set bloco="'+req.body.bloco+'",numero_sala="'+req.body.numero_sala+'",andar="'+req.body.andar+'",tipo_metodo="'+req.body.tipo_metodo+'",mesas="'+req.body.mesas+'",cadeiras="'+req.body.cadeiras+'",computadores="'+req.body.computadores+'",tomadas="'+req.body.tomadas+'",quadros="'+req.body.quadros+'",tipo_quadro="'+req.body.tipo_quadro+'",projetores="'+req.body.projetores+'",descricao="'+req.body.descricao+'" WHERE bloco="'+req.body.bloco_editar+'" and numero_sala="'+req.body.numero_editar+'" and andar="'+req.body.andar_editar+'";', callback, req, res);
-    }
-    catch(err){
-        console.log("batata");
-    }
+    banco('update salas set tipo_metodo="'+req.body.tipo_metodo+'",mesas="'+req.body.mesas+'",cadeiras="'+req.body.cadeiras+'",computadores="'+req.body.computadores+'",tomadas="'+req.body.tomadas+'",quadros="'+req.body.quadros+'",tipo_quadro="'+req.body.tipo_quadro+'",projetores="'+req.body.projetores+'",descricao="'+req.body.descricao+'" WHERE bloco="'+req.body.bloco_editar+'" and numero_sala="'+req.body.numero_editar+'" and andar="'+req.body.andar_editar+'";', callback, req, res);
 });
 
 router.delete('/manterSalas/lista', function (req, res, next) {

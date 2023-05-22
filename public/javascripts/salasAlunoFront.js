@@ -27,6 +27,12 @@ async function getBlocos(rows){
         var bloco = data[i];
         markers[bloco.id] = L.circle([bloco.latitude, bloco.longitude],{color: bloco.cor}).addTo(map);
         markers[bloco.id].bindPopup("Bloco " + bloco.bloco);
+        markers[bloco.id].on('mouseover', function (e) {
+            this.openPopup();
+        });
+        markers[bloco.id].on('mouseout', function (e) {
+            this.closePopup();
+        });
         markers[bloco.id].on('click', function(e){
             getSalas(lista_blocos[i]);
         });
@@ -34,31 +40,30 @@ async function getBlocos(rows){
 };
 
 async function getSalas(bloco){
-    axios.post(("https://mauasalas.lcstuber.net/salas/blocos/bloco"),{
+    axios.post(("http://localhost:3000/salas/blocos/lista"),{
         bloco: bloco
     })
     .then((data) => {
         const salas = document.getElementById('salas');
         const container = document.createElement('div');
-        container.classList.add("container-fluid");
+        container.classList.add("container");
         const row = document.createElement('div');
         row.classList.add("row");
         while (salas.firstChild) {
             salas.removeChild(salas.firstChild);
         }
+        if (data.data.length == 0){
+            showToast();
+        }
         for (let i =0; i < data.data.length; i++){
-            if (i/3 == 0){
-                const row = document.createElement('div');
-                row.classList.add("row");
-            }
                 const col = document.createElement('div');
-                col.classList.add("col-lg-4", "col-12");
+                col.classList.add("col-lg-4", "col-sm-6", "col-12");
                 const card = document.createElement('div');
                 card.classList.add("card", "text-center", "mb-3");
                 const cardBody = document.createElement('div');
                 cardBody.classList.add("card-body");
                 const cardTitle = document.createElement('h5');
-                cardTitle.classList.add("card-title");
+                cardTitle.classList.add("card-title", "pb-1");
                 cardTitle.innerHTML = data.data[i].bloco + data.data[i].andar + data.data[i].numero_sala;
                 const cardText1 = document.createElement('p');
                 cardText1.classList.add("card-text");
@@ -69,7 +74,7 @@ async function getSalas(bloco){
                     cardText1.innerHTML = "Metodologia: Ativa";
                     cardText2.innerHTML = "Capacidade: " + data.data[i].mesas * data.data[i].cadeiras + " pessoas";
                 }
-                else if (data.data[i].tipo_metodo == "Tradiconal"){
+                else if (data.data[i].tipo_metodo == "Tradicional"){
                     cardText1.innerHTML = "Metodologia: Tradicional";
                     cardText2.innerHTML = "Capacidade: " + data.data[i].cadeiras + " pessoas";
                 }
@@ -79,10 +84,9 @@ async function getSalas(bloco){
                 }
 
                 const cardButton = document.createElement('button');
-                cardButton.classList.add("btn", "btn-primary");
+                cardButton.classList.add("btn", "botao-reservar", "mt-3");
                 cardButton.innerHTML = "Reservar";
                 
-
                 cardBody.appendChild(cardTitle);
                 cardBody.appendChild(cardText1);
                 cardBody.appendChild(cardText2);
@@ -100,6 +104,11 @@ async function getSalas(bloco){
 
 
 
+function showToast(){
+    const toastMensagem = document.getElementById('mensagemToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
+    toastBootstrap.show()
+}
 
 
 

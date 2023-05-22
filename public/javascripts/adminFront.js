@@ -15,7 +15,7 @@ async function carregarAdministradores(rows){
         lista.appendChild(email_div);
 
         tipo_div = document.createElement("div");
-        tipo_div.classList.add("col-md-3", "col-5", "text-center", "border-end");
+        tipo_div.classList.add("col-md-3", "col-5", "text-center", "border-end" , "tipo-user");
         const tipo_de_usuario = document.createElement("p");
         if (rows[i].tipo_de_user == 1){
             tipo_de_usuario.innerHTML = "Administrador";
@@ -81,8 +81,6 @@ async function carregarAdministradores(rows){
             modal.show();
         })
     
-
-
         botao_excluir.appendChild(icone_excluir);
         excluir_div.appendChild(botao_excluir);
         lista.appendChild(excluir_div);
@@ -90,19 +88,25 @@ async function carregarAdministradores(rows){
     }
 }
 
-function cadastrarAdministrador(){
+function cadastrarAdministrador() {
+    let condicao = 0;
     let email_usuario = document.querySelector("#email_usuario").value;
     let tipo_usuario = document.querySelector("#tipo_usuario").value;
-    console.log(email_usuario, tipo_usuario)
-
-    if (email_usuario == "" || tipo_usuario == ""){
-        alert("Preencha todos os campos!");
-    }
-    else{
-        axios.post("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
+    if (email_usuario == "" || tipo_usuario == "") {
+      showToast("Preencha todos os campos");
+    } 
+    else {
+        axios.post("http://localhost:3000/admin/manterAdmin/lista", {
             email: email_usuario,
             tipo: tipo_usuario
-        })  
+        }).then(response =>{
+            if (response.data == ""){
+                showToast("Esse usuário já existe! Tente novamente!")
+            }
+            else{
+                showToast("Administrador cadastrado com sucesso")
+            }    
+        })
     }
 }
 
@@ -110,12 +114,23 @@ function editarAdministrador(){
     let email_usuario = document.querySelector("#email_usuario_edit").value;
     let tipo_usuario = document.querySelector("#tipo_usuario_edit").value;
     let titulo = document.querySelector("#tituloEditarAdmin").innerHTML;
-    console.log(email_usuario, tipo_usuario, titulo)
-    axios.put("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
-        email: email_usuario,
-        tipo: tipo_usuario,
-        titulo: titulo
-    })
+    if (email_usuario == "" || tipo_usuario == "") {
+        showToast("Preencha todos os campos");
+    }
+    else{
+        (axios.put("http://localhost:3000/admin/manterAdmin/lista", {
+            email: email_usuario,
+            tipo: tipo_usuario,
+            titulo: titulo})
+            .then(function(response){
+                if (response.data == ""){
+                    showToast("Esse usuário já existe! Tente novamente!")
+                }
+                else{
+                    showToast("Administrador editado com sucesso")
+                }
+            }));
+    }
 }
 
 
@@ -123,10 +138,22 @@ function deletarAdministrador(){
     let email_usuario = document.querySelector("#emailUsuario").innerHTML;
     let tipo_usuario = document.querySelector("#tipoUsuario").innerHTML;
 
-    axios.delete("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
+    (axios.delete("http://localhost:3000/admin/manterAdmin/lista", {
         data: {
             email: email_usuario,
             tipo: tipo_usuario
         }
-    })
+    }).then(response => {
+        showToast("Usuário deletado com sucesso")
+    }).catch(error => {
+        showToast("Erro ao deletar")
+    }));
+}
+
+function showToast(mensagem){
+    const toastMensagem = document.getElementById('mensagemToast')
+    const bodyToast = document.getElementById('toast-body')
+    bodyToast.innerHTML = mensagem
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
+    toastBootstrap.show()
 }

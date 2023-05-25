@@ -18,7 +18,7 @@ callback = async (rows, req, res) => {
 };
 
 router.get('/manterAdmin/lista', function (req, res, next) {
-    banco('select email,tipo_de_user from admin;', callback, req, res);
+    banco('select email,tipo_de_user from admin order by bloco asc;', callback, req, res);
 });
 
 router.post('/manterAdmin/lista', function (req, res, next) {
@@ -62,19 +62,50 @@ router.delete('/manterSalas/lista', function (req, res, next) {
     banco('delete from salas where bloco="'+req.body.bloco+'" and numero_sala="'+req.body.numero_sala+'" and andar="'+req.body.andar+'";', callback, req, res);
 });
 
+
 router.get('/manterSalas', function (req, res, next) {
-    axios.get('https://mauasalas.lcstuber.net/admin/manterSalas/lista').then((data) =>
+    const urls = [
+        'https://mauasalas.lcstuber.net/admin/manterSalas/lista',
+        'http://localhost:3000/admin/manterBlocos/lista'
+    ];
+    
+    const requests = urls.map(url => axios.get(url));
+    axios.all(requests).then((axios.spread((...responses) =>
     res.render('manterSalas', {
         title: 'Mauá Salas - Gerenciar Salas',
         style: "/stylesheets/stylesManterSalas.css",
         isAuthenticated: req.session.isAuthenticated,
         // isAdministrator: req.session.isAdministrator,
         username: req.session.account && req.session.account.name,
-        funcao: "carregarSalas("+JSON.stringify(data.data)+")",
+        funcao: "carregarSalas("+JSON.stringify(responses[0].data)+"); carregarBlocos("+JSON.stringify(responses[1].data)+")",
         script: "/javascripts/salasFront.js"
-    }));
+    }))));
 });
 
+router.get('/manterBlocos/lista', function (req, res, next) {
+    banco('select * from blocos order by bloco;', callback, req, res);
+});
 
+router.post('/manterBlocos/lista', function (req, res, next) {
+    banco('insert into blocos (bloco,cor,latitude,longitude) values ("'+req.body.bloco+'","'+req.body.cor+'","'+req.body.latitude+'","'+req.body.longitude+'");', callback, req, res);
+});
+
+router.delete('/manterBlocos/lista', function (req, res, next) {
+    console.log(req.body.bloco);
+    banco('delete from blocos where bloco="'+req.body.bloco+'";', callback, req, res);
+});
+
+router.get('/manterBlocos', function (req, res, next) {
+    axios.get('http://localhost:3000/admin/manterBlocos/lista').then((data) =>
+    res.render('manterBlocos', {
+        title: 'Mauá Salas - Gerenciar Blocos',
+        style: "/stylesheets/stylesManterBlocos.css",
+        isAuthenticated: req.session.isAuthenticated,
+        // isAdministrator: req.session.isAdministrator,
+        username: req.session.account && req.session.account.name,
+        funcao: "getBlocos("+JSON.stringify(data.data)+")",
+        script: "/javascripts/blocosFront.js"
+    }));
+});
 
 module.exports = router;

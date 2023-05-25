@@ -1,13 +1,16 @@
 var salas;  	
-const l = [];
-var lista_blocos;
+const lista_blocos = []
 const BLOCOS_POR_PAGINA = 5;
-async function carregarSalas(rows){
-    salas = rows;
-    for (let i = 0; i <rows.length; i++){
-        l.push(rows[i].bloco);
+
+async function carregarBlocos(rows){
+    for (let i = 0; i <rows.length;){
+        const bloco_pequeno = [];
+        for (let j = 0; j < BLOCOS_POR_PAGINA; j++ , i++){
+            if (rows[i] == undefined) break;
+            bloco_pequeno.push(rows[i].bloco);
+        }
+        lista_blocos.push(bloco_pequeno);
     }
-    lista_blocos = [...new Set(l)].sort();
     const pagination = document.querySelector(".pagination");
     const itemFinal = document.querySelector("#itemFinal");
     for (let i = 0; i < BLOCOS_POR_PAGINA; i++){
@@ -16,15 +19,19 @@ async function carregarSalas(rows){
         li.classList.add("page-item");
         a.classList.add("page-link", "pagina");
         a.id = `pag${i}`;
-        a.innerHTML = lista_blocos[i];
+        a.innerHTML = rows[i].bloco;
         a.addEventListener("click", function(){
         mostrarSalas(a.innerHTML)});
         li.appendChild(a);
         pagination.insertBefore(li, itemFinal);
     }
+}
+
+async function carregarSalas(rows){
+    salas = rows;
     const lista = document.querySelector(".list-group");
     for (let i = 0; i <rows.length; i++){
-        if(rows[i].bloco == lista_blocos[0]){
+        if(rows[i].bloco == "A"){
             let item = document.createElement("li");
             let a_item = document.createElement("a");
             let botao_editar_item = document.createElement("button");
@@ -112,64 +119,68 @@ async function mostrarSalas(letra_pagina){
         }
     }
 }
-
-let indiceBlocos = BLOCOS_POR_PAGINA;
+let indiceBloco = 0;
 async function trocaPagination(id) {
     const pagination = document.querySelector(".pagination");
     const itemInicial = document.querySelector("#itemInicial");
     const itemFinal = document.querySelector("#itemFinal");
     const ant = document.querySelector("#PaginaAnt");
     const prox = document.querySelector("#PaginaProx");
-    let qntd = 0;
-    if (id === "PaginaProx") {
-      if (indiceBlocos + BLOCOS_POR_PAGINA <= lista_blocos.length) {
-        for (let i = 0; i < BLOCOS_POR_PAGINA; i++, indiceBlocos++) {
-            const pag = document.querySelector("#pag" + i);
-            pag.innerHTML = lista_blocos[indiceBlocos];
+    if (id == "PaginaProx"){
+        indiceBloco++;
+        var tam = lista_blocos[indiceBloco].length;
+        if (indiceBloco == lista_blocos.length - 1){
+            prox.classList.add("disabled");
         }
-      } else {
-        while (pagination.children.length > 2) {
-          pagination.removeChild(pagination.children[1]);
+        if (indiceBloco != 0){
+            ant.classList.remove("disabled");
         }
-        let novoIndice = indiceBlocos;
-        for (let i = 0;i < lista_blocos.length - novoIndice;i++, indiceBlocos++) {
-          const li = criarItemPagina();
-          const a = criarLinkPagina(i,lista_blocos[indiceBlocos]);
-          a.addEventListener("click", function(){
-            mostrarSalas(a.innerHTML)});
-          li.appendChild(a);
-          pagination.insertBefore(li, itemFinal);
-        }
-        const prox = document.querySelector("#" + id);
-        prox.classList.add("disabled");
-      }
-      
-      ant.classList.remove("disabled");
-    } else if (id === "PaginaAnt") {
-        
-        while (pagination.children.length > 2) {
-          pagination.removeChild(pagination.children[1]);
-          qntd++;
-        }
-        let novoIndice = indiceBlocos - qntd;
-        indiceBlocos = novoIndice;
-        for (let i = 0;i < BLOCOS_POR_PAGINA;i++, novoIndice--) {
-            const li = criarItemPagina();
-            const a = criarLinkPagina(novoIndice - 1,lista_blocos[novoIndice - 1]);
-            a.addEventListener("click", function(){
-                mostrarSalas(a.innerHTML)});    
-            li.appendChild(a);
-            pagination.insertBefore(li, itemInicial.nextSibling);
+        if (tam < BLOCOS_POR_PAGINA){
+            for (let i = 0; i < BLOCOS_POR_PAGINA; i++){
+                const pag = document.querySelector(`#pag${i}`);
+                if (i < BLOCOS_POR_PAGINA - tam){
+                    pag.classList.add("d-none");
+                }
+                else{
+                    pag.innerHTML = lista_blocos[indiceBloco][i-(BLOCOS_POR_PAGINA-tam)];
+                }
             }
-        if (indiceBlocos === BLOCOS_POR_PAGINA) {
-            const ant = document.querySelector("#" + id);
+        }
+        else{
+            for (let i =0; i < BLOCOS_POR_PAGINA; i++){
+                if (lista_blocos[indiceBloco][i] == undefined){
+                    break;
+                }
+                const pag = document.querySelector(`#pag${i}`);
+                pag.innerHTML = lista_blocos[indiceBloco][i];
+            }
+        }
+    }
+    else{
+        var tam = lista_blocos[indiceBloco].length;
+        indiceBloco--;
+        if (tam < BLOCOS_POR_PAGINA){
+            for (let i = 0; i < BLOCOS_POR_PAGINA; i++){
+                const pag = document.querySelector(`#pag${i}`);
+                pag.classList.remove("d-none");
+                pag.innerHTML = lista_blocos[indiceBloco][i];
+            }
+        }
+        else{
+            for (let i =0; i < BLOCOS_POR_PAGINA; i++){
+                const pag = document.querySelector(`#pag${i}`);
+                pag.innerHTML = lista_blocos[indiceBloco][i];
+            }
+        }
+        if (indiceBloco == lista_blocos.length - 2){
+            prox.classList.remove("disabled");
+        }
+        if (indiceBloco == 0){
             ant.classList.add("disabled");
         }
-        prox.classList.remove("disabled");
-        
+        console.log(lista_blocos[indiceBloco])
     }
-
-  }
+}
   
 
 function cadastrarSala(){
@@ -270,15 +281,15 @@ function deletarSala(){
     let bloco_editar = tituloEditarSala[0];
     let andar_editar = tituloEditarSala[1];
     let numero_editar = tituloEditarSala[2];
+    console.log(bloco_editar, numero_editar, andar_editar)
     if (tituloEditarSala.length == 4){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
-    (axios.delete("http://localhost:3000/admin/manterSalas/lista",{ data: {
+    (axios.delete("http://localhost:3000/admin/manterSalas/lista",{data:{
         bloco: bloco_editar,
         numero_sala: numero_editar,
         andar: andar_editar
-        }}
-    ).then(function(response){
+    }}).then(() => {
         showToast("Sala deletada com sucesso!");
     }));
 }

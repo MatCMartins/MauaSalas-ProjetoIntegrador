@@ -19,7 +19,7 @@ router.get("/blocos/lista", function (req, res, next) {
     banco('select * from blocos;', callback, req, res);
 });
 
-router.post("/blocos/bloco", function (req, res, next) {
+router.post("/blocos/lista", function (req, res, next) {
     banco('select * from salas WHERE bloco="'+req.body.bloco+'";', callback, req, res);
     
 });

@@ -38,6 +38,20 @@ router.get('/', function (req, res, next) {
     }));
 });
 
+router.get('/sala', function (req, res, next) {
+    axios.get("http://localhost:3000/salas/blocos/lista").then((data) => 
+    res.render('sala', {
+        title: 'Mauá Salas - Sala ' + req.query.salaNome,
+        style: "/stylesheets/stylesSalas.css",
+        isAuthenticated: req.session.isAuthenticated,
+        // isAdministrator: req.session.isAdministrator,
+        username: req.session.account && req.session.account.name,
+        funcao: "getBlocos("+JSON.stringify(data.data)+")",
+        script: "/javascripts/salasAlunoFront.js"
+
+    }));
+});
+
 
 
 module.exports = router;

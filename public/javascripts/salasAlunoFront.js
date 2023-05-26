@@ -83,14 +83,20 @@ async function getSalas(bloco){
                     cardText2.innerHTML = "Capacidade: " + data.data[i].computadores + " pessoas";
                 }
 
+                const linkSala = document.createElement('a');
+                //Criar router da reservar sala
+                linkSala.setAttribute('href','/salas/sala?salaId=' + data.data[i].id + "&salaNome=" + data.data[i].bloco + data.data[i].andar + data.data[i].numero_sala)
+                
                 const cardButton = document.createElement('button');
                 cardButton.classList.add("btn", "botao-reservar", "mt-3");
                 cardButton.innerHTML = "Reservar";
+
                 
+                linkSala.appendChild(cardButton);
                 cardBody.appendChild(cardTitle);
                 cardBody.appendChild(cardText1);
                 cardBody.appendChild(cardText2);
-                cardBody.appendChild(cardButton);
+                cardBody.appendChild(linkSala)
                 card.appendChild(cardBody);
                 col.appendChild(card);
                 row.appendChild(col);

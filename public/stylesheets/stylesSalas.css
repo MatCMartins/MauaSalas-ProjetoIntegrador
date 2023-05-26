@@ -1,0 +1,32 @@
+body{
+    background-color: #f6f6f6;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #212529;
+}
+
+#map { height: 450px; }
+
+.card-title{
+    border-bottom: 2px solid #F6F6F6;
+}
+
+
+
+.card-body{
+    background-color: #001E38;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 1.25rem;
+    color: #F6F6F6;
+}
+h3{
+    color: #004785;
+}
+
+.botao-reservar{
+    background-color: #004785;
+    border-color: #004785;
+    color: #F6F6F6;
+}

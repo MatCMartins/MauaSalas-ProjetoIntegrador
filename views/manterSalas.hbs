@@ -1,5 +1,3 @@
-<main>
-    <!-- Modal Cadastrar -->
 <div class="modal fade" id="adicionarModal" tabindex="-1" aria-labelledby="#adicionarModal"
                             aria-hidden="true">
                             <div class="modal-dialog">
@@ -14,81 +12,184 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Bloco:</span>
                                             <input type="bloco" class="form-control" placeholder="A, B, C..."
-                                                aria-label="bolo da sala" aria-describedby="basic-addon1">
+                                                aria-label="bolo da sala" id="bloco" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Número da Sala</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Sala:</span>
-                                            <input type="numero" class="form-control" placeholder="100, 101, 102..."
-                                                aria-label="numero da sala" aria-describedby="basic-addon1">
+                                            <input type="numero" class="form-control" placeholder="1, 2, 3..."
+                                                aria-label="numero da sala" id="numero" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Andar da Sala</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Andar:</span>
                                             <input type="andar" class="form-control" placeholder="1, 2, 3..."
-                                                aria-label="andar da sala" aria-describedby="basic-addon1">
+                                                aria-label="andar da sala" id="andar" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Número de Cadeiras</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Cadeiras:</span>
                                             <input type="cadeiras" class="form-control" placeholder="1, 2, 3..."
-                                                aria-label="numero de cadeiras" aria-describedby="basic-addon1">
+                                                aria-label="numero de cadeiras" id="cadeiras" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Número de Mesas</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Mesas:</span>
                                             <input type="mesas" class="form-control" placeholder="1, 2, 3..."
-                                                aria-label="numero de mesas" aria-describedby="basic-addon1">
+                                                aria-label="numero de mesas" id="mesas" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Número de Projetores</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Projetores:</span>
                                             <input type="projetores" class="form-control" placeholder="1, 2, 3..."
-                                                aria-label="numero de projetores" aria-describedby="basic-addon1">
+                                                aria-label="numero de projetores" id="numero_projetores" aria-describedby="basic-addon1">
+                                        </div>
+                                        <label for="basic-url" class="form-label">Número de Computadores</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1">Computadores:</span>
+                                            <input type="projetores" class="form-control" placeholder="1, 2, 3..."
+                                                aria-label="numero de projetores" id="numero_computadores" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Número de Quadros</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Quadros:</span>
                                             <input type="quadros" class="form-control" placeholder="1, 2, 3..."
-                                                aria-label="numero de quadros" aria-describedby="basic-addon1">
+                                                aria-label="numero de quadros" id="numero_quadros" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Tipo de Quadro</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Selecione o tipo de quadro</option>
-                                            <option value="1">Branco</option>
-                                            <option value="2">Negro</option>
+                                        <div>
+                                        <select class="form-select" id="tipo_de_quadro" aria-label="Default select example">
+                                            <option>Selecione o tipo de quadro</option>
+                                            <option value="Branco">Branco</option>
+                                            <option value="Negro">Negro</option>
+                                            <option value="Ambos">Ambos</option>
                                         </select>
                                         </div>
                                         <label for="basic-url" class="form-label">Número de Tomadas</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Tomadas:</span>
                                             <input type="tomadas" class="form-control" placeholder="1, 2, 3..."
-                                                aria-label="numero de tomadas" aria-describedby="basic-addon1">
+                                                aria-label="numero de tomadas" id="numero_tomadas" aria-describedby="basic-addon1">
                                         </div>
                                         <label for="basic-url" class="form-label">Tipo de Metodologia</label>
-                                        <select class="form-select" aria-label="Default select example">
+                                        <div class="mb-3">
+                                        <select class="form-select" id="tipo_metodologia" aria-label="Default select example">
                                             <option selected>Selecione o tipo de metodologia</option>
-                                            <option value="1">Tradicional</option>
-                                            <option value="2">Ativa</option>
-                                            <option value="3">Laboratório</option>
+                                            <option value="Tradicional">Tradicional</option>
+                                            <option value="Ativa">Ativa</option>
+                                            <option value="Laboratório">Laboratório</option>
                                         </select>
+                                        </div>
                                         <label for="basic-url" class="form-label">Descrição da Sala</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1">Descrição:</span>
                                             <input type="descricao" class="form-control" placeholder="Descreva a sala..."
-                                                aria-label="descricao da sala" aria-describedby="basic-addon1">
+                                                aria-label="descricao da sala" id="descricao_sala" aria-describedby="basic-addon1">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn botao-cadastro"
+                                        <button type="submit" class="btn btn-primary" id="cadastrar-sala" onclick="cadastrarSala()"
                                         data-bs-dismiss="modal">Cadastrar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Fim modal -->
+            <div class="modal fade" id="modalEditarSala" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarSalaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tituloEditarSala" >Editar Sala</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                  </div>
+                        <div class="modal-body">
+                            <label for="basic-url" class="form-label">Número de Cadeiras</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Cadeiras:</span>
+                                <input type="cadeiras" class="form-control" placeholder="1, 2, 3..."
+                                    aria-label="numero de cadeiras" id="cadeiras_editar" aria-describedby="basic-addon1">
+                            </div>
+                            <label for="basic-url" class="form-label">Número de Mesas</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Mesas:</span>
+                                <input type="mesas" class="form-control" placeholder="1, 2, 3..."
+                                    aria-label="numero de mesas" id="mesas_editar" aria-describedby="basic-addon1">
+                            </div>
+                            <label for="basic-url" class="form-label">Número de Projetores</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Projetores:</span>
+                                <input type="projetores" class="form-control" placeholder="1, 2, 3..."
+                                    aria-label="numero de projetores" id="numero_projetores_editar" aria-describedby="basic-addon1">
+                            </div>
+                            <label for="basic-url" class="form-label">Número de Computadores</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Computadores:</span>
+                                <input type="projetores" class="form-control" placeholder="1, 2, 3..."
+                                    aria-label="numero de projetores" id="numero_computadores_editar" aria-describedby="basic-addon1">
+                            </div>
+                            <label for="basic-url" class="form-label">Número de Quadros</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Quadros:</span>
+                                <input type="quadros" class="form-control" placeholder="1, 2, 3..."
+                                    aria-label="numero de quadros" id="numero_quadros_editar" aria-describedby="basic-addon1">
+                            </div>
+                            <label for="basic-url" class="form-label">Tipo de Quadro</label>
+                            <div>
+                            <select class="form-select" id="tipo_de_quadro_editar" aria-label="Default select example">
+                                <option>Selecione o tipo de quadro</option>
+                                <option value="Branco">Branco</option>
+                                <option value="Negro">Negro</option>
+                                <option value="Ambos">Ambos</option>
+                            </select>
+                            </div>
+                            <label for="basic-url" class="form-label">Número de Tomadas</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tomadas:</span>
+                                <input type="tomadas" class="form-control" placeholder="1, 2, 3..."
+                                    aria-label="numero de tomadas" id="numero_tomadas_editar" aria-describedby="basic-addon1">
+                            </div>
+                            <label for="basic-url" class="form-label">Tipo de Metodologia</label>
+                            <div class="mb-3">
+                            <select class="form-select" id="tipo_metodologia_editar" aria-label="Default select example">
+                                <option selected>Selecione o tipo de metodologia</option>
+                                <option value="Tradicional">Tradicional</option>
+                                <option value="Ativa">Ativa</option>
+                                <option value="Laboratório">Laboratório</option>
+                            </select>
+                            </div>
+                            <label for="basic-url" class="form-label">Descrição da Sala</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Descrição:</span>
+                                <input type="descricao" class="form-control" placeholder="Descreva a sala..."
+                                    aria-label="descricao da sala" id="descricao_sala_editar" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="botaoAtualizar" data-bs-dismiss="modal" onclick="editarSala()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalDeletarSala" tabindex="-1" aria-labelledby="modalDeletarSala" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="tituloDeletarSala"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja excluir essa sala? Essa ação não poderá ser desfeita.    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deletarSala();">Deletar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -98,21 +199,40 @@
                                 <h4 class="mt-5 d-inline-block">Manter Salas</h4>   
                             </div>
                             <div class="botoes-salas m-auto mb-1 w-50">
-                                <button  type="button" class="btn btn-outline-primary d-inline-block mt-1">Adicionar</button>
-                                <button type="button" class="btn btn-outline-primary d-inline-block mt-1">Remover</button>
+                                <button data-bs-toggle="modal" data-bs-target="#adicionarModal" type="button" class="btn btn-outline-primary d-inline-block mt-1 float">Adicionar</button>
                             </div>
                             <ul class="list-group m-auto mb-5 w-50 justify-content-center">
                                
                             </ul>
                         </div>
-                        <div class="troca-salas">
-                            <nav aria-label="Page navigation example">
-                                <ul value="1" class="pagination justify-content-center">
-                                  <li class="page-item" id="itemInicial"><a class="page-link disabled" href="#" aria-label="Anterior" id="PaginaAnt" onclick="trocaPagination(this.id)">&laquo;</a></li>
-                                  <li class="page-item" id="itemFinal"><a class="page-link" href="#" aria-label="Próximo" id="PaginaProx" onclick="trocaPagination(this.id)">&raquo;</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+      <strong class="me-auto">MauáSalas</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Essa sala já existe!
+    </div>
+  </div>
+</div>
+<main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="troca-salas">
+                        <nav aria-label="Page navigation example">
+                            <ul value="1" class="pagination justify-content-center">
+                                <li class="page-item" id="itemInicial"><a class="page-link disabled" href="#" aria-label="Anterior" id="PaginaAnt" onclick="trocaPagination(this.id)">&laquo;</a></li>
+                                <li class="page-item" id="itemFinal"><a class="page-link" href="#" aria-label="Próximo" id="PaginaProx" onclick="trocaPagination(this.id)">&raquo;</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

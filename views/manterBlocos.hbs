@@ -1,0 +1,78 @@
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+      <strong class="me-auto">MauáSalas</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Bloco reservado com sucesso!
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalCadastrarBlocos" tabindex="-1" aria-labelledby="#modalCadastrarBlocos" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cadastrar Bloco</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label" for="basic-url">Bloco</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Bloco:</span>
+                    <input type="text" class="form-control" id="blocoEntrada" aria-describedby="basic-addon1" placeholder="A, B, C...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="cadastrarBloco()">Cadastrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDeletarBlocos" tabindex="-1" aria-labelledby="#modalDeletarBlocos" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Deletar Bloco</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="border-bottom">
+                Tem certeza que deseja deletar este bloco?
+                </p>
+                <p class="d-inline-block me-1 pt-2">Bloco:  <p id="blocoDeletar" class="d-inline-block"></p> </p>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deletarBloco()">Deletar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<main>
+<section>
+    <h4 class="text-center mt-5">
+        Clique no mapa para cadastrar um bloco!
+    </h4>
+    <h4 class="text-center mb-3">
+        Clique em um bloco para deletá-lo!
+    </h4>
+        <div class="container">
+        <div class="row d-flex align-content-center flex-wrap justify-content-center mb-3">
+            <div class="col-md-8 col-lg-6">
+                <div id="map">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>

@@ -25,7 +25,7 @@ router.post("/blocos/lista", function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
-    axios.get("http://localhost:3000/salas/blocos/lista").then((data) => 
+    axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista").then((data) => 
     res.render('salas', {
         title: 'Mauá Salas - Salas',
         style: "/stylesheets/stylesSalas.css",
@@ -39,7 +39,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/sala', function (req, res, next) {
-    axios.get("http://localhost:3000/salas/blocos/lista").then((data) => 
+    axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista").then((data) => 
     res.render('sala', {
         title: 'Mauá Salas - Sala ' + req.query.salaNome,
         style: "/stylesheets/stylesSalas.css",

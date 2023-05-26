@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var authRouter = require('./routes/auth');
+var salasRouter = require('./routes/salas');
 var wellKnownRouter = require('./routes/wellKnown');
 
 // initialize express
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/salas', salasRouter);
 app.use('/auth', authRouter);
 app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
 

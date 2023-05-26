@@ -80,6 +80,9 @@ main {
     background-color: #f6f6f6;
     
 }
+botao:hover{
+    background-color: #f6f6f6;
+}
 
 .tabela{
     border: 1px solid #001E38;

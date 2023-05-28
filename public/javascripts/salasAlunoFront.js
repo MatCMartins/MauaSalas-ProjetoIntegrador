@@ -85,7 +85,7 @@ async function getSalas(bloco){
 
                 const linkSala = document.createElement('a');
                 //Criar router da reservar sala
-                linkSala.setAttribute('href','/salas/sala?salaId=' + data.data[i].id + "&salaNome=" + data.data[i].bloco + data.data[i].andar + data.data[i].numero_sala)
+                linkSala.setAttribute('href','/salas/sala?bloco=' + data.data[i].bloco +"&andar="+ data.data[i].andar +"&numero_sala="+ data.data[i].numero_sala)
                 
                 const cardButton = document.createElement('button');
                 cardButton.classList.add("btn", "botao-reservar", "mt-3");

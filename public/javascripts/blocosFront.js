@@ -56,7 +56,7 @@ function cadastrarBloco(){
     var bloco = document.getElementById('blocoEntrada').value;
     const cores = ["red", "blue", "green", "yellow", "orange", "purple", "black", "brown", "pink"];
     cor = cores[Math.floor(Math.random() * cores.length)];
-    axios.post("http://localhost:3000/admin/manterBlocos/lista", {
+    axios.post("https://mauasalas.lcstuber.net/admin/manterBlocos/lista", {
         bloco: bloco,
         cor: cor,
         latitude: latitude,
@@ -74,7 +74,7 @@ function abrirModalDeletarBloco(bloco){
 
 function deletarBloco(){
     var bloco = document.getElementById('blocoDeletar').innerHTML;
-    (axios.delete("http://localhost:3000/admin/manterBlocos/lista", {data: {
+    (axios.delete("https://mauasalas.lcstuber.net/admin/manterBlocos/lista", {data: {
         bloco: bloco
     }}).then(() => {
         showToast("Bloco deletado com sucesso");

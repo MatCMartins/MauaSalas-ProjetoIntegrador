@@ -5,6 +5,7 @@
 
 var express = require('express');
 var msal = require('@azure/msal-node');
+let banco = require('../authConector');
 
 var {
     msalConfig,
@@ -15,6 +16,10 @@ var {
 const router = express.Router();
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 const cryptoProvider = new msal.CryptoProvider();
+
+authCallback = async (rows) => {
+    return rows;
+};
 
 /**
  * Prepares the auth code request parameters and initiates the first leg of auth code flow
@@ -115,12 +120,16 @@ router.post('/redirect', async function (req, res, next) {
             req.session.authCodeRequest.code = req.body.code; // authZ code
             req.session.authCodeRequest.codeVerifier = req.session.pkceCodes.verifier // PKCE Code Verifier
 
+            authCallback = async (rows) => {
+                return req.session.userType = rows
+            };
             try {
                 const tokenResponse = await msalInstance.acquireTokenByCode(req.session.authCodeRequest);
                 req.session.accessToken = tokenResponse.accessToken;
                 req.session.idToken = tokenResponse.idToken;
                 req.session.account = tokenResponse.account;
                 req.session.isAuthenticated = true;
+                banco('select tipo_de_user from admin where email="' + tokenResponse.account.username + '";', authCallback);
                 res.redirect(state.redirectTo);
             } catch (error) {
                 // next(error);

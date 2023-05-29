@@ -12,27 +12,17 @@ connection.getConnection((err) => {
         console.error('Error connecting to MySQL: ' + err.stack);
         return;
     }
-
 });
 
 function banco(query, callback, req, res) {
-    try{
+    try {
         connection.query(query, (err, rows) => {
             callback(rows, req, res)
         });
     }
-    catch(err){
+    catch (err) {
         res.json(false);
     }
-
-
-
-//     connection.end((err) => {
-//         if (err) {
-//             console.error('Error closing MySQL connection: ' + err.stack);
-//             return;
-//         }
-//     });
 }
 
 module.exports = banco;

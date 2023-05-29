@@ -43,19 +43,22 @@ router.get('/', function (req, res, next) {
         }));
 });
 
+router.post("/sala/conteudo", function (req, res, next) {
+    banco('select * from salas where bloco = "'+ req.body.bloco +'" and andar = '+ req.body.andar +" and numero_sala ="+ req.body.numero_sala+';', callback, req, res);
+});
+
 router.get('/sala', function (req, res, next) {
     axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista", {
         headers: req.headers
     }).then((data) =>
         res.render('sala', {
-            title: 'Mauá Salas - Sala ' + req.query.salaNome,
+            title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar +req.query.numero_sala,
             style: "/stylesheets/stylesSalas.css",
             isAuthenticated: req.session.isAuthenticated,
             // isAdministrator: req.session.isAdministrator,
             username: req.session.account && req.session.account.name,
-            funcao: "getBlocos(" + JSON.stringify(data.data) + ")",
-            script: "/javascripts/salasAlunoFront.js"
-
+            funcao: 'getSala("'+ req.query.bloco +'",'+ req.query.andar +","+ req.query.numero_sala +")",
+            script: "/javascripts/salaAlunoFront.js"
         }));
 });
 

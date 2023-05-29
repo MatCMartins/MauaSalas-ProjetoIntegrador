@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 let banco = require('../conector');
+let mail = require('../mailer');
 var axios = require('axios');
 var cors = require('cors');
 
@@ -26,18 +27,21 @@ router.post('/manterAdmin/lista',
     isAuthenticated,
     async function (req, res, next) {
         banco('insert into admin (email,tipo_de_user) values ("' + req.body.email + '","' + req.body.tipo + '");', callback, req, res);
+        mail(req.body.email, "Administradores Mauá Salas",`Você foi adicionado como ${(req.body.tipo == 1) ? "administrador" : (req.body.tipo == 2) ? "coordenador" : "laboratorista"} no sistema do Mauá Salas por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
     });
 
 router.put('/manterAdmin/lista',
     isAuthenticated,
     async function (req, res, next) {
-        banco('update admin set email="' + req.body.email + '",tipo_de_user="' + req.body.tipo + '" WHERE email="' + req.body.titulo + '";', callback, req, res);
+        banco(`update admin set tipo_de_user='${req.body.tipo}' WHERE email='${req.body.email}';`, callback, req, res);
+        mail(req.body.email, "Administradores Mauá Salas",`Seus privilégios no sistema do Mauá Salas foram atualizados para ${(req.body.tipo == 1) ? "administrador" : (req.body.tipo == 2) ? "coordenador" : "laboratorista"} por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
     });
 
 router.delete('/manterAdmin/lista',
     isAuthenticated,
     async function (req, res, next) {
         banco('delete from admin WHERE email="' + req.body.email + '";', callback, req, res);
+        mail(req.body.email, "Administradores Mauá Salas",`Seus privilégios de ${req.body.tipo} no sistema do Mauá Salas foram revogados por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
     });
 
 router.get('/manterAdmin',

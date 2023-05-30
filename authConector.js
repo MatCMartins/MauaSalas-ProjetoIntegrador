@@ -20,11 +20,15 @@ function banco(query, callback) {
         connection.query(query, (err, rows) => {
             if (rows == []) {
                 rows = 0;
+            } try {
+                return callback(rows[0]["tipo_de_user"]);
+            } catch {
+                return callback(0);
             }
-            return callback(rows[0]["tipo_de_user"]);
         });
     }
     catch (err) {
+        console.log(err);
         return callback(0);
     }
 }

@@ -306,10 +306,17 @@ function criarLinkPagina(index,text) {
     return a;
 }
 
+function recarregar() {
+    setTimeout(function () {
+        location.reload();
+    }, 2000)
+};
+
 function showToast(texto){
     const toastMensagem = document.getElementById('mensagemToast')
     const textoToast = document.querySelector('.toast-body')
     textoToast.innerHTML = texto;
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
     toastBootstrap.show()
+    recarregar();
 }

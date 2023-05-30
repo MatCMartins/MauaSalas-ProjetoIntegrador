@@ -3,14 +3,18 @@ var router = express.Router();
 let banco = require('../conector');
 let mail = require('../mailer');
 var axios = require('axios');
-var cors = require('cors');
+var createError = require('http-errors');
 
 function isAuthenticated(req, res, next) {
     if (!req.session.isAuthenticated) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
-
-    next();
+    else if (req.session.userType != 1){
+        next(createError(403));
+    }
+    else{
+        next();
+    }
 };
 
 callback = async (rows, req, res) => {

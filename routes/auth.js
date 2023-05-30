@@ -120,8 +120,9 @@ router.post('/redirect', async function (req, res, next) {
             req.session.authCodeRequest.code = req.body.code; // authZ code
             req.session.authCodeRequest.codeVerifier = req.session.pkceCodes.verifier // PKCE Code Verifier
 
-            authCallback = async (rows) => {
-                return req.session.userType = rows
+            function authCallback(rows) {
+                req.session.userType = rows;
+                res.redirect(state.redirectTo);
             };
             try {
                 const tokenResponse = await msalInstance.acquireTokenByCode(req.session.authCodeRequest);
@@ -130,7 +131,6 @@ router.post('/redirect', async function (req, res, next) {
                 req.session.account = tokenResponse.account;
                 req.session.isAuthenticated = true;
                 banco('select tipo_de_user from admin where email="' + tokenResponse.account.username + '";', authCallback);
-                res.redirect(state.redirectTo);
             } catch (error) {
                 // next(error);
                 res.redirect('/');

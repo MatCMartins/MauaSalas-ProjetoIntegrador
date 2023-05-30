@@ -19,13 +19,13 @@ function banco(query, callback) {
     try {
         connection.query(query, (err, rows) => {
             if (rows == []) {
-                rows = "0";
+                rows = 0;
             }
-            callback(rows);
+            return callback(rows[0]["tipo_de_user"]);
         });
     }
     catch (err) {
-        callback("0");
+        return callback(0);
     }
 }
 

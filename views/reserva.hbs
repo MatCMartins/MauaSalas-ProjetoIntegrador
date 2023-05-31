@@ -1,0 +1,56 @@
+<div class="modal fade" id="modal-confirmar-reserva">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Confirmar Reserva</h4>
+            </div>
+            <div class="modal-body">
+                <p>Deseja confirmar essa reserva?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="btn-confirmar-reserva" data-bs-dismiss="modal">Confirmar</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+      <strong class="me-auto">MauáSalas</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Sala reservada com sucesso!
+    </div>
+  </div>
+</div>
+<main>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="div-reserva text-center mt-2">
+                    <h2 id="titulo-reserva">H204</h2>
+                </div>
+                <div class="calendario">
+                </div>
+                <div class="horarios mt-5 text-center">
+                    <div class="entrada me-md-5 d-inline d-md-inline-block">
+                        <label for="basic-addon1" class="form-label">Hora de Entrada</label>
+                        <input type="time" class="form-control" id="hora-entrada" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="saida ms-md-5 d-inline d-md-inline-block">
+                        <label for="basic-addon1" class="form-label">Hora de Saída</label>
+                        <input type="time" class="form-control" id="hora-saida" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="campo-reservar text-center my-4">
+                <a href="#" class="text-center">
+                    <button class="btn btn-danger" id="btn-reservar">Reservar</button>
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

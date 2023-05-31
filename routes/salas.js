@@ -4,7 +4,7 @@ let banco = require('../conector');
 var axios = require('axios');
 
 function isAuthenticated(req, res, next) {
-    if (!req.session.isAuthenticated) {
+    if (req.session.isAuthenticated) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
     next();
@@ -65,7 +65,25 @@ router.get('/sala',
                 username: req.session.account && req.session.account.name,
                 funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
                 script: "/javascripts/salaAlunoFront.js"
+    }));
+});
+
+router.get('/reserva',
+    isAuthenticated,
+    async function (req, res, next) {
+        axios.get("http://localhost:3000/salas/blocos/lista", {
+            headers: req.headers
+        }).then((data) =>
+            res.render('reserva', {
+                title: 'Mauá Salas - Reserva' + req.query.bloco + req.query.andar + req.query.numero_sala,
+                style: "/stylesheets/stylesReserva.css",
+                isAuthenticated: req.session.isAuthenticated,
+                // isAdministrator: req.session.isAdministrator,
+                username: req.session.account && req.session.account.name,
+                funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
+                script: "/javascripts/reservaAlunoFront.js"
             }));
     });
+
 
 module.exports = router;

@@ -37,7 +37,6 @@ router.get('/',
                 title: 'Mauá Salas - Salas',
                 style: "/stylesheets/stylesSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
-                // isAdministrator: req.session.isAdministrator,
                 username: req.session.account && req.session.account.name,
                 funcao: "getBlocos(" + JSON.stringify(data.data) + ")",
                 script: "/javascripts/salasAlunoFront.js"
@@ -59,31 +58,15 @@ router.get('/sala',
         }).then((data) =>
             res.render('sala', {
                 title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
-                style: "/stylesheets/stylesSalas.css",
+                style: "/stylesheets/stylesSala.css",
                 isAuthenticated: req.session.isAuthenticated,
-                // isAdministrator: req.session.isAdministrator,
                 username: req.session.account && req.session.account.name,
                 funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
                 script: "/javascripts/salaAlunoFront.js"
     }));
 });
 
-router.get('/reserva',
-    isAuthenticated,
-    async function (req, res, next) {
-        axios.get("http://localhost:3000/salas/blocos/lista", {
-            headers: req.headers
-        }).then((data) =>
-            res.render('reserva', {
-                title: 'Mauá Salas - Reserva' + req.query.bloco + req.query.andar + req.query.numero_sala,
-                style: "/stylesheets/stylesReserva.css",
-                isAuthenticated: req.session.isAuthenticated,
-                // isAdministrator: req.session.isAdministrator,
-                username: req.session.account && req.session.account.name,
-                funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
-                script: "/javascripts/reservaAlunoFront.js"
-            }));
-    });
+
 
 
 module.exports = router;

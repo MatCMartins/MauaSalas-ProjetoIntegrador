@@ -1,0 +1,43 @@
+h4,h1{
+    color: #004785;
+}
+h1{
+    font-size: 135%;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+}
+.fotoSala{
+    width: 80%;
+}
+.caracteristicas{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #AAD0F0;
+    width: 80%;
+    border-radius: 10px;
+}
+.list-group-item{
+    background-color: #AAD0F0;
+    border: none;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 1px solid #004785;
+    padding-bottom: 0 !important;
+}   
+.nome{
+    font-size: 80%;
+    padding-bottom: 0px;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+    color: #004785;
+    display: inline-block;
+}
+.valor{
+    margin-bottom: 0 !important;
+    display: inline-block;
+    color: #004785;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+}

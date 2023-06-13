@@ -31,6 +31,7 @@ router.get('/',
     isAuthenticated,
     async function (req, res, next) {
         axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista", {
+            timeout: 5000,
             headers: req.headers
         }).then((data) =>
             res.render('salas', {
@@ -55,6 +56,7 @@ router.get('/sala',
     isAuthenticated,
     async function (req, res, next) {
         axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista", {
+            timeout: 5000,
             headers: req.headers
         }).then((data) =>
             res.render('sala', {

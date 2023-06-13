@@ -215,7 +215,7 @@ function cadastrarSala(){
                 quadros: numero_quadros,
                 tipo_quadro: tipo_quadro,
                 projetores: numero_projetores,
-                descricao: descricao})
+                descricao: descricao}, {timeout: 5000})
             .then(function(response){
                 if (response.data == ""){
                     showToast("Sala já cadastrada!");
@@ -268,7 +268,7 @@ function editarSala(){
         descricao: descricao,
         bloco_editar: bloco_editar,
         andar_editar: andar_editar,
-        numero_editar: numero_editar})
+        numero_editar: numero_editar}, {timeout: 5000})
         .then(function(response){
             showToast("Sala editada com sucesso!");
         }));
@@ -283,7 +283,8 @@ function deletarSala(){
     if (tituloEditarSala.length == 4){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
-    (axios.delete("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{data:{
+    (axios.delete("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{timeout: 5000,
+    data:{
         bloco: bloco_editar,
         numero_sala: numero_editar,
         andar: andar_editar

@@ -52,6 +52,7 @@ router.get('/manterAdmin',
     isAuthenticated,
     async function (req, res, next) {
         axios.get('https://mauasalas.lcstuber.net/admin/manterAdmin/lista', {
+            timeout: 5000,
             headers: req.headers
           }).then((data) =>
             res.render('manterAdministradores', {
@@ -99,6 +100,7 @@ router.get('/manterSalas',
         ];
 
         const requests = urls.map(url => axios.get(url, {
+            timeout: 5000,
             headers: req.headers
           }));
         axios.all(requests).then((axios.spread((...responses) =>
@@ -135,6 +137,7 @@ router.get('/manterBlocos',
     isAuthenticated,
     async function (req, res, next) {
         axios.get('https://mauasalas.lcstuber.net/admin/manterBlocos/lista', {
+            timeout: 5000,
             headers: req.headers
           }).then((data) =>
             res.render('manterBlocos', {

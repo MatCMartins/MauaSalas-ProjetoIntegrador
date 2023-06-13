@@ -99,7 +99,7 @@ function cadastrarAdministrador() {
         axios.post("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
             email: email_usuario,
             tipo: tipo_usuario
-        }).then(response => {
+        }, {timeout: 5000}).then(response => {
             if (response.data == "") {
                 showToast("Esse usuário já existe! Tente novamente!")
             }
@@ -121,7 +121,7 @@ function editarAdministrador() {
         (axios.put("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
             email: email_usuario,
             tipo: tipo_usuario
-        })
+        }, {timeout: 5000})
             .then(function (response) {
                 if (response.data == "") {
                     showToast("Esse usuário já existe! Tente novamente!")
@@ -139,6 +139,7 @@ function deletarAdministrador() {
     let tipo_usuario = document.querySelector("#tipoUsuario").innerHTML;
 
     (axios.delete("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
+        timeout: 5000,
         data: {
             email: email_usuario,
             tipo: tipo_usuario

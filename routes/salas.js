@@ -4,7 +4,7 @@ let banco = require('../conector');
 var axios = require('axios');
 
 function isAuthenticated(req, res, next) {
-    if (req.session.isAuthenticated) {
+    if (!req.session.isAuthenticated) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
     next();

@@ -4,7 +4,7 @@ let banco = require('../conector');
 var axios = require('axios');
 
 function isAuthenticated(req, res, next) {
-    if (!req.session.isAuthenticated) {
+    if (req.session.isAuthenticated) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
     next();
@@ -38,7 +38,6 @@ router.get('/',
                 title: 'Mauá Salas - Salas',
                 style: "/stylesheets/stylesSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
-                // isAdministrator: req.session.isAdministrator,
                 username: req.session.account && req.session.account.name,
                 funcao: "getBlocos(" + JSON.stringify(data.data) + ")",
                 script: "/javascripts/salasAlunoFront.js"
@@ -61,13 +60,15 @@ router.get('/sala',
         }).then((data) =>
             res.render('sala', {
                 title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
-                style: "/stylesheets/stylesSalas.css",
+                style: "/stylesheets/stylesSala.css",
                 isAuthenticated: req.session.isAuthenticated,
-                // isAdministrator: req.session.isAdministrator,
                 username: req.session.account && req.session.account.name,
                 funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
                 script: "/javascripts/salaAlunoFront.js"
-            }));
-    });
+    }));
+});
+
+
+
 
 module.exports = router;

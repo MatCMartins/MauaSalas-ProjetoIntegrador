@@ -9,10 +9,10 @@ function isAuthenticated(req, res, next) {
     if (!req.session.isAuthenticated) {
         return res.redirect('/auth/signin'); // redirect to sign-in route
     }
-    else if (req.session.userType != 1){
+    else if (req.session.userType != 1) {
         next(createError(403));
     }
-    else{
+    else {
         next();
     }
 };
@@ -31,21 +31,21 @@ router.post('/manterAdmin/lista',
     isAuthenticated,
     async function (req, res, next) {
         banco('insert into admin (email,tipo_de_user) values ("' + req.body.email + '","' + req.body.tipo + '");', callback, req, res);
-        mail(req.body.email, "Administradores Mauá Salas",`Você foi adicionado como ${(req.body.tipo == 1) ? "administrador" : (req.body.tipo == 2) ? "coordenador" : "laboratorista"} no sistema do Mauá Salas por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
+        mail(req.body.email, "Administradores Mauá Salas", `Você foi adicionado como ${(req.body.tipo == 1) ? "administrador" : (req.body.tipo == 2) ? "coordenador" : "laboratorista"} no sistema do Mauá Salas por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
     });
 
 router.put('/manterAdmin/lista',
     isAuthenticated,
     async function (req, res, next) {
         banco(`update admin set tipo_de_user='${req.body.tipo}' WHERE email='${req.body.email}';`, callback, req, res);
-        mail(req.body.email, "Administradores Mauá Salas",`Seus privilégios no sistema do Mauá Salas foram atualizados para ${(req.body.tipo == 1) ? "administrador" : (req.body.tipo == 2) ? "coordenador" : "laboratorista"} por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
+        mail(req.body.email, "Administradores Mauá Salas", `Seus privilégios no sistema do Mauá Salas foram atualizados para ${(req.body.tipo == 1) ? "administrador" : (req.body.tipo == 2) ? "coordenador" : "laboratorista"} por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
     });
 
 router.delete('/manterAdmin/lista',
     isAuthenticated,
     async function (req, res, next) {
         banco('delete from admin WHERE email="' + req.body.email + '";', callback, req, res);
-        mail(req.body.email, "Administradores Mauá Salas",`Seus privilégios de ${req.body.tipo} no sistema do Mauá Salas foram revogados por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
+        mail(req.body.email, "Administradores Mauá Salas", `Seus privilégios de ${req.body.tipo} no sistema do Mauá Salas foram revogados por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
     });
 
 router.get('/manterAdmin',
@@ -54,8 +54,8 @@ router.get('/manterAdmin',
         axios.get('https://mauasalas.lcstuber.net/admin/manterAdmin/lista', {
             timeout: 5000,
             headers: req.headers
-          }).then((data) =>
-            res.render('manterAdministradores', {
+        }).then((data) =>
+            res.render('Admin/manterAdministradores', {
                 title: 'Mauá Salas - Gerenciar Usuários',
                 style: "/stylesheets/stylesAdminPage.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -67,7 +67,7 @@ router.get('/manterAdmin',
     });
 
 router.get('/manterSalas/lista',
-    
+
     async function (req, res, next) {
         banco('select * from salas;', callback, req, res);
     });
@@ -102,9 +102,9 @@ router.get('/manterSalas',
         const requests = urls.map(url => axios.get(url, {
             timeout: 5000,
             headers: req.headers
-          }));
+        }));
         axios.all(requests).then((axios.spread((...responses) =>
-            res.render('manterSalas', {
+            res.render('Admin/manterSalas', {
                 title: 'Mauá Salas - Gerenciar Salas',
                 style: "/stylesheets/stylesManterSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -115,7 +115,7 @@ router.get('/manterSalas',
     });
 
 router.get('/manterBlocos/lista',
-    
+
     async function (req, res, next) {
         banco('select * from blocos order by bloco;', callback, req, res);
     });
@@ -138,8 +138,8 @@ router.get('/manterBlocos',
         axios.get('https://mauasalas.lcstuber.net/admin/manterBlocos/lista', {
             timeout: 5000,
             headers: req.headers
-          }).then((data) =>
-            res.render('manterBlocos', {
+        }).then((data) =>
+            res.render('Admin/manterBlocos', {
                 title: 'Mauá Salas - Gerenciar Blocos',
                 style: "/stylesheets/stylesManterBlocos.css",
                 isAuthenticated: req.session.isAuthenticated,

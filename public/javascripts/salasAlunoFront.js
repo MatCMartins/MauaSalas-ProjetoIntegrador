@@ -40,9 +40,9 @@ async function getBlocos(rows){
 };
 
 async function getSalas(bloco){
-    axios.post(("http://localhost:3000/salas/blocos/lista"),{
+    axios.post(("https://mauasalas.lcstuber.net/salas/blocos/lista"),{
         bloco: bloco
-    })
+    }, {timeout: 5000})
     .then((data) => {
         const salas = document.getElementById('salas');
         const container = document.createElement('div');

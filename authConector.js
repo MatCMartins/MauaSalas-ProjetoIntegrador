@@ -12,16 +12,24 @@ connection.getConnection((err) => {
         console.error('Error connecting to MySQL: ' + err.stack);
         return;
     }
+
 });
 
-function banco(query, callback, req, res) {
+function banco(query, callback) {
     try {
         connection.query(query, (err, rows) => {
-            callback(rows, req, res)
+            if (rows == []) {
+                rows = 0;
+            } try {
+                return callback(rows[0]["tipo_de_user"]);
+            } catch {
+                return callback(0);
+            }
         });
     }
     catch (err) {
-        res.json(false);
+        console.log(err);
+        return callback(0);
     }
 }
 

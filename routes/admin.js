@@ -18,7 +18,7 @@ callback = async (rows, req, res) => {
 };
 
 router.get('/manterAdmin/lista', function (req, res, next) {
-    banco('select email,tipo_de_user from admin order by bloco asc;', callback, req, res);
+    banco('select email,tipo_de_user from admin;', callback, req, res);
 });
 
 router.post('/manterAdmin/lista', function (req, res, next) {
@@ -66,7 +66,7 @@ router.delete('/manterSalas/lista', function (req, res, next) {
 router.get('/manterSalas', function (req, res, next) {
     const urls = [
         'https://mauasalas.lcstuber.net/admin/manterSalas/lista',
-        'http://localhost:3000/admin/manterBlocos/lista'
+        'https://mauasalas.lcstuber.net//admin/manterBlocos/lista'
     ];
     
     const requests = urls.map(url => axios.get(url));
@@ -96,7 +96,7 @@ router.delete('/manterBlocos/lista', function (req, res, next) {
 });
 
 router.get('/manterBlocos', function (req, res, next) {
-    axios.get('http://localhost:3000/admin/manterBlocos/lista').then((data) =>
+    axios.get('https://mauasalas.lcstuber.net/admin/manterBlocos/lista').then((data) =>
     res.render('manterBlocos', {
         title: 'Mauá Salas - Gerenciar Blocos',
         style: "/stylesheets/stylesManterBlocos.css",

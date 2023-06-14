@@ -1,3 +1,15 @@
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+      <strong class="me-auto">MauáSalas</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="toast-body">
+      
+    </div>
+  </div>
+</div>
 <main>
     <div class="mb-3">
         <div class="container-flex mb-3">
@@ -42,13 +54,13 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <label for="basic-url" class="form-label">Email</label>
+                                    <label id="basic-url" class="form-label">Email</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                         <input type="email" class="form-control" placeholder="nome@maua.br"
                                             aria-label="Username" aria-describedby="basic-addon1" id="email_usuario">
                                     </div>
-                                    <label for="basic-url" class="form-label">Tipo de usuário</label>
+                                    <label id="basic-url" class="form-label">Tipo de usuário</label>
                                     <select class="form-select" aria-label="Default select example" id="tipo_usuario">
                                         <option selected>Selecione o tipo de usuário</option>
                                         <option value="1">Administrador</option>
@@ -75,16 +87,15 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <label for="basic-url" class="form-label">Email</label>
+                                    <label id="basic-url" class="form-label">Email</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">@</span>
-                                        <input type="email" class="form-control" placeholder="email"
+                                        <input type="email" disabled class="form-control" placeholder="email"
                                             aria-label="Username" aria-describedby="basic-addon1" id="email_usuario_edit">
                                     </div>
-                                    <label for="basic-url" class="form-label">Tipo de usuário</label>
+                                    <label id="basic-url" class="form-label">Tipo de usuário</label>
                                     <select class="form-select" aria-label="Default select example" id="tipo_usuario_edit">
-                                        <option selected>Selecione o tipo de usuário</option>
-                                        <option value="1">Administrador</option>
+                                        <option selected value="1">Administrador</option>
                                         <option value="2">Coordenador</option>
                                         <option value="3">Laboratorista</option>   
                                     </select>

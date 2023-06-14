@@ -34,12 +34,14 @@ main {
 
     /* css da tela de logado*/
     .botao {
-        width: 160px;
+        width: 200px;
         height: 70px;
     }
-    .tabela{
-        height: 310px;
+    svg{
+        height: 40px;
+        width: 40px;
     }
+    
 }
 
 @media (min-width: 992px) {
@@ -51,14 +53,12 @@ main {
     /* css da tela de logado*/
 
     .botao {
-        width: 250px;
-        height: 80px;
+        width: 350px;
+        height: 100px;
     }
-    .horarios{
-        width: 60%;
-    }
-    .tabela{
-        height: 310px;
+    svg{
+        height: 50px;
+        width: 50px;
     }
 }
 
@@ -66,6 +66,10 @@ main {
     text-align: center;
 }
 /* css tela de logado */
+
+a{
+    text-decoration: none;
+}
 .titulo {
     color: #001E38;
 }
@@ -82,15 +86,4 @@ main {
 }
 botao:hover{
     background-color: #f6f6f6;
-}
-
-.tabela{
-    border: 1px solid #001E38;
-    border-radius: 7px;
-    padding: 5px 10px;
-}
-.linha{
-    border-bottom: 2px solid #001E38;
-    width: 99%;
-    padding-bottom: 2px;
 }

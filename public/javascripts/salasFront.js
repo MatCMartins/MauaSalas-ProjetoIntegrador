@@ -29,9 +29,24 @@ async function carregarBlocos(rows){
 
 async function carregarSalas(rows){
     salas = rows;
+    salas.sort(function(a, b) {
+        var firstElementA = a.bloco;
+        var firstElementB = b.bloco;
+      
+        if (firstElementA < firstElementB) {
+          return -1;
+        }
+      
+        if (firstElementA > firstElementB) {
+          return 1;
+        }
+      
+        return 0;
+      });
+      console.log(salas[0]["bloco"])
     const lista = document.querySelector(".list-group");
     for (let i = 0; i <rows.length; i++){
-        if(rows[i].bloco == "A"){
+        if(rows[i].bloco == salas[0]["bloco"]){
             let item = document.createElement("li");
             let a_item = document.createElement("a");
             let botao_editar_item = document.createElement("button");
@@ -226,7 +241,7 @@ function cadastrarSala(){
             }));
         }
         catch(err){
-            showToast("Erro ao cadastrar sala!");
+            showToast("Erro ao cadastrar sala! Você não pode adicionar a sala de um bloco que não existe no sistema.");
         }
     }
 }
@@ -250,6 +265,9 @@ function editarSala(){
     if (tituloEditarSala.length == 4){
         numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
     }
+    if (tituloEditarSala.length == 5){
+        numero_editar = tituloEditarSala[2] + tituloEditarSala[3] + tituloEditarSala[4];
+    }
 
     if (bloco == "" | numero == "" | andar == "" | cadeiras == "" | mesas == "" | numero_computadores == "" | numero_projetores == "" | numero_quadros == "" | tipo_quadro == "" | numero_tomadas == "" | tipo_metodo == "" | descricao == ""){
         showToast("Preencha todos os campos");
@@ -271,25 +289,33 @@ function editarSala(){
         numero_editar: numero_editar}, {timeout: 5000})
         .then(function(response){
             showToast("Sala editada com sucesso!");
+        })
+        .catch(function(error){
+            showToast("Erro ao editar sala! Você não pode editar a sala para um bloco que não existe no sistema.");
         }));
     }
 }	
 
 function deletarSala(){
-    let tituloEditarSala = document.querySelector("#tituloDeletarSala").innerHTML;
-    let bloco_editar = tituloEditarSala[0];
-    let andar_editar = tituloEditarSala[1];
-    let numero_editar = tituloEditarSala[2];
-    if (tituloEditarSala.length == 4){
-        numero_editar = tituloEditarSala[2] + tituloEditarSala[3];
+    let tituloDeletarSala = document.querySelector("#tituloDeletarSala").innerHTML;
+    let bloco_deletar = tituloDeletarSala[0];
+    let andar_deletar = tituloDeletarSala[1];
+    let numero_deletar = tituloDeletarSala[2];
+    if (tituloDeletarSala.length == 4){
+        numero_deletar = tituloDeletarSala[2] + tituloDeletarSala[3];
+    }
+    if (tituloDeletarSala.length == 5){
+        numero_deletar = tituloDeletarSala[2] + tituloDeletarSala[3] + tituloDeletarSala[4];
     }
     (axios.delete("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{timeout: 5000,
     data:{
-        bloco: bloco_editar,
-        numero_sala: numero_editar,
-        andar: andar_editar
+        bloco: bloco_deletar,
+        numero_sala: numero_deletar,
+        andar: andar_deletar
     }}).then(() => {
         showToast("Sala deletada com sucesso!");
+    }).catch(() => {
+        showToast("Erro ao deletar sala!");
     }));
 }
 

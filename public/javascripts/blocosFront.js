@@ -61,8 +61,10 @@ function cadastrarBloco(){
         cor: cor,
         latitude: latitude,
         longitude: longitude
-    }, {timeout: 5000}).then((data) => {
+    }).then((data) => {
         showToast("Bloco cadastrado com sucesso");
+    }).catch((error) => {
+        showToast("Erro ao cadastrar bloco.");
     });
 }
 
@@ -74,12 +76,12 @@ function abrirModalDeletarBloco(bloco){
 
 function deletarBloco(){
     var bloco = document.getElementById('blocoDeletar').innerHTML;
-    (axios.delete("https://mauasalas.lcstuber.net/admin/manterBlocos/lista", {
-        timeout: 5000,
-        data: {
+    (axios.delete("https://mauasalas.lcstuber.net/admin/manterBlocos/lista", {data: {
         bloco: bloco
     }}).then(() => {
         showToast("Bloco deletado com sucesso");
+    }).catch((error) => {
+        showToast("Erro ao deletar bloco.");
     }));
 }
 

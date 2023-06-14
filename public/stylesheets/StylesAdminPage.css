@@ -49,12 +49,6 @@ main{
     background-color: #F6F6F6;
     color: #001E38; 
 }
-.input-email:hover{
-    cursor: text;
-}
-.input-email:focus{
-    border-bottom: 2px solid #001E38 ;
-}
 .input-select{
     border: 0 none;
     padding-top: 0 1px 0 0;

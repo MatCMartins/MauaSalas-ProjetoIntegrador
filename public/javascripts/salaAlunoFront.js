@@ -173,7 +173,7 @@ function cadastrarReserva(){
                         recarregar();
                     }
                 }
-            } else if ((recorrencia === "weekly" || recorrencia === "monthly") && dataFinal != "") {
+            } else if ((recorrencia === "WEEKLY" || recorrencia === "MONTHLY") && dataFinal != "") {
                 if (proposito === "comum") {
                     axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
                         nome: nomeSala,
@@ -248,5 +248,7 @@ function cadastrarReserva(){
                 }
             }
         }
-        showToast("Preencha todos os campos!");        
+        else{
+            showToast("Preencha todos os campos!");        
+        }
 }

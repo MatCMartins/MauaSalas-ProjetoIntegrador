@@ -1,9 +1,12 @@
-.container{
-    background-color: #AAD0F0;
-    width: 50%;
-    border-radius: 10px;
-}
+
 #titulo-reserva{
-    color: #001E38;
-    
+    color: #001E38
+}
+
+main{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

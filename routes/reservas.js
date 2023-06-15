@@ -43,7 +43,7 @@ function Callback6(rows, req, res) {
                 end: endTime,
                 summary: req.body.tipo,
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         } else {
@@ -55,7 +55,7 @@ function Callback6(rows, req, res) {
                 summary: req.body.tipo,
                 repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         }
@@ -92,7 +92,7 @@ function Callback5(rows, req, res) {
                 end: endTime,
                 summary: req.body.tipo,
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         } else {
@@ -104,7 +104,7 @@ function Callback5(rows, req, res) {
                 summary: req.body.tipo,
                 repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         }
@@ -117,7 +117,7 @@ function Callback5(rows, req, res) {
 function Callback4(rows, req, res) {
     var nome = req.body.curso;
     var tipo = "Curso";
-    if (nome == '---') {
+    if (nome == '') {
         banco('select calendario from calendario where nome="' + req.body.materia + '";', Callback5, req, res)
     } else {
         try {
@@ -141,7 +141,7 @@ function Callback4(rows, req, res) {
                 end: endTime,
                 summary: req.body.tipo,
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         } else {
@@ -153,7 +153,7 @@ function Callback4(rows, req, res) {
                 summary: req.body.tipo,
                 repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         }
@@ -190,7 +190,7 @@ function Callback3(rows, req, res) {
                 end: endTime,
                 summary: req.body.tipo,
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         } else {
@@ -202,7 +202,7 @@ function Callback3(rows, req, res) {
                 summary: req.body.tipo,
                 repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         }
@@ -248,13 +248,13 @@ function Callback2(rows, req, res) {
             summary: req.body.tipo,
             repeating: { freq: req.body.freq, until: finalDate },
             timezone: "America/Sao_Paulo",
-            // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+            // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
             location: req.body.nome
         })
     }
     var json3 = JSON.stringify(retorno2);
     bancoI('UPDATE `calendario` set calendario = \'' + json3 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
-    banco('select calendario from calendario where nome="' + req.body.professor + '";', Callback3, req, res)
+    banco('select calendario from calendario where nome="' + req.body.professor + '" and tipo="Professor";', Callback3, req, res)
 }
 
 function Callback(rows, req, res) {
@@ -284,7 +284,7 @@ function Callback(rows, req, res) {
                 end: endTime,
                 summary: req.body.tipo,
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 location: req.body.nome
             })
         } else {
@@ -296,7 +296,7 @@ function Callback(rows, req, res) {
                 summary: req.body.tipo,
                 repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
-                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                // description: `{Criador: ${req.session.account.name}, Professor: ${req.body.professor}, Sala: ${req.body.nome}, Curso: ${req.body.curso}, Matéria: ${req.body.materia}, GTL: ${req.body.GTL}}`,
                 organizer: {
                     name: req.session.account.name,
                     email: req.session.account.username
@@ -325,7 +325,7 @@ router.get('/',
     isAuthenticated, // check if user is authenticated
     async function (req, res, next) {
         res.render('reserva', { title: 'Mauá Salas',
-        style: "/stylesheets/stylesHomePage.css",
+        style: "/stylesheets/stylesReserva.css",
         isAuthenticated: req.session.isAuthenticated,
         username: req.session.account && req.session.account.name,
         script: "/javascripts/reservaFront.js" });

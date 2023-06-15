@@ -126,7 +126,7 @@ function cadastrar(){
     var cursoProva = document.getElementById('curso-prova').value;  
     var materiaProva = document.getElementById('materia-prova').value;
 
-    if (dataInicio == "" || horarioInicio == "" || horarioFinal == "" || recorrencia == "" || proposito == ""){
+    if (dataInicio == "" || horarioInicio == "" || horarioFinal == "" || recorrencia == "" || proposito == "" || horarioInicio == "HH:MM" || horarioFinal == "HH:MM"){
         showToast("Preencha todos os campos!");  
     }
     if (recorrencia == "semanal" || recorrencia == "mensal"){
@@ -136,16 +136,17 @@ function cadastrar(){
     }
 
     if (proposito == "aula"){
-        if (cursoAula == "" || materiaAula == "" || grupo == "" || turma == "" || laboratorio == "" || professor == ""){
+        if (cursoAula == "" || materiaAula == "" || grupo == "" || turma == "" || laboratorio == "" || professor == "" || cursoAula == "---"){
             showToast("Preencha todos os campos!");
         }
     }
     else if (proposito == "prova"){
-        if (cursoProva == "" || materiaProva == ""){
+        if (cursoProva == "" || materiaProva == "" || cursoProva == "---"){
             showToast("Preencha todos os campos!");
         }
     }
     else{
+        //////// FAZER AQUI O CADASTRO LEOZIN
         showToast("Reserva cadastrada com sucesso!");
     }
 }

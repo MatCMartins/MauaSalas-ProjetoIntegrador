@@ -126,6 +126,8 @@ function cadastrar(){
     var cursoProva = document.getElementById('curso-prova').value;  
     var materiaProva = document.getElementById('materia-prova').value;
 
+    var nomeSala = document.getElementById("titulo-reserva").innerHTML;
+
     if (dataInicio == "" || horarioInicio == "" || horarioFinal == "" || recorrencia == "" || proposito == "" || horarioInicio == "HH:MM" || horarioFinal == "HH:MM"){
         showToast("Preencha todos os campos!");  
     }
@@ -146,7 +148,26 @@ function cadastrar(){
         }
     }
     else{
-        //////// FAZER AQUI O CADASTRO LEOZIN
+        axios.get('http://mauasalas.lcstuber.net/reserva/calendario/lista', {
+            params: {
+                nome: nomeSala,
+                dia: dataInicio,
+                horaInicio: horarioInicio,
+                horaFim: horarioFinal,
+                dataFimRec: dataFinal,
+                freq: recorrencia,
+                tipo: proposito,
+                curso: cursoAula || cursoProva,
+                materia: materiaAula || materiaProva,
+                GTL: grupo+turma+laboratorio,
+                professor: professor
+            }})
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         showToast("Reserva cadastrada com sucesso!");
     }
 }

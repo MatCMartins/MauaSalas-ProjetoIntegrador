@@ -78,7 +78,6 @@ function showToast(texto){
     textoToast.innerHTML = texto;
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
     toastBootstrap.show()
-    recarregar();
 }
 function cadastrarReserva(){
     console.log('cadastrar')
@@ -98,47 +97,156 @@ function cadastrarReserva(){
     var cursoProva = document.getElementById('curso-prova').value;  
     var materiaProva = document.getElementById('materia-prova').value;
 
-    var nomeSala = document.getElementById("titulo-reserva").innerHTML;
 
-    if (dataInicio == "" || horarioInicio == "" || horarioFinal == "" || recorrencia == "" || proposito == "" || horarioInicio == "HH:MM" || horarioFinal == "HH:MM"){
-        showToast("Preencha todos os campos!");  
-    }
-    if (recorrencia == "semanal" || recorrencia == "mensal"){
-        if (dataFinal == ""){
-            showToast("Preencha todos os campos!");
+        var nomeSala = document.getElementById("titulo-reserva").innerHTML;
+        if (dataInicio != "" && horarioInicio != "" && horarioInicio != "HH:MM" && horarioFinal != "" && horarioFinal != "HH:MM" && recorrencia != "" && proposito != "") {
+            if (recorrencia === "unique") {
+                if (proposito === "comum") {
+                    axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                        nome: nomeSala,
+                        dia: dataInicio,
+                        horaInicio: horarioInicio,
+                        horaFim: horarioFinal,
+                        diaFimRec: "",
+                        freq: recorrencia,
+                        tipo: proposito,
+                        curso: "",
+                        materia: "",
+                        GTL: "",
+                        professor: ""
+                    }, { timeout: 5000 })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    showToast("Reserva cadastrada com sucesso!");
+                    recarregar()
+                }
+                else if (proposito === "aula") {
+                    if (cursoAula != "---" && materiaAula != "" && grupo != "" && turma != "" && laboratorio != "" && professor != "") {
+                        axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                            nome: nomeSala,
+                            dia: dataInicio,
+                            horaInicio: horarioInicio,
+                            horaFim: horarioFinal,
+                            diaFimRec: "",
+                            freq: recorrencia,
+                            tipo: proposito,
+                            curso: cursoAula,
+                            materia: materiaAula,
+                            GTL: grupo,
+                            professor: professor
+                        }, { timeout: 5000 })
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                        showToast("Reserva cadastrada com sucesso!");
+                        recarregar()
+                    }
+                } else if (proposito === "prova") {
+                    if (cursoProva != "---" && materiaProva != "") {
+                        axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                            nome: nomeSala,
+                            dia: dataInicio,
+                            horaInicio: horarioInicio,
+                            horaFim: horarioFinal,
+                            diaFimRec: "",
+                            freq: recorrencia,
+                            tipo: proposito,
+                            curso: cursoProva,
+                            materia: materiaProva,
+                            GTL: "",
+                            professor: ""
+                        }, { timeout: 5000 })
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                        showToast("Reserva cadastrada com sucesso!");
+                        recarregar();
+                    }
+                }
+            } else if ((recorrencia === "weekly" || recorrencia === "monthly") && dataFinal != "") {
+                if (proposito === "comum") {
+                    axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                        nome: nomeSala,
+                        dia: dataInicio,
+                        horaInicio: horarioInicio,
+                        horaFim: horarioFinal,
+                        diaFimRec: dataFinal,
+                        freq: recorrencia,
+                        tipo: proposito,
+                        curso: "",
+                        materia: "",
+                        GTL: "",
+                        professor: ""
+                    }, { timeout: 5000 })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                    showToast("Reserva cadastrada com sucesso!");
+                    recarregar()
+                }
+                else if (proposito === "aula") {
+                    if (cursoAula != "---" && materiaAula != "" && grupo != "" && turma != "" && laboratorio != "" && professor != "") {
+                        axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                            nome: nomeSala,
+                            dia: dataInicio,
+                            horaInicio: horarioInicio,
+                            horaFim: horarioFinal,
+                            diaFimRec: dataFinal,
+                            freq: recorrencia,
+                            tipo: proposito,
+                            curso: cursoAula,
+                            materia: materiaAula,
+                            GTL: grupo,
+                            professor: professor
+                        }, { timeout: 5000 })
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                        showToast("Reserva cadastrada com sucesso!");
+                        recarregar()
+                    }
+                } else if (proposito === "prova") {
+                    if (cursoProva != "---" && materiaProva != "") {
+                        axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                            nome: nomeSala,
+                            dia: dataInicio,
+                            horaInicio: horarioInicio,
+                            horaFim: horarioFinal,
+                            diaFimRec: dataFinal,
+                            freq: recorrencia,
+                            tipo: proposito,
+                            curso: cursoProva,
+                            materia: materiaProva,
+                            GTL: "",
+                            professor: ""
+                        }, { timeout: 5000 })
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                        showToast("Reserva cadastrada com sucesso!");
+                        recarregar();
+                    }
+                }
+            }
         }
-    }
-
-    if (proposito == "aula"){
-        if (cursoAula == "" || materiaAula == "" || grupo == "" || turma == "" || laboratorio == "" || professor == "" || cursoAula == "---"){
-            showToast("Preencha todos os campos!");
-        }
-    }
-    else if (proposito == "prova"){
-        if (cursoProva == "" || materiaProva == "" || cursoProva == "---"){
-            showToast("Preencha todos os campos!");
-        }
-    }
-    else{
-        axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
-                nome: nomeSala,
-                dia: dataInicio,
-                horaInicio: horarioInicio,
-                horaFim: horarioFinal,
-                diaFimRec: dataFinal,
-                freq: recorrencia,
-                tipo: proposito,
-                curso: cursoAula || cursoProva,
-                materia: materiaAula || materiaProva,
-                GTL: grupo+turma+laboratorio,
-                professor: professor
-            }, { timeout: 5000 })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        showToast("Reserva cadastrada com sucesso!");
-    }
+        showToast("Preencha todos os campos!");        
 }

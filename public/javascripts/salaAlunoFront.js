@@ -35,34 +35,6 @@ async function getSala(bloco, andar, numero_sala){
     });
 }
 
-$(function () {
-    $("#calendario-inicio").datepicker({
-        dateFormat: 'dd/mm/yy',
-        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        minDate: new Date(2023, 0, 1),
-        maxDate: new Date(2023, 11, 31),
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-});
-$(function () {
-    $("#calendario-final").datepicker({
-        dateFormat: 'dd/mm/yy',
-        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        minDate: new Date(2023, 0, 1),
-        maxDate: new Date(2023, 11, 31),
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-});
 var recorrencia = "";
 $('input[name="recorrencia"]').change(function () {
     if ($('input[name="recorrencia"]:checked').val() === "unique") {
@@ -153,7 +125,7 @@ function cadastrarReserva(){
                 dia: dataInicio,
                 horaInicio: horarioInicio,
                 horaFim: horarioFinal,
-                dataFimRec: dataFinal,
+                diaFimRec: dataFinal,
                 freq: recorrencia,
                 tipo: proposito,
                 curso: cursoAula || cursoProva,

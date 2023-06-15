@@ -17,6 +17,7 @@ var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var authRouter = require('./routes/auth');
 var salasRouter = require('./routes/salas');
+var reservasRouter = require('./routes/reservas');
 var wellKnownRouter = require('./routes/wellKnown');
 
 // initialize express
@@ -52,6 +53,7 @@ app.use('/admin', adminRouter);
 app.use('/salas', salasRouter);
 app.use('/auth', authRouter);
 app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
+app.use('/reservas', reservasRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

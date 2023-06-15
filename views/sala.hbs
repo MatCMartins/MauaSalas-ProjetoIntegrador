@@ -71,23 +71,20 @@
                 </div>
                 <div class="mb-3 data-final" style="display: none;">
                     <label class="form-label">Selecione a data final:</label>
-                    <input id="calendario-final" type="text" placeholder="Ex.: DD/MM/AAAA" class="form-control" >
+                    <input id="calendario-final" type="text" placeholder="Ex.: DD/MM/AAAA" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Proposito da reserva:</label><br>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="proposito"
-                            value="aula">
+                        <input class="form-check-input" type="radio" name="proposito" value="aula">
                         <label class="form-check-label" for="inlineRadio1">Aula</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="proposito"
-                            value="comum">
+                        <input class="form-check-input" type="radio" name="proposito" value="comum">
                         <label class="form-check-label" for="inlineRadio2">Comum</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="proposito"
-                            value="prova">
+                        <input class="form-check-input" type="radio" name="proposito" value="prova">
                         <label class="form-check-label" for="inlineRadio3">Prova</label>
                     </div>
                 </div>
@@ -131,7 +128,8 @@
                     <label for="basic-url" class="form-label">Nome do Professor</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Nome:</span>
-                        <input id="nome-professor" type="text" placeholder="Ex.: Lorem Ipsum" class="form-control nome-professor">
+                        <input id="nome-professor" type="text" placeholder="Ex.: Lorem Ipsum"
+                            class="form-control nome-professor">
                     </div>
                 </div>
                 <div class="prova" style="display:none;">
@@ -162,24 +160,24 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="btn-confirmar-reserva"
-                    data-bs-dismiss="modal" onClick="cadastrarReserva()">Reservar</button>
+                <button class="btn btn-primary" id="btn-confirmar-reserva" data-bs-dismiss="modal"
+                    onClick="cadastrarReserva()">Reservar</button>
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
-      <strong class="me-auto">MauáSalas</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+            <strong class="me-auto">MauáSalas</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Sala reservada com sucesso!
+        </div>
     </div>
-    <div class="toast-body">
-      Sala reservada com sucesso!
-    </div>
-  </div>
 </div>
 <main>
     <div class="container">
@@ -187,7 +185,7 @@
             <div class="col-12">
                 <div class="d-flex flex-column text-center mt-5">
                     <h4 id="titulo-reserva">H211</h4>
-                <img src="/images/SalaModelo1.png" alt="Foto da sala" class="m-auto" width="63%">
+                    <img src="/images/SalaModelo1.png" alt="Foto da sala" class="m-auto" width="63%">
                 </div>
             </div>
         </div>
@@ -200,8 +198,10 @@
                     <ul class="list-group">
                     </ul>
                 </div>
-                <button class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#modal-confirmar-reserva">Reservar</button>
+                <div class="text-center">
+                    <button class="btn btn-primary text-center mb-5" data-bs-toggle="modal"
+                        data-bs-target="#modal-confirmar-reserva">Reservar</button>
+                </div>
             </div>
         </div>
     </div>

@@ -65,15 +65,15 @@ $(function () {
 });
 var recorrencia = "";
 $('input[name="recorrencia"]').change(function () {
-    if ($('input[name="recorrencia"]:checked').val() === "unica") {
-        recorrencia = "unica"
+    if ($('input[name="recorrencia"]:checked').val() === "unique") {
+        recorrencia = "unique"
         input = document.querySelector('.data-final');
         input.style.display = 'none';
-    } else if ($('input[name="recorrencia"]:checked').val() === "semanal") {
-        recorrencia = "semanal"
+    } else if ($('input[name="recorrencia"]:checked').val() === "WEEKLY") {
+        recorrencia = "WEEKLY"
         document.querySelector('.data-final').removeAttribute('style');
-    } else if ($('input[name="recorrencia"]:checked').val() === "mensal"){
-        recorrencia = "mensal"
+    } else if ($('input[name="recorrencia"]:checked').val() === "MONTHLY"){
+        recorrencia = "MONTHLY"
         document.querySelector('.data-final').removeAttribute('style');
     }
 });

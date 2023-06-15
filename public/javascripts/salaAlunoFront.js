@@ -106,9 +106,9 @@ function showToast(texto){
     textoToast.innerHTML = texto;
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
     toastBootstrap.show()
-    recarregar();
+    // recarregar();
 }
-function cadastrar(){
+function cadastrarReserva(){
     console.log('cadastrar')
     var dataInicio = document.getElementById('calendario-inicio').value;
     var horarioInicio = document.getElementById('hora-inicio').value;
@@ -148,8 +148,7 @@ function cadastrar(){
         }
     }
     else{
-        axios.get('http://mauasalas.lcstuber.net/reserva/calendario/lista', {
-            params: {
+        axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
                 nome: nomeSala,
                 dia: dataInicio,
                 horaInicio: horarioInicio,
@@ -161,7 +160,7 @@ function cadastrar(){
                 materia: materiaAula || materiaProva,
                 GTL: grupo+turma+laboratorio,
                 professor: professor
-            }})
+            }, { timeout: 5000 })
             .then(function (response) {
                 console.log(response);
             })

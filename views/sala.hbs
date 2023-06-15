@@ -1,12 +1,119 @@
-<div class="modal fade" id="modal-confirmar-reserva">
+<div class="modal fade" id="modal-confirmar-reserva" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h5 class="modal-title">Reservar sala {{sala}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="mb-3 data-inicial">
+                    <label class="form-label">Selecione uma Data:</label>
+                    <input id="calendario-inicio" type="text" placeholder="Ex.: DD/MM/AAAA" class="form-control">
+                </div>
+                <label for="basic-url" class="form-label">Selecione os horários</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Hora Inicio:</span>
+                    <select id="hora-inicio" class="hora-inicio form-select form-select">
+                        <option selected>HH:MM</option>
+                        <option value="7-40">7:40</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Hora Fim:</span>
+                    <select id="hora-fim" class="hora-fim form-select form-select">
+                        <option selected>HH:MM</option>
+                        <option value="9-30">9:30</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Recorrencia:</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="recorrencia" id="inlineRadio1"
+                            value="unica">
+                        <label class="form-check-label" for="inlineRadio1">Única</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="recorrencia" id="inlineRadio2"
+                            value="semanal">
+                        <label class="form-check-label" for="inlineRadio2">Semanal</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="recorrencia" id="inlineRadio3"
+                            value="mensal">
+                        <label class="form-check-label" for="inlineRadio3">Mensal</label>
+                    </div>
+                </div>
+                <div class="mb-3 data-final" style="display: none;">
+                    <label class="form-label">Selecione a data final:</label>
+                    <input id="calendario-final" type="text" placeholder="Ex.: DD/MM/AAAA" class="form-control" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Proposito da reserva:</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="proposito"
+                            value="aula">
+                        <label class="form-check-label" for="inlineRadio1">Aula</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="proposito"
+                            value="comum">
+                        <label class="form-check-label" for="inlineRadio2">Comum</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="proposito"
+                            value="prova">
+                        <label class="form-check-label" for="inlineRadio3">Prova</label>
+                    </div>
+                </div>
+                <div class="aula" style="display:none;">
+                    <label for="basic-url" class="form-label">Aula</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Selecione um curso</span>
+                        <select id="curso-aula" class="curso-aula form-select form-select" aria-label=".form-select">
+                            <option selected>---</option>
+                            <option value="CiC">Ciencia da Computação</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Matéria:</span>
+                        <input id="materia-aula" type="text" placeholder="Ex.: TTI102" class="form-control materia">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Grupo:</span>
+                        <input id="grupo" type="number" placeholder="Ex.: 1" class="form-control grupo">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Turma:</span>
+                        <input id="turma" type="number" placeholder="Ex.: 2" class="form-control turma">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Laboratório:</span>
+                        <input id="laboratorio" type="number" placeholder="Ex.: 3" class="form-control laboratorio">
+                    </div>
+                    <label for="basic-url" class="form-label">Nome do Professor</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Nome:</span>
+                        <input id="nome-professor" type="text" placeholder="Ex.: Lorem Ipsum" class="form-control nome-professor">
+                    </div>
+                </div>
+                <div class="prova" style="display:none;">
+                    <label class="form-label">Prova</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Selecione um curso</span>
+                        <select id="curso-prova" class="curso-prova form-select form-select" aria-label=".form-select">
+                            <option selected>Curso</option>
+                            <option value="CiC">Ciencia da Computação</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Matéria:</span>
+                        <input id="materia-prova" type="text" placeholder="Ex.: TTI102" class="form-control materia">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="btn-confirmar-reserva" data-bs-dismiss="modal">Confirmar</button>
+                <button class="btn btn-primary" id="btn-confirmar-reserva"
+                    data-bs-dismiss="modal" onClick="cadastrarReserva()">Reservar</button>
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
@@ -43,6 +150,8 @@
                     <ul class="list-group">
                     </ul>
                 </div>
+                <button class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#modal-confirmar-reserva">Reservar</button>
             </div>
         </div>
     </div>

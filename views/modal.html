@@ -5,6 +5,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="mensagemToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+            <img src="/images/logo.svg" class="rounded me-2" width="15%" alt="...">
+            <strong class="me-auto">MauáSalas</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+            Sala reservada com sucesso!
+            </div>
+        </div>
+        </div>
     <main>
         <button class="btn btn-primary" data-bs-toggle="modal"
             data-bs-target="#modal-confirmar-reserva">Confirmar</button>
@@ -85,16 +97,8 @@
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Ano</span>
-                                <select id="ano-curso-aula" class="ano-curso-aula form-select form-select" aria-label=".form-select">
-                                    <option selected>----</option>
-                                    <option value="primeiro">1°</option>
-                                    <option value="segundo-ano">2°</option>
-                                    <option value="terceiro-ano">3°</option>
-                                    <option value="quarto-ano">4°</option>
-                                    <option value="quinto-ano">5°</option>
-                                    <option value="quinto-ano">6°</option>
-                                </select>
+                                <span class="input-group-text">Matéria:</span>
+                                <input id="materia-aula" type="text" placeholder="Ex.: TTI102" class="form-control materia">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Grupo:</span>
@@ -124,26 +128,14 @@
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">Ano</span>
-                                <select id="ano-curso-prova" class="ano-curso-prova form-select form-select" aria-label=".form-select">
-                                    <option selected>----</option>
-                                    <option value="primeiro">1°</option>
-                                    <option value="segundo-ano">2°</option>
-                                    <option value="terceiro-ano">3°</option>
-                                    <option value="quarto-ano">4°</option>
-                                    <option value="quinto-ano">5°</option>
-                                    <option value="quinto-ano">6°</option>
-                                </select>
-                            </div>
-                            <div class="input-group mb-3">
                                 <span class="input-group-text">Matéria:</span>
-                                <input id="materia" type="text" placeholder="Ex.: TTI102" class="form-control materia">
+                                <input id="materia-prova" type="text" placeholder="Ex.: TTI102" class="form-control materia">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" id="btn-confirmar-reserva"
-                            data-bs-dismiss="modal" onClick="Cadastrar">Reservar</button>
+                            data-bs-dismiss="modal" onClick="cadastrar()">Reservar</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
@@ -199,7 +191,7 @@
                 recorrencia = "semanal"
                 document.querySelector('.data-final').removeAttribute('style');
             } else if ($('input[name="recorrencia"]:checked').val() === "mensal"){
-                recorrencia = mensal
+                recorrencia = "mensal"
                 document.querySelector('.data-final').removeAttribute('style');
             }
         });
@@ -220,7 +212,60 @@
             }
         });
 
-        function Cadastrar(){
+        
+        function recarregar() {
+            setTimeout(function () {
+                location.reload();
+            }, 2000)
+        };
+        function showToast(texto){
+            const toastMensagem = document.getElementById('mensagemToast')
+            const textoToast = document.querySelector('.toast-body')
+            textoToast.innerHTML = texto;
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
+            toastBootstrap.show()
+            recarregar();
+        }
+        function cadastrar(){
+            console.log('cadastrar')
+            var dataInicio = document.getElementById('calendario-inicio').value;
+            var horarioInicio = document.getElementById('hora-inicio').value;
+            var horarioFinal = document.getElementById('hora-fim').value;
+
+            var dataFinal = document.getElementById('calendario-final').value;
+
+            var cursoAula = document.getElementById('curso-aula').value;
+            var materiaAula = document.getElementById('materia-aula').value;
+            var grupo = document.getElementById('grupo').value;
+            var turma = document.getElementById('turma').value;
+            var laboratorio = document.getElementById('laboratorio').value;
+            var professor = document.getElementById('nome-professor').value;
+
+            var cursoProva = document.getElementById('curso-prova').value;  
+            var materiaProva = document.getElementById('materia-prova').value;
+
+            if (dataInicio == "" || horarioInicio == "" || horarioFinal == "" || recorrencia == "" || proposito == ""){
+                showToast("Preencha todos os campos!");  
+            }
+            if (recorrencia == "semanal" || recorrencia == "mensal"){
+                if (dataFinal == ""){
+                    showToast("Preencha todos os campos!");
+                }
+            }
+
+            if (proposito == "aula"){
+                if (cursoAula == "" || materiaAula == "" || grupo == "" || turma == "" || laboratorio == "" || professor == ""){
+                    showToast("Preencha todos os campos!");
+                }
+            }
+            else if (proposito == "prova"){
+                if (cursoProva == "" || materiaProva == ""){
+                    showToast("Preencha todos os campos!");
+                }
+            }
+            else{
+                showToast("Reserva cadastrada com sucesso!");
+            }
         }
     </script>
     <!-- ate aqui a parte importante -->

@@ -34,3 +34,118 @@ async function getSala(bloco, andar, numero_sala){
         }
     });
 }
+
+$(function () {
+    $("#calendario-inicio").datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        minDate: new Date(2023, 0, 1),
+        maxDate: new Date(2023, 11, 31),
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+});
+$(function () {
+    $("#calendario-final").datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        minDate: new Date(2023, 0, 1),
+        maxDate: new Date(2023, 11, 31),
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+});
+var recorrencia = "";
+$('input[name="recorrencia"]').change(function () {
+    if ($('input[name="recorrencia"]:checked').val() === "unica") {
+        recorrencia = "unica"
+        input = document.querySelector('.data-final');
+        input.style.display = 'none';
+    } else if ($('input[name="recorrencia"]:checked').val() === "semanal") {
+        recorrencia = "semanal"
+        document.querySelector('.data-final').removeAttribute('style');
+    } else if ($('input[name="recorrencia"]:checked').val() === "mensal"){
+        recorrencia = "mensal"
+        document.querySelector('.data-final').removeAttribute('style');
+    }
+});
+var proposito = ""
+$('input[name="proposito"]').change(function () {
+    if ($('input[name="proposito"]:checked').val() === "aula") {
+        proposito = "aula"
+        document.querySelector('.prova').style.display = 'none';
+        document.querySelector('.aula').removeAttribute('style');
+    } else if ($('input[name="proposito"]:checked').val() === "comum") {
+        proposito = "comum"
+        document.querySelector('.aula').style.display = 'none';
+        document.querySelector('.prova').style.display = 'none';
+    } else if ($('input[name="proposito"]:checked').val() === "prova"){
+        proposito = "prova"
+        document.querySelector('.prova').removeAttribute('style');
+        document.querySelector('.aula').style.display = 'none';
+    }
+});
+
+
+function recarregar() {
+    setTimeout(function () {
+        location.reload();
+    }, 2000)
+};
+function showToast(texto){
+    const toastMensagem = document.getElementById('mensagemToast')
+    const textoToast = document.querySelector('.toast-body')
+    textoToast.innerHTML = texto;
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
+    toastBootstrap.show()
+    recarregar();
+}
+function cadastrar(){
+    console.log('cadastrar')
+    var dataInicio = document.getElementById('calendario-inicio').value;
+    var horarioInicio = document.getElementById('hora-inicio').value;
+    var horarioFinal = document.getElementById('hora-fim').value;
+
+    var dataFinal = document.getElementById('calendario-final').value;
+
+    var cursoAula = document.getElementById('curso-aula').value;
+    var materiaAula = document.getElementById('materia-aula').value;
+    var grupo = document.getElementById('grupo').value;
+    var turma = document.getElementById('turma').value;
+    var laboratorio = document.getElementById('laboratorio').value;
+    var professor = document.getElementById('nome-professor').value;
+
+    var cursoProva = document.getElementById('curso-prova').value;  
+    var materiaProva = document.getElementById('materia-prova').value;
+
+    if (dataInicio == "" || horarioInicio == "" || horarioFinal == "" || recorrencia == "" || proposito == ""){
+        showToast("Preencha todos os campos!");  
+    }
+    if (recorrencia == "semanal" || recorrencia == "mensal"){
+        if (dataFinal == ""){
+            showToast("Preencha todos os campos!");
+        }
+    }
+
+    if (proposito == "aula"){
+        if (cursoAula == "" || materiaAula == "" || grupo == "" || turma == "" || laboratorio == "" || professor == ""){
+            showToast("Preencha todos os campos!");
+        }
+    }
+    else if (proposito == "prova"){
+        if (cursoProva == "" || materiaProva == ""){
+            showToast("Preencha todos os campos!");
+        }
+    }
+    else{
+        showToast("Reserva cadastrada com sucesso!");
+    }
+}

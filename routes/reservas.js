@@ -47,11 +47,13 @@ function Callback6(rows, req, res) {
                 location: req.body.nome
             })
         } else {
+            var finalDate = new Date();
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
             retorno6.createEvent({
                 start: startTime,
                 end: endTime,
             summary: req.body.tipo,
-            repeating: { freq: req.body.freq, until: new Date.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2))) },
+            repeating: { freq: req.body.freq, until: finalDate },
             timezone: "America/Sao_Paulo",
             // description: {html: "<p>{Criador: req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
             location: req.body.nome
@@ -94,11 +96,13 @@ function Callback5(rows, req, res) {
                 location: req.body.nome
             })
         } else {
+            var finalDate = new Date();
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
             retorno5.createEvent({
                 start: startTime,
                 end: endTime,
                 summary: req.body.tipo,
-                repeating: { freq: req.body.freq, until: new Date.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2))) },
+                repeating: { freq: req.body.freq, until: finalDate },
             timezone: "America/Sao_Paulo",
             // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
             location: req.body.nome
@@ -141,11 +145,13 @@ function Callback4(rows, req, res) {
                 location: req.body.nome
             })
         } else {
+            var finalDate = new Date();
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
             retorno4.createEvent({
                 start: startTime,
                 end: endTime,
                 summary: req.body.tipo,
-                repeating: { freq: req.body.freq, until: new Date.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2))) },
+                repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
                 // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
                 location: req.body.nome
@@ -188,11 +194,13 @@ function Callback4(rows, req, res) {
                 location: req.body.nome
             })
         } else {
+            var finalDate = new Date();
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
             retorno3.createEvent({
                 start: startTime,
                 end: endTime,
                 summary: req.body.tipo,
-                repeating: { freq: req.body.freq, until: new Date.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2))) },
+                repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
                 // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
                 location: req.body.nome
@@ -232,11 +240,13 @@ function Callback4(rows, req, res) {
             location: req.body.nome
         })
     } else {
+        var finalDate = new Date();
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
         retorno2.createEvent({
             start: startTime,
             end: endTime,
             summary: req.body.tipo,
-            repeating: { freq: req.body.freq, until: new Date.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2))) },
+            repeating: { freq: req.body.freq, until: finalDate },
             timezone: "America/Sao_Paulo",
             // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
             location: req.body.nome
@@ -279,11 +289,13 @@ function Callback(rows, req, res) {
                 location: req.body.nome
             })
         } else {
+            var finalDate = new Date();
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
             retorno.createEvent({
                 start: startTime,
                 end: endTime,
                 summary: req.body.tipo,
-                repeating: { freq: req.body.freq, until: new Date.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2))) },
+                repeating: { freq: req.body.freq, until: finalDate },
                 timezone: "America/Sao_Paulo",
                 // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
                 organizer: {

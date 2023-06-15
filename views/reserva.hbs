@@ -1,0 +1,80 @@
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Reserva</h1>
+                    <div class="d-inline-block">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Selecione uma Modalidade</span>
+                            <select id="modalidade" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                                <option value="USER">Usuário</option>
+                                <option value="PROF">Professor</option>
+                                <option value="CURSO">Curso</option>  
+                                <option value="SALA">Sala</option>
+                                <option value="MATERIA">Matéria</option>
+                                <option value="GTL">GTL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block d-none" id="modalidade-professor">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o Professor</span>
+                            <select id="professor" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                                <option value="">MATEUS CAPALDO MARTINS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-curso">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o Curso</span>
+                            <select id="curso" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-sala">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione a Sala</span>
+                            <select id="sala" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-materia">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione a Matéria</span>
+                            <select id="materia" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-gtl">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o GTL</span>
+                            <select id="gtl" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="dia">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o Dia</span>
+                            <input id="calendario-inicio" type="text" placeholder="Ex.: DD/MM/AAAA" class="form-control">
+                        </div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row d-flex flex-column align-items-center text-center mt-5">
+                <div class="col-12">
+                    <div class="calendario d-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

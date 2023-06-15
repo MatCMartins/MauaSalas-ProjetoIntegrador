@@ -1,0 +1,225 @@
+<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Reserva</h1>
+                    <div class="d-inline-block">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Selecione uma Modalidade</span>
+                            <select id="modalidade" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                                <option value="USER">Usuário</option>
+                                <option value="PROF">Professor</option>
+                                <option value="CURSO">Curso</option>  
+                                <option value="SALA">Sala</option>
+                                <option value="MATERIA">Matéria</option>
+                                <option value="GTL">GTL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block d-none" id="modalidade-professor">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o Professor</span>
+                            <select id="professor" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                                <option value="">MATEUS CAPALDO MARTINS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-curso">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o Curso</span>
+                            <select id="curso" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-sala">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione a Sala</span>
+                            <select id="sala" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-materia">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione a Matéria</span>
+                            <select id="materia" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="modalidade-gtl">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o GTL</span>
+                            <select id="gtl" class="modalidade form-select form-select" aria-label=".form-select">
+                                <option selected>---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-inline-block d-none" id="dia">
+                        <div class="input-group professor mb-3">
+                            <span class="input-group-text">Selecione o Dia</span>
+                            <input id="calendario-inicio" type="text" placeholder="Ex.: DD/MM/AAAA" class="form-control">
+                        </div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row d-flex flex-column align-items-center text-center mt-5">
+                <div class="col-12">
+                    <div class="calendario d-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#calendario-inicio").datepicker({
+                dateFormat: 'dd/mm/yy',
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                minDate: new Date(2023, 0, 1),
+                maxDate: new Date(2023, 11, 31),
+                showOtherMonths: true,
+                selectOtherMonths: true
+            });
+        });
+        var nome = "";
+        var dia = "";  
+        $(document).ready(function () {
+            $('#modalidade').change(function() {
+                document.querySelector('.calendario').classList.add('d-none');
+                document.querySelector('#modalidade-professor').classList.add('d-none');    
+                document.querySelector('#modalidade-curso').classList.add('d-none');
+                document.querySelector('#modalidade-sala').classList.add('d-none');
+                document.querySelector('#modalidade-materia').classList.add('d-none');
+                document.querySelector('#modalidade-gtl').classList.add('d-none');
+                document.querySelector('#dia').classList.add('d-none');
+                var selectedNome = $(this).val();   
+                if (selectedNome === "USER") {
+                    nome = document.querySelector("#nome").innerHTML;
+                    document.querySelector('#dia').classList.remove('d-none');
+                } else if (selectedNome === "PROF") {
+                    document.querySelector('#modalidade-professor').classList.remove('d-none');
+                } else if (selectedNome === "CURSO") {
+                    document.querySelector('#modalidade-curso').classList.remove('d-none');
+                } else if (selectedNome === "SALA") {
+                    document.querySelector('#modalidade-sala').classList.remove('d-none')
+                } else if (selectedNome === "MATERIA") {
+                    document.querySelector('#modalidade-materia').classList.remove('d-none');
+    
+                } else if (selectedNome === "GTL") {
+                    document.querySelector('#modalidade-gtl').classList.remove('d-none');
+                }
+            })
+        });
+        $(document).ready(function(){
+            document.querySelector('#dia').classList.add('d-none');
+            $('#professor').change(function(){
+                var selectedProfessor = $(this).find('option:selected').text();
+                nome = selectedProfessor
+                document.querySelector('#dia').classList.remove('d-none');
+        })});
+        $(document).ready(function(){
+            document.querySelector('#dia').classList.add('d-none');
+            $('#curso').change(function(){
+                var selectedCurso = $(this).find('option:selected').text();
+                nome = selectedCurso
+                document.querySelector('#dia').classList.remove('d-none');
+        })});
+        $(document).ready(function(){
+            document.querySelector('#dia').classList.add('d-none');
+            $('#sala').change(function(){
+                var selectedSala = $(this).find('option:selected').text();
+                nome = selectedSala
+                document.querySelector('#dia').classList.remove('d-none');
+        })});
+        $(document).ready(function(){
+            document.querySelector('#dia').classList.add('d-none');
+            $('#materia').change(function(){
+                var selectedMateria = $(this).find('option:selected').text();
+                nome = selectedMateria
+                document.querySelector('#dia').classList.remove('d-none');
+        })});
+        $(document).ready(function(){
+            document.querySelector('#dia').classList.add('d-none');
+            $('#gtl').change(function(){
+                var selectedGtl = $(this).find('option:selected').text();
+                nome = selectedGtl
+                document.querySelector('#dia').classList.remove('d-none');
+        })});
+
+        $(document).ready(function(){
+            document.querySelector('.calendario').classList.add('d-none');
+            $('#dia').change(function(){
+                var selectedDia = document.querySelector('#calendario-inicio').value 
+                document.querySelector('.calendario').classList.remove('d-none');
+                exibirCalendario(nome);
+        })});
+
+        function exibirCalendario(nome){
+            axios.post("https://mauasalas.lcstuber.net/reservas/calendario/lista"), {
+                nome: nome
+            }
+            .then(function (data) {
+                var reservas = data.data;
+                var calendario = document.querySelector('.calendario');
+                for (let i = 1; i < reservas.length + 1; i++){
+                    var card = document.createElement('div');
+                    card.classList.add('card');
+
+                    var cardHeader = document.createElement('div');
+                    cardHeader.classList.add('card-header');
+
+                    var cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+
+                    var cardTitle = document.createElement('h5');
+                    cardTitle.classList.add('card-title');
+                    cardTitle.innerHTML = reservas[i-1].nome;
+
+                    var cardTextHoraInicio = document.createElement('p');
+                    cardTextHoraInicio.classList.add('card-text');
+                    cardTextHoraInicio.innerHTML = reservas[i-1].start;
+
+                    var cardTextHoraFim = document.createElement('p');
+                    cardTextHoraFim.classList.add('card-text');
+                    cardTextHoraFim.innerHTML = reservas[i-1].end;
+
+                    cardHeader.appendChild(cardTitle);
+                    cardBody.appendChild(cardTextHoraInicio);
+                    cardBody.appendChild(cardTextHoraFim);
+                    card.appendChild(cardHeader);
+                    card.appendChild(cardBody);
+                }
+                calendario.appendChild(card);
+
+            })
+        }
+    </script>
+</body>

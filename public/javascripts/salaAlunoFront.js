@@ -106,7 +106,7 @@ function showToast(texto){
     textoToast.innerHTML = texto;
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastMensagem)
     toastBootstrap.show()
-    // recarregar();
+    recarregar();
 }
 function cadastrarReserva(){
     console.log('cadastrar')

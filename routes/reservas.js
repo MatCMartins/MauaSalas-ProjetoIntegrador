@@ -265,6 +265,9 @@ function Callback(rows, req, res) {
         var retorno = new ical.ICalCalendar(JSON.parse(json));
     }
     catch {
+        if (req.body.consulta == true){
+            return res.json({})
+        }
         var retorno = new ical.ICalCalendar({ name: nome, description: tipo, timezone: "America/Sao_Paulo" });
         var json = JSON.stringify(retorno);
         bancoI('INSERT INTO `calendario` VALUES ("' + nome + '","' + tipo + '",\'' + json + '\');');

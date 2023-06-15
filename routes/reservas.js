@@ -259,10 +259,9 @@ function Callback2(rows, req, res) {
 
 function Callback(rows, req, res) {
     var nome = req.body.nome;
-    var tipo = req.body.tipo;
+    var tipo = "Sala";
     try {
         var json = rows[0]["calendario"];
-        console.log(json)
         var retorno = new ical.ICalCalendar(JSON.parse(json));
     }
     catch {
@@ -308,7 +307,7 @@ function Callback(rows, req, res) {
         var json2 = JSON.stringify(retorno);
         bancoI('UPDATE `calendario` set calendario = \'' + json2 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
         mail(req.session.account.username, "Reservas Mauá Salas", `A sala ${nome} foi reservada para o dia ${req.body.dia}${(req.body.freq == "MONTHLY") ? " se repetindo mensalmente até " + req.body.diaFimRec : (req.body.tipo == "WEEKLY") ? " se repetindo semanalmente até " + req.body.diaFimRec : ""} no horário das ${req.body.horaInicio} às ${req.body.horaFim} através do sistema do Mauá Salas por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
-        banco('select calendario from calendario where nome="' + "req.session.account.name" + '";', Callback2, req, res)
+        banco('select calendario from calendario where nome="' + req.session.account.name + '";', Callback2, req, res)
     }
 };
 

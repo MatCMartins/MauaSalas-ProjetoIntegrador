@@ -19,7 +19,7 @@ function isAuthenticated(req, res, next) {
 function Callback6(rows, req, res) {
     var nome = req.body.GTL;
     var tipo = "GTL";
-    if (nome == ''){
+    if (nome == '') {
         res.sendStatus(200);
     } else {
         try {
@@ -52,23 +52,23 @@ function Callback6(rows, req, res) {
             retorno6.createEvent({
                 start: startTime,
                 end: endTime,
-            summary: req.body.tipo,
-            repeating: { freq: req.body.freq, until: finalDate },
-            timezone: "America/Sao_Paulo",
-            // description: {html: "<p>{Criador: req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
-            location: req.body.nome
-        })
+                summary: req.body.tipo,
+                repeating: { freq: req.body.freq, until: finalDate },
+                timezone: "America/Sao_Paulo",
+                // description: {html: "<p>{Criador: req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                location: req.body.nome
+            })
+        }
+        var json7 = JSON.stringify(retorno6);
+        bancoI('UPDATE `calendario` set calendario = \'' + json7 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
+        res.sendStatus(200);
     }
-    var json7 = JSON.stringify(retorno6);
-    bancoI('UPDATE `calendario` set calendario = \'' + json7 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
-    res.sendStatus(200);
-}
 }
 
 function Callback5(rows, req, res) {
     var nome = req.body.materia;
     var tipo = "Matéria";
-    if (nome == ''){
+    if (nome == '') {
         banco('select calendario from calendario where nome="' + req.body.GTL + '";', Callback6, req, res)
     } else {
         try {
@@ -103,21 +103,21 @@ function Callback5(rows, req, res) {
                 end: endTime,
                 summary: req.body.tipo,
                 repeating: { freq: req.body.freq, until: finalDate },
-            timezone: "America/Sao_Paulo",
-            // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
-            location: req.body.nome
-        })
+                timezone: "America/Sao_Paulo",
+                // description: {html: "<p>{Criador: 'req.session.account.name', Professor: req.body.professor, Sala: req.body.nome, Curso: req.body.curso, Matéria: req.body.materia, GTL: req.body.GTL}</p>"},
+                location: req.body.nome
+            })
+        }
+        var json6 = JSON.stringify(retorno5);
+        bancoI('UPDATE `calendario` set calendario = \'' + json6 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
+        banco('select calendario from calendario where nome="' + req.body.GTL + '";', Callback6, req, res)
     }
-    var json6 = JSON.stringify(retorno5);
-    bancoI('UPDATE `calendario` set calendario = \'' + json6 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
-    banco('select calendario from calendario where nome="' + req.body.GTL + '";', Callback6, req, res)
-}
 }
 
 function Callback4(rows, req, res) {
     var nome = req.body.curso;
     var tipo = "Curso";
-    if (nome == '---'){
+    if (nome == '---') {
         banco('select calendario from calendario where nome="' + req.body.materia + '";', Callback5, req, res)
     } else {
         try {
@@ -161,12 +161,12 @@ function Callback4(rows, req, res) {
         bancoI('UPDATE `calendario` set calendario = \'' + json5 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
         banco('select calendario from calendario where nome="' + req.body.materia + '";', Callback5, req, res)
     }
-    }
-    
-    function Callback3(rows, req, res) {
-        var nome = req.body.professor;
-        var tipo = "Professor";
-        if (nome == ''){
+}
+
+function Callback3(rows, req, res) {
+    var nome = req.body.professor;
+    var tipo = "Professor";
+    if (nome == '') {
         banco('select calendario from calendario where nome="' + req.body.curso + '";', Callback4, req, res)
     } else {
         try {
@@ -210,9 +210,9 @@ function Callback4(rows, req, res) {
         bancoI('UPDATE `calendario` set calendario = \'' + json4 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
         banco('select calendario from calendario where nome="' + req.body.curso + '";', Callback4, req, res)
     }
-    }
-    
-    function Callback2(rows, req, res) {
+}
+
+function Callback2(rows, req, res) {
     var nome = req.session.account.name;
     var tipo = "Criador";
     try {
@@ -241,7 +241,7 @@ function Callback4(rows, req, res) {
         })
     } else {
         var finalDate = new Date();
-            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+        finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
         retorno2.createEvent({
             start: startTime,
             end: endTime,
@@ -307,7 +307,7 @@ function Callback(rows, req, res) {
         }
         var json2 = JSON.stringify(retorno);
         bancoI('UPDATE `calendario` set calendario = \'' + json2 + '\' where nome = \'' + nome + '\' and tipo = \'' + tipo + '\';');
-        mail(req.session.account.username, "Reservas Mauá Salas", `A sala ${nome} foi reservada para dia ${req.body.dia}${(req.body.freq == "MONTHLY") ? " se repetindo mensalmente até "+req.body.diaFimRec : (req.body.tipo == "WEEKLY") ? " se repetindo semanalmente até "+req.body.diaFimRec : ""} no horário das ${req.body.horaInicio} às ${req.body.horaFim} através do sistema do Mauá Salas por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
+        mail(req.session.account.username, "Reservas Mauá Salas", `A sala ${nome} foi reservada para o dia ${req.body.dia}${(req.body.freq == "MONTHLY") ? " se repetindo mensalmente até " + req.body.diaFimRec : (req.body.tipo == "WEEKLY") ? " se repetindo semanalmente até " + req.body.diaFimRec : ""} no horário das ${req.body.horaInicio} às ${req.body.horaFim} através do sistema do Mauá Salas por: <a href=mailto:${req.session.account.username}>${req.session.account.name}</a>`).catch(console.error);
         banco('select calendario from calendario where nome="' + "req.session.account.name" + '";', Callback2, req, res)
     }
 };
@@ -321,5 +321,16 @@ router.post("/calendario/lista",
             banco('select calendario from calendario where nome="' + req.body.nome + '";', Callback, req, res);
         }
     });
+
+router.get('/',
+    isAuthenticated, // check if user is authenticated
+    async function (req, res, next) {
+        res.render('reserva', { title: 'Mauá Salas',
+        style: "/stylesheets/stylesHomePage.css",
+        isAuthenticated: req.session.isAuthenticated,
+        username: req.session.account && req.session.account.name,
+        script: "/javascripts/reservaFront.js" });
+    }
+);
 
 module.exports = router;

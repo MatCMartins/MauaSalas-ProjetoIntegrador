@@ -86,9 +86,10 @@ $(document).ready(function(){
 })});
 
 function exibirCalendario(nome){
-    axios.post("https://mauasalas.lcstuber.net/reservas/calendario/lista"), {
-        nome: nome
-    }
+    nome = "LEONARDO CAZOTTO STUBER"
+    axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+                nome: nome
+            }, { timeout: 5000 })
     .then(function (data) {
         var reservas = data.data;
         var calendario = document.querySelector('.calendario');
@@ -104,7 +105,7 @@ function exibirCalendario(nome){
 
             var cardTitle = document.createElement('h5');
             cardTitle.classList.add('card-title');
-            cardTitle.innerHTML = reservas[i-1].nome;
+            cardTitle.innerHTML = nome;
 
             var cardTextHoraInicio = document.createElement('p');
             cardTextHoraInicio.classList.add('card-text');

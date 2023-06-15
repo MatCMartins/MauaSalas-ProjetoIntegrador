@@ -74,12 +74,17 @@ $(document).ready(function(){
 
 function exibirCalendario(nome){
     axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
-                nome: nome
+                nome: nome,
+                consulta: true
             }, { timeout: 5000 })
     .then(function (data) {
         var reservas = data.data;
         var calendario = document.querySelector('.calendario');
-            calendario.removeChild(calendario.firstChild)
+
+            if (calendario.firstChild){
+
+                calendario.removeChild(calendario.firstChild)
+            }
 
 
             var card = document.createElement('div');
@@ -95,17 +100,33 @@ function exibirCalendario(nome){
             cardTitle.classList.add('card-title');
             cardTitle.innerHTML = nome;
 
+            var cardLocation = document.createElement("p")
+            cardLocation.classList.add("card-text")
+            var cardDia = document.createElement("p")
+            cardDia.classList.add("card-text")
             var cardTextHoraInicio = document.createElement('p');
             cardTextHoraInicio.classList.add('card-text');
-            cardTextHoraInicio.innerHTML = reservas[0].start;
-
             var cardTextHoraFim = document.createElement('p');
             cardTextHoraFim.classList.add('card-text');
-            cardTextHoraFim.innerHTML = reservas[0].end;
+            if(reservas[0] != undefined){
+                var horaIni = parseInt(reservas[0].start.slice(11,13)) - 3
+                var horaFim = parseInt(reservas[0].end.slice(11,13)) - 3
+                cardLocation.innerHTML = "Sala: " + reservas[0].location.title
+                cardTextHoraInicio.innerHTML = "Inicio: " + horaIni  + reservas[0].start.slice(13,16);
+                cardTextHoraFim.innerHTML = "Fim: "  + horaFim  + reservas[0].end.slice(13,16);
+                cardDia.innerHTML = "Dia: " + reservas[0].start.slice(0,10)
+
+            }
+            else{
+                cardTextHoraInicio.innerHTML = "Essa entidade não possui reservas"
+            }
+
 
             cardHeader.appendChild(cardTitle);
+            cardBody.appendChild(cardLocation)
             cardBody.appendChild(cardTextHoraInicio);
             cardBody.appendChild(cardTextHoraFim);
+            cardBody.appendChild(cardDia)
             card.appendChild(cardHeader);
             card.appendChild(cardBody);
             calendario.appendChild(card);

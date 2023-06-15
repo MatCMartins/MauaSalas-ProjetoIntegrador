@@ -33,9 +33,9 @@ function Callback6(rows, req, res) {
         }
         const startTime = new Date();
         const endTime = new Date();
-        startTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        startTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
-        endTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        endTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
         if (req.body.freq == "unique") {
             retorno6.createEvent({
@@ -48,7 +48,7 @@ function Callback6(rows, req, res) {
             })
         } else {
             var finalDate = new Date();
-            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(0,4)), parseInt(req.body.diaFimRec.slice(5, 7)) - 1, parseInt(req.body.diaFimRec.slice(8, 10)));
             retorno6.createEvent({
                 start: startTime,
                 end: endTime,
@@ -82,9 +82,9 @@ function Callback5(rows, req, res) {
         }
         const startTime = new Date();
         const endTime = new Date();
-        startTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        startTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
-        endTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        endTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
         if (req.body.freq == "unique") {
             retorno5.createEvent({
@@ -97,7 +97,7 @@ function Callback5(rows, req, res) {
             })
         } else {
             var finalDate = new Date();
-            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(0,4)), parseInt(req.body.diaFimRec.slice(5, 7)) - 1, parseInt(req.body.diaFimRec.slice(8, 10)));
             retorno5.createEvent({
                 start: startTime,
                 end: endTime,
@@ -131,9 +131,9 @@ function Callback4(rows, req, res) {
         }
         const startTime = new Date();
         const endTime = new Date();
-        startTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        startTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
-        endTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        endTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
         if (req.body.freq == "unique") {
             retorno4.createEvent({
@@ -146,7 +146,7 @@ function Callback4(rows, req, res) {
             })
         } else {
             var finalDate = new Date();
-            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(0,4)), parseInt(req.body.diaFimRec.slice(5, 7)) - 1, parseInt(req.body.diaFimRec.slice(8, 10)));
             retorno4.createEvent({
                 start: startTime,
                 end: endTime,
@@ -180,9 +180,9 @@ function Callback3(rows, req, res) {
         }
         const startTime = new Date();
         const endTime = new Date();
-        startTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        startTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
-        endTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        endTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
         if (req.body.freq == "unique") {
             retorno3.createEvent({
@@ -195,7 +195,7 @@ function Callback3(rows, req, res) {
             })
         } else {
             var finalDate = new Date();
-            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(0,4)), parseInt(req.body.diaFimRec.slice(5, 7)) - 1, parseInt(req.body.diaFimRec.slice(8, 10)));
             retorno3.createEvent({
                 start: startTime,
                 end: endTime,
@@ -226,10 +226,10 @@ function Callback2(rows, req, res) {
     }
     const startTime = new Date();
     const endTime = new Date();
-    startTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
-    startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
-    endTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
-    endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
+    startTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
+        startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
+        endTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
+        endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
     if (req.body.freq == "unique") {
         retorno2.createEvent({
             start: startTime,
@@ -241,7 +241,7 @@ function Callback2(rows, req, res) {
         })
     } else {
         var finalDate = new Date();
-        finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+        finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(0,4)), parseInt(req.body.diaFimRec.slice(5, 7)) - 1, parseInt(req.body.diaFimRec.slice(8, 10)));
         retorno2.createEvent({
             start: startTime,
             end: endTime,
@@ -274,9 +274,9 @@ function Callback(rows, req, res) {
     } else {
         const startTime = new Date();
         const endTime = new Date();
-        startTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        startTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         startTime.setHours(parseInt(req.body.horaInicio.slice(0, 2)), parseInt(req.body.horaInicio.slice(3, 5)), 0, 0)
-        endTime.setFullYear(parseInt(req.body.dia.slice(-4)), parseInt(req.body.dia.slice(3, 5)) - 1, parseInt(req.body.dia.slice(0, 2)))
+        endTime.setFullYear(parseInt(req.body.dia.slice(0,4)), parseInt(req.body.dia.slice(5, 7)) - 1, parseInt(req.body.dia.slice(8, 10)))
         endTime.setHours(parseInt(req.body.horaFim.slice(0, 2)), parseInt(req.body.horaFim.slice(3, 5)), 0, 0)
         if (req.body.freq == "unique") {
             retorno.createEvent({
@@ -289,7 +289,7 @@ function Callback(rows, req, res) {
             })
         } else {
             var finalDate = new Date();
-            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(-4)), parseInt(req.body.diaFimRec.slice(3, 5)) - 1, parseInt(req.body.diaFimRec.slice(0, 2)));
+            finalDate.setFullYear(parseInt(req.body.diaFimRec.slice(0,4)), parseInt(req.body.diaFimRec.slice(5, 7)) - 1, parseInt(req.body.diaFimRec.slice(8, 10)));
             retorno.createEvent({
                 start: startTime,
                 end: endTime,

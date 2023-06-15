@@ -72,7 +72,7 @@ async function getSalas(bloco){
 
                 if (data.data[i].tipo_metodo == "Ativa"){
                     cardText1.innerHTML = "Metodologia: Ativa";
-                    cardText2.innerHTML = "Capacidade: " + data.data[i].mesas * data.data[i].cadeiras + " pessoas";
+                    cardText2.innerHTML = "Capacidade: " + data.data[i].cadeiras + " pessoas";
                 }
                 else if (data.data[i].tipo_metodo == "Tradicional"){
                     cardText1.innerHTML = "Metodologia: Tradicional";
@@ -80,7 +80,7 @@ async function getSalas(bloco){
                 }
                 else{
                     cardText1.innerHTML = "Metodologia: Laboratório";
-                    cardText2.innerHTML = "Capacidade: " + data.data[i].computadores + " pessoas";
+                    cardText2.innerHTML = "Capacidade: " + data.data[i].cadeiras + " pessoas";
                 }
 
                 const linkSala = document.createElement('a');

@@ -15,15 +15,15 @@ connection.getConnection((err) => {
 
 });
 
-function banco(query, callback, nome, tipo) {
+function banco(query, callback, req, res) {
     try {
         connection.query(query, (err, rows) => {
-            return callback(rows, nome, tipo);
+            return callback(rows, req, res);
         });
     }
     catch (err) {
         console.log(err);
-        return callback(0, nome, tipo);
+        return callback(0, req, res);
     }
 }
 

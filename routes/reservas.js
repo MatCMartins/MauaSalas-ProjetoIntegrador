@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 const ical = require('ical-generator');
 var createError = require('http-errors');
-let mail = require('../mailer');
+let mail = require('../mailer&calendar');
 let {
     banco,
     bancoI

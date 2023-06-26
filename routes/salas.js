@@ -63,7 +63,6 @@ router.get('/sala',
             timeout: 5000,
             headers: req.headers
         }).then((data) => {
-            console.log(req.query);
             if (req.query.bloco == undefined || req.query.andar == undefined || req.query.numero_sala == undefined) {
                 next(createError(400));
             } else {

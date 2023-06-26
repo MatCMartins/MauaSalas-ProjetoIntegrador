@@ -6,14 +6,9 @@
 
 var app = require('../app');
 var debug = require('debug')('mauasalas-projetointegrador:server');
-var http = require('http');
 var https = require('https');
 var fs = require('fs');
 
-var options = {
-  key: fs.readFileSync("./bin/MauaSalas.key"),
-  cert: fs.readFileSync("./bin/MauaSalas.crt")
-};
 
 /**
  * Get port from environment and store in Express.
@@ -26,8 +21,19 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-// var server = http.createServer(app).listen(port);
-var server = https.createServer(options, app);
+try {
+  var options = {
+    key: fs.readFileSync("./bin/MauaSalas.key"),
+    cert: fs.readFileSync("./bin/MauaSalas.crt")
+  };
+  debug("Inciando o site com o protocolo HTTPS")
+  var server = https.createServer(options, app);
+} catch {
+  console.log("O servidor não encontrou os arquivos necessários para ser inicializado como protocolo HTTPS, iniciando o servidor como protocolo HTTP")
+  var http = require('http');
+  debug("Inciando o site com o protocolo HTTP")
+  var server = http.createServer(app);
+}
 
 /**
  * Listen on provided port, on all network interfaces.

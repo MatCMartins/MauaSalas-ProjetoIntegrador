@@ -1,3 +1,9 @@
+function getCurrentURL() {
+    return window.location.href
+}
+
+const url = getCurrentURL()
+
 var map = L.map('map',{zoomControl:false}).setView([(-23.6515300 +-23.6449700)/2 , (-46.57975+-46.56745)/2], 17,);
 
 map.touchZoom.disable();
@@ -56,7 +62,7 @@ function cadastrarBloco(){
     var bloco = document.getElementById('blocoEntrada').value;
     const cores = ["red", "blue", "green", "yellow", "orange", "purple", "black", "brown", "pink"];
     cor = cores[Math.floor(Math.random() * cores.length)];
-    axios.post("https://mauasalas.lcstuber.net/admin/manterBlocos/lista", {
+    axios.post(url+"/lista", {
         bloco: bloco,
         cor: cor,
         latitude: latitude,
@@ -76,7 +82,7 @@ function abrirModalDeletarBloco(bloco){
 
 function deletarBloco(){
     var bloco = document.getElementById('blocoDeletar').innerHTML;
-    (axios.delete("https://mauasalas.lcstuber.net/admin/manterBlocos/lista", {data: {
+    (axios.delete(url+"/lista", {data: {
         bloco: bloco
     }}).then(() => {
         showToast("Bloco deletado com sucesso");

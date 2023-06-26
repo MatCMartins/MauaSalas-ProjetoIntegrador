@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 const ical = require('ical-generator');
@@ -327,11 +329,14 @@ router.post("/calendario/lista",
 router.get('/',
     isAuthenticated, // check if user is authenticated
     async function (req, res, next) {
-        res.render('reserva', { title: 'Mauá Salas',
-        style: "/stylesheets/stylesReserva.css",
-        isAuthenticated: req.session.isAuthenticated,
-        username: req.session.account && req.session.account.name,
-        script: "/javascripts/reservaFront.js" });
+        res.render('reserva', {
+            url: process.env.POST_LOGOUT_REDIRECT_URI,
+            title: 'Mauá Salas',
+            style: "/stylesheets/stylesReserva.css",
+            isAuthenticated: req.session.isAuthenticated,
+            username: req.session.account && req.session.account.name,
+            script: "/javascripts/reservaFront.js"
+        });
     }
 );
 

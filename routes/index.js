@@ -3,11 +3,14 @@
  * Licensed under the MIT License.
  */
 
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 
 router.get('/', function (req, res, next) {
     res.render('index', {
+        url: process.env.POST_LOGOUT_REDIRECT_URI,
         title: 'Mauá Salas',
         style: "/stylesheets/stylesHomePage.css",
         isAuthenticated: req.session.isAuthenticated,

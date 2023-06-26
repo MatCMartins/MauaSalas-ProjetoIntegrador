@@ -331,6 +331,7 @@ router.get('/',
     async function (req, res, next) {
         res.render('reserva', {
             url: process.env.POST_LOGOUT_REDIRECT_URI,
+            adoptID: process.env.ADOPT_WEBSITE_ID,
             title: 'Mauá Salas',
             style: "/stylesheets/stylesReserva.css",
             isAuthenticated: req.session.isAuthenticated,

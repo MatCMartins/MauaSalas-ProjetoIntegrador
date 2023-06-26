@@ -11,6 +11,7 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     res.render('index', {
         url: process.env.POST_LOGOUT_REDIRECT_URI,
+        adoptID: process.env.ADOPT_WEBSITE_ID,
         title: 'Mauá Salas',
         style: "/stylesheets/stylesHomePage.css",
         isAuthenticated: req.session.isAuthenticated,

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let banco = require('../conector');
 var axios = require('axios');
+var createError = require('http-errors');
 
 function isAuthenticated(req, res, next) {
     if (!req.session.isAuthenticated) {
@@ -57,7 +58,11 @@ router.get('/sala',
         axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista", {
             timeout: 5000,
             headers: req.headers
-        }).then((data) =>
+        }).then((data) => {
+            console.log(req.query);
+            if (req.query.bloco == undefined || req.query.andar == undefined || req.query.numero_sala == undefined) {
+                next(createError(400));
+            } else {
             res.render('sala', {
                 title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
                 style: "/stylesheets/stylesSala.css",
@@ -65,8 +70,9 @@ router.get('/sala',
                 username: req.session.account && req.session.account.name,
                 funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
                 script: "/javascripts/salaAlunoFront.js"
-    }));
-});
+            })}
+        });
+    });
 
 
 

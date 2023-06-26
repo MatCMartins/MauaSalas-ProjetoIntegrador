@@ -1,0 +1,6 @@
+https://mauasalas.lcstuber.net/
+https://mauasalas.lcstuber.net/salas
+https://mauasalas.lcstuber.net/admin/manterSalas
+https://mauasalas.lcstuber.net/admin/manterBlocos
+https://mauasalas.lcstuber.net/admin/manterAdmin
+https://mauasalas.lcstuber.net/reservas

@@ -3,7 +3,7 @@ require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 let banco = require('../conector');
-let mail = require('../mailer');
+let mail = require('../mailer&calendar');
 var axios = require('axios');
 var createError = require('http-errors');
 

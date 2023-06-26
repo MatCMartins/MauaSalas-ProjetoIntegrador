@@ -13,12 +13,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var authRouter = require('./routes/auth');
 var salasRouter = require('./routes/salas');
 var reservasRouter = require('./routes/reservas');
-var wellKnownRouter = require('./routes/wellKnown');
 
 // initialize express
 var app = express();
@@ -28,6 +26,8 @@ var app = express();
  * familiarize yourself with available options. Visit: https://www.npmjs.com/package/express-session
  */
  app.use(session({
+    name: "MauaSalas",
+    proxy: false,
     secret: process.env.EXPRESS_SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -48,11 +48,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/salas', salasRouter);
 app.use('/auth', authRouter);
-app.use('/.well-known/microsoft-identity-association.json', wellKnownRouter);
 app.use('/reservas', reservasRouter);
 
 // catch 404 and forward to error handler

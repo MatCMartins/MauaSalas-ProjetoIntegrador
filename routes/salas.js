@@ -39,6 +39,7 @@ router.get('/',
         }).then((data) =>
             res.render('salas', {
                 url: process.env.POST_LOGOUT_REDIRECT_URI,
+                adoptID: process.env.ADOPT_WEBSITE_ID,
                 title: 'Mauá Salas - Salas',
                 style: "/stylesheets/stylesSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -68,6 +69,7 @@ router.get('/sala',
             } else {
             res.render('sala', {
                 url: process.env.POST_LOGOUT_REDIRECT_URI,
+                adoptID: process.env.ADOPT_WEBSITE_ID,
                 title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
                 style: "/stylesheets/stylesSala.css",
                 isAuthenticated: req.session.isAuthenticated,

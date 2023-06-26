@@ -59,6 +59,7 @@ router.get('/manterAdmin',
         }).then((data) =>
             res.render('Admin/manterAdministradores', {
                 url: process.env.POST_LOGOUT_REDIRECT_URI,
+                adoptID: process.env.ADOPT_WEBSITE_ID,
                 title: 'Mauá Salas - Gerenciar Usuários',
                 style: "/stylesheets/stylesAdminPage.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -109,6 +110,7 @@ router.get('/manterSalas',
         axios.all(requests).then((axios.spread((...responses) =>
             res.render('Admin/manterSalas', {
                 url: process.env.POST_LOGOUT_REDIRECT_URI,
+                adoptID: process.env.ADOPT_WEBSITE_ID,
                 title: 'Mauá Salas - Gerenciar Salas',
                 style: "/stylesheets/stylesManterSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -145,6 +147,7 @@ router.get('/manterBlocos',
         }).then((data) =>
             res.render('Admin/manterBlocos', {
                 url: process.env.POST_LOGOUT_REDIRECT_URI,
+                adoptID: process.env.ADOPT_WEBSITE_ID,
                 title: 'Mauá Salas - Gerenciar Blocos',
                 style: "/stylesheets/stylesManterBlocos.css",
                 isAuthenticated: req.session.isAuthenticated,

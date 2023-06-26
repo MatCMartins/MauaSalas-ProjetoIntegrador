@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 let banco = require('../conector');
@@ -31,11 +33,12 @@ router.post("/blocos/lista",
 router.get('/',
     isAuthenticated,
     async function (req, res, next) {
-        axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista", {
+        axios.get(process.env.POST_LOGOUT_REDIRECT_URI+"salas/blocos/lista", {
             timeout: 5000,
             headers: req.headers
         }).then((data) =>
             res.render('salas', {
+                url: process.env.POST_LOGOUT_REDIRECT_URI,
                 title: 'Mauá Salas - Salas',
                 style: "/stylesheets/stylesSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -55,7 +58,7 @@ router.post("/sala/conteudo",
 router.get('/sala',
     isAuthenticated,
     async function (req, res, next) {
-        axios.get("https://mauasalas.lcstuber.net/salas/blocos/lista", {
+        axios.get(process.env.POST_LOGOUT_REDIRECT_URI+"salas/blocos/lista", {
             timeout: 5000,
             headers: req.headers
         }).then((data) => {
@@ -64,6 +67,7 @@ router.get('/sala',
                 next(createError(400));
             } else {
             res.render('sala', {
+                url: process.env.POST_LOGOUT_REDIRECT_URI,
                 title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
                 style: "/stylesheets/stylesSala.css",
                 isAuthenticated: req.session.isAuthenticated,

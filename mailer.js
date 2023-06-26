@@ -25,15 +25,15 @@ async function mail(destinatário, assunto, mensagem) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Mauá Salas</title>
-            <link rel="stylesheet" href="https://mauasalas.lcstuber.net/stylesheets/bootstrap.min.css">
-            <link rel="stylesheet" href="https://mauasalas.lcstuber.net/stylesheets/stylesNavbar.css">
+            <link rel="stylesheet" href="${process.env.POST_LOGOUT_REDIRECT_URI}stylesheets/bootstrap.min.css">
+            <link rel="stylesheet" href="${process.env.POST_LOGOUT_REDIRECT_URI}stylesheets/stylesNavbar.css">
         </head>
         <body class="d-flex flex-column vh-100 min-vh-100">
             <header>
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <a href="https://mauasalas.lcstuber.net/" class="navbar-brand m-lg-auto">
-                            <img src="https://mauasalas.lcstuber.net/images/logo.svg" alt="Logo Maua Salas" id="logo" width="80px">
+                        <a href="${process.env.POST_LOGOUT_REDIRECT_URI}" class="navbar-brand m-lg-auto">
+                            <img src="${process.env.POST_LOGOUT_REDIRECT_URI}images/logo.svg" alt="Logo Maua Salas" id="logo" width="80px">
                         </a>
                     </div>
                 </nav>

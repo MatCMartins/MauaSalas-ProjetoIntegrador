@@ -1,3 +1,9 @@
+function getCurrentURL() {
+    return window.location.href
+}
+
+const url = getCurrentURL()
+
 async function carregarAdministradores(rows) {
     const lista = document.querySelector(".informacoes");
     for (let i = 0; i < rows.length; i++) {
@@ -100,7 +106,7 @@ function cadastrarAdministrador() {
         showToast("Preencha todos os campos");
     }
     else {
-        axios.post("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
+        axios.post(url+"/lista", {
             email: email_usuario,
             tipo: tipo_usuario
         }, { timeout: 5000 }).then(response => {
@@ -122,7 +128,7 @@ function editarAdministrador() {
         showToast("Preencha todos os campos");
     }
     else {
-        (axios.put("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
+        (axios.put(url+"/lista", {
             email: email_usuario,
             tipo: tipo_usuario
         }, { timeout: 5000 })
@@ -142,7 +148,7 @@ function deletarAdministrador() {
     let email_usuario = document.querySelector("#emailUsuario").innerHTML;
     let tipo_usuario = document.querySelector("#tipoUsuario").innerHTML;
 
-    (axios.delete("https://mauasalas.lcstuber.net/admin/manterAdmin/lista", {
+    (axios.delete(url+"/lista", {
         timeout: 5000,
         data: {
             email: email_usuario,

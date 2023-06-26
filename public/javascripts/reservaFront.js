@@ -1,3 +1,9 @@
+function getCurrentURL() {
+    return window.location.href
+}
+
+const url = getCurrentURL()
+
 var nome = "";
 var dia = "";  
 $(document).ready(function () {
@@ -73,7 +79,7 @@ $(document).ready(function(){
 })});
 
 function exibirCalendario(nome){
-    axios.post('https://mauasalas.lcstuber.net/reservas/calendario/lista', {
+    axios.post(url+"/calendario/lista", {
                 nome: nome,
                 consulta: true
             }, { timeout: 5000 })

@@ -1,3 +1,9 @@
+function getCurrentURL() {
+    return window.location.href
+}
+
+const url = getCurrentURL()
+
 var salas;  	
 const lista_blocos = []
 const BLOCOS_POR_PAGINA = 5;
@@ -43,7 +49,6 @@ async function carregarSalas(rows){
       
         return 0;
       });
-      console.log(salas[0]["bloco"])
     const lista = document.querySelector(".list-group");
     for (let i = 0; i <rows.length; i++){
         if(rows[i].bloco == salas[0]["bloco"]){
@@ -218,7 +223,7 @@ function cadastrarSala(){
     }
     else{
         try{
-            (axios.post("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
+            (axios.post(url+"/lista",{
                 bloco: bloco,
                 numero_sala: numero,
                 andar: andar,
@@ -274,7 +279,7 @@ function editarSala(){
     }else if (numero_computadores < 0 | numero_projetores < 0 | numero_quadros < 0 | numero_tomadas < 0 | cadeiras < 0 | mesas < 0){
         showToast("Não é possível inserir valores negativos");
     }else{
-        (axios.put("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{
+        (axios.put(url+"/lista",{
         tipo_metodo: tipo_metodo,
         mesas: mesas,
         cadeiras: cadeiras,
@@ -307,7 +312,7 @@ function deletarSala(){
     if (tituloDeletarSala.length == 5){
         numero_deletar = tituloDeletarSala[2] + tituloDeletarSala[3] + tituloDeletarSala[4];
     }
-    (axios.delete("https://mauasalas.lcstuber.net/admin/manterSalas/lista",{timeout: 5000,
+    (axios.delete(url+"/lista",{timeout: 5000,
     data:{
         bloco: bloco_deletar,
         numero_sala: numero_deletar,

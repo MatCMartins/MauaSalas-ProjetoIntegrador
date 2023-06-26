@@ -1,5 +1,5 @@
 
-# Maua Salas
+# Mauá Salas
 
 Sistema responsavel pela reserva de salas do Instituto Mauá de Tecnologia. O codigo é responsavel por agendar horarios de reserva, visualizar as salas disponiveis para reservar e suas caracteristicas (numero de cadeiras, computadores, etc...)
 

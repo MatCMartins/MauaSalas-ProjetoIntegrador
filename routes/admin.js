@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var router = express.Router();
 let banco = require('../conector');
@@ -51,11 +53,12 @@ router.delete('/manterAdmin/lista',
 router.get('/manterAdmin',
     isAuthenticated,
     async function (req, res, next) {
-        axios.get('https://mauasalas.lcstuber.net/admin/manterAdmin/lista', {
+        axios.get(process.env.POST_LOGOUT_REDIRECT_URI+"admin/manterAdmin/lista", {
             timeout: 5000,
             headers: req.headers
         }).then((data) =>
             res.render('Admin/manterAdministradores', {
+                url: process.env.POST_LOGOUT_REDIRECT_URI,
                 title: 'Mauá Salas - Gerenciar Usuários',
                 style: "/stylesheets/stylesAdminPage.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -95,8 +98,8 @@ router.get('/manterSalas',
     isAuthenticated,
     async function (req, res, next) {
         const urls = [
-            'https://mauasalas.lcstuber.net/admin/manterSalas/lista',
-            'https://mauasalas.lcstuber.net/admin/manterBlocos/lista'
+            process.env.POST_LOGOUT_REDIRECT_URI+"admin/manterSalas/lista",
+            process.env.POST_LOGOUT_REDIRECT_URI+"admin/manterBlocos/lista"
         ];
 
         const requests = urls.map(url => axios.get(url, {
@@ -105,6 +108,7 @@ router.get('/manterSalas',
         }));
         axios.all(requests).then((axios.spread((...responses) =>
             res.render('Admin/manterSalas', {
+                url: process.env.POST_LOGOUT_REDIRECT_URI,
                 title: 'Mauá Salas - Gerenciar Salas',
                 style: "/stylesheets/stylesManterSalas.css",
                 isAuthenticated: req.session.isAuthenticated,
@@ -135,11 +139,12 @@ router.delete('/manterBlocos/lista',
 router.get('/manterBlocos',
     isAuthenticated,
     async function (req, res, next) {
-        axios.get('https://mauasalas.lcstuber.net/admin/manterBlocos/lista', {
+        axios.get(process.env.POST_LOGOUT_REDIRECT_URI+"admin/manterBlocos/lista", {
             timeout: 5000,
             headers: req.headers
         }).then((data) =>
             res.render('Admin/manterBlocos', {
+                url: process.env.POST_LOGOUT_REDIRECT_URI,
                 title: 'Mauá Salas - Gerenciar Blocos',
                 style: "/stylesheets/stylesManterBlocos.css",
                 isAuthenticated: req.session.isAuthenticated,

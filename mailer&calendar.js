@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const msal = require("@azure/msal-node");
 const axios = require('axios');
-
 var {
     msalConfig,
     REDIRECT_URI,
@@ -27,7 +26,7 @@ async function sendMail(destinatário, assunto, mensagem) {
             }
         };
         
-        console.log('Email referente à '+ assunto +'  enviado: ' + new Date().toString() + " para o seguinte destinatário: " + destinatário);
+        console.log('Email referente à '+ assunto +' enviado: ' + new Date().toString() + " para o seguinte destinatário: " + destinatário);
         
         await axios.post(GRAPH_ME_ENDPOINT+"/sendMail", {
             message: {
@@ -77,4 +76,134 @@ async function sendMail(destinatário, assunto, mensagem) {
     });
 }
 
-module.exports = sendMail;
+async function listCalendars(res) {
+    pca.acquireTokenByUsernamePassword(usernamePasswordRequest).then(async (response) => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${response.accessToken}`,
+                ContentType: "application/json"
+            }
+        };
+
+        const list = await axios.get(GRAPH_ME_ENDPOINT+"/calendars", options)
+        
+        res.json(list.data.value);
+    }).catch((error) => {
+        console.log(error);
+        res.json({});
+    });
+}
+
+async function createCalendar(nome, GroupID, res) {
+    pca.acquireTokenByUsernamePassword(usernamePasswordRequest).then(async (response) => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${response.accessToken}`,
+                ContentType: "application/json"
+            }
+        };
+        
+        console.log('Calendário '+ nome +' criado: ' + new Date().toString());
+        
+        await axios.post(GRAPH_ME_ENDPOINT+`/calendarGroups/${GroupID}/calendars`, {
+            name: nome
+            }, options);
+
+        const list = await axios.get(GRAPH_ME_ENDPOINT+`/calendarGroups/${GroupID}/calendars`, options);
+        
+        res.json(list.data.value);
+    }).catch((error) => {
+        console.log(error);
+        res.json({})
+    });
+}
+
+async function deleteCalendar(CalendarID, GroupID, res) {
+    pca.acquireTokenByUsernamePassword(usernamePasswordRequest).then(async (response) => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${response.accessToken}`
+            }
+        };
+        
+        await axios.delete(GRAPH_ME_ENDPOINT+`/calendarGroups/${GroupID}/calendars/${CalendarID}`, options);
+
+        const list = await axios.get(GRAPH_ME_ENDPOINT+`/calendarGroups/${GroupID}/calendars`, options);
+        
+        res.json(list.data.value);
+    }).catch((error) => {
+        console.log(error);
+        res.json({})
+    });
+}
+
+async function listCalendarGroups(res) {
+    pca.acquireTokenByUsernamePassword(usernamePasswordRequest).then(async (response) => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${response.accessToken}`,
+                ContentType: "application/json"
+            }
+        };
+
+        const list = await axios.get(GRAPH_ME_ENDPOINT+"/calendarGroups", options);
+        
+        res.json(list.data.value);
+    }).catch((error) => {
+        console.log(error);
+        res.json({});
+    });
+}
+
+async function createCalendarGroup(nome, res) {
+    pca.acquireTokenByUsernamePassword(usernamePasswordRequest).then(async (response) => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${response.accessToken}`,
+                ContentType: "application/json"
+            }
+        };
+        
+        console.log('Grupo de calendários '+ nome +' criado: ' + new Date().toString());
+        
+        await axios.post(GRAPH_ME_ENDPOINT+"/calendarGroups", {
+            name: nome
+            }, options);
+
+        const list = await axios.get(GRAPH_ME_ENDPOINT+"/calendarGroups", options);
+        
+        res.json(list.data.value);
+    }).catch((error) => {
+        console.log(error);
+        res.json({})
+    });
+}
+
+async function deleteCalendarGroup(GroupID, res) {
+    pca.acquireTokenByUsernamePassword(usernamePasswordRequest).then(async (response) => {
+        const options = {
+            headers: {
+                Authorization: `Bearer ${response.accessToken}`
+            }
+        };
+        
+        await axios.delete(GRAPH_ME_ENDPOINT+`/calendarGroups/${GroupID}`, options);
+
+        const list = await axios.get(GRAPH_ME_ENDPOINT+`/calendarGroups/`, options);
+        
+        res.json(list.data.value);
+    }).catch((error) => {
+        console.log(error);
+        res.json({})
+    });
+}
+
+module.exports = {
+    sendMail,
+    listCalendars,
+    createCalendar,
+    deleteCalendar,
+    listCalendarGroups,
+    createCalendarGroup,
+    deleteCalendarGroup
+};

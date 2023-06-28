@@ -66,16 +66,18 @@ router.get('/sala',
             if (req.query.bloco == undefined || req.query.andar == undefined || req.query.numero_sala == undefined) {
                 next(createError(400));
             } else {
-            res.render('sala', {
-                url: process.env.POST_LOGOUT_REDIRECT_URI,
-                adoptID: process.env.ADOPT_WEBSITE_ID,
-                title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
-                style: "/stylesheets/stylesSala.css",
-                isAuthenticated: req.session.isAuthenticated,
-                username: req.session.account && req.session.account.name,
-                funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
-                script: "/javascripts/salaAlunoFront.js"
-            })}
+                next(createError(503));
+            // res.render('sala', {
+            //     url: process.env.POST_LOGOUT_REDIRECT_URI,
+            //     adoptID: process.env.ADOPT_WEBSITE_ID,
+            //     title: 'Mauá Salas - Sala ' + req.query.bloco + req.query.andar + req.query.numero_sala,
+            //     style: "/stylesheets/stylesSala.css",
+            //     isAuthenticated: req.session.isAuthenticated,
+            //     username: req.session.account && req.session.account.name,
+            //     funcao: 'getSala("' + req.query.bloco + '",' + req.query.andar + "," + req.query.numero_sala + ")",
+            //     script: "/javascripts/salaAlunoFront.js"
+            // })
+            }
         });
     });
 

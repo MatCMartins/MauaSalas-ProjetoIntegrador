@@ -15,7 +15,7 @@ let {
 
 function isAuthenticated(req, res, next) {
     if (!req.session.isAuthenticated) {
-        return res.redirect('/auth/signin'); // redirect to sign-in route
+        return res.redirect(`/auth/signin?url=${req.baseUrl+req.url}`); // redirect to sign-in route
     } else {
         next();
     }
